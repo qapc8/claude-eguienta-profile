@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Eguienta - Full Intelligence Profile & 3D Connection Map</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#06060f;color:#d8d8e8;overflow-x:hidden;line-height:1.6}
+
+  /* HEADER */
+  .header{text-align:center;padding:35px 20px 15px;background:linear-gradient(180deg,#0c0c20 0%,#06060f 100%);border-bottom:1px solid #1a1a3a}
+  .header h1{font-size:2.2em;color:#ff3b3b;text-shadow:0 0 30px rgba(255,59,59,0.4);letter-spacing:1px}
+  .header .subtitle{color:#777;font-size:0.9em;margin-top:4px}
+  .header .updated{color:#555;font-size:0.75em;margin-top:6px}
+
+  /* TABS */
+  .tab-bar{display:flex;justify-content:center;gap:4px;padding:12px 10px;background:#080814;border-bottom:1px solid #1a1a3a;position:sticky;top:0;z-index:100;flex-wrap:wrap}
+  .tab-btn{padding:9px 16px;background:#111128;border:1px solid #252550;color:#888;cursor:pointer;border-radius:6px;font-size:0.82em;transition:all .25s}
+  .tab-btn:hover{background:#1a1a40;color:#ccc}
+  .tab-btn.active{background:#ff3b3b;color:#fff;border-color:#ff3b3b;box-shadow:0 0 12px rgba(255,59,59,0.35)}
+  .tab-content{display:none}.tab-content.active{display:block}
+
+  /* SECTIONS */
+  .section{padding:20px;max-width:1300px;margin:0 auto}
+  .card{background:#0d0d22;border:1px solid #1e1e45;border-radius:10px;padding:22px;margin-bottom:18px;transition:border-color .3s}
+  .card:hover{border-color:#3a3a6a}
+  .card h2{font-size:1.2em;margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid #1e1e45;color:#e8e8f8}
+  .card h3{color:#ddd;font-size:1em;margin:10px 0 6px}
+  .card p,.card li{color:#aab;font-size:0.88em;line-height:1.65}
+  .card ul{padding-left:18px;margin:6px 0}
+  .card blockquote{border-left:3px solid #ff3b3b;padding:10px 14px;margin:10px 0;background:#12122a;border-radius:0 6px 6px 0;font-style:italic;color:#c8a}
+
+  /* BADGES */
+  .badge{display:inline-block;padding:3px 10px;border-radius:15px;font-size:0.72em;font-weight:600;margin:2px}
+  .b-red{background:rgba(255,60,60,0.18);color:#f66;border:1px solid rgba(255,60,60,0.4)}
+  .b-orange{background:rgba(255,140,0,0.15);color:#fa0;border:1px solid rgba(255,140,0,0.35)}
+  .b-blue{background:rgba(68,130,255,0.15);color:#69f;border:1px solid rgba(68,130,255,0.35)}
+  .b-green{background:rgba(60,200,80,0.15);color:#6c6;border:1px solid rgba(60,200,80,0.35)}
+  .b-purple{background:rgba(160,80,255,0.15);color:#b8f;border:1px solid rgba(160,80,255,0.35)}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px}
+  .stat{background:#111128;border-radius:8px;padding:14px 10px;text-align:center}
+  .stat .n{font-size:1.6em;font-weight:700}.stat .l{font-size:0.72em;color:#777;margin-top:3px}
+  .n-red{color:#ff3b3b}.n-orange{color:#fa0}.n-blue{color:#69f}.n-green{color:#6c6}.n-purple{color:#b8f}
+
+  /* GRID */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .gcard{background:#111128;border-radius:8px;padding:16px;border-left:4px solid #3366ff;transition:transform .2s}
+  .gcard:hover{transform:translateY(-2px)}
+  .gcard h3{color:#fff;margin-bottom:6px;font-size:0.95em}
+  .gcard .role{color:#69f;font-size:0.8em;margin-bottom:6px}
+  .gcard p{color:#99a;font-size:0.84em}
+  .gcard.red{border-left-color:#ff3b3b}.gcard.orange{border-left-color:#fa0}.gcard.green{border-left-color:#4c4}.gcard.purple{border-left-color:#a8f}
+
+  /* TIMELINE */
+  .tl{position:relative;padding-left:28px}
+  .tl::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#ff3b3b,#fa0,#39f,#4c4,#a8f)}
+  .tl-item{position:relative;margin-bottom:16px;padding:13px;background:#111128;border-radius:7px;border-left:3px solid #ff3b3b}
+  .tl-item::before{content:'';position:absolute;left:-25px;top:18px;width:10px;height:10px;border-radius:50%;background:#ff3b3b;border:2px solid #06060f}
+  .tl-item .yr{color:#f88;font-weight:700;font-size:0.8em}.tl-item h3{color:#eee;font-size:0.92em;margin:3px 0}
+  .tl-item p{color:#99a;font-size:0.84em}
+  .tl-item.blue{border-left-color:#39f}.tl-item.blue::before{background:#39f}
+  .tl-item.orange{border-left-color:#fa0}.tl-item.orange::before{background:#fa0}
+  .tl-item.green{border-left-color:#4c4}.tl-item.green::before{background:#4c4}
+  .tl-item.purple{border-left-color:#a8f}.tl-item.purple::before{background:#a8f}
+
+  /* FINDING ROWS */
+  .finding{display:flex;align-items:flex-start;gap:10px;padding:11px;margin-bottom:8px;background:#111128;border-radius:7px}
+  .finding .dot{min-width:8px;height:8px;border-radius:50%;margin-top:6px}
+  .finding p{font-size:0.86em;color:#bbc}
+  .finding strong{color:#eee}
+
+  /* SOCIAL */
+  .social-card{background:#111128;border-radius:8px;padding:14px;margin-bottom:10px;border-left:3px solid #39f}
+  .social-card .platform{font-size:0.75em;color:#69f;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+  .social-card .handle{font-size:1.1em;color:#fff;margin:4px 0}
+  .social-card p{color:#99a;font-size:0.84em}
+
+  /* EXPLOIT DETAIL */
+  .exploit-box{background:#0a0a1e;border:1px solid #2a1a1a;border-radius:8px;padding:18px;margin-bottom:14px}
+  .exploit-box h3{color:#ff3b3b;margin-bottom:8px;font-size:1.05em}
+  .exploit-box .amount{font-size:2em;font-weight:700;color:#ff3b3b}
+  .exploit-step{display:flex;gap:10px;margin:6px 0;align-items:flex-start}
+  .exploit-step .num{min-width:28px;height:28px;background:#ff3b3b;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8em;font-weight:700}
+  .exploit-step p{font-size:0.84em;color:#bbc}
+
+  /* WALLET FORENSICS */
+  .wallet{background:#0a0a1e;border:1px solid #1e1e45;border-radius:6px;padding:10px 14px;margin:6px 0;font-family:'Courier New',monospace;font-size:0.78em;color:#a8f;word-break:break-all}
+  .wallet .lbl{color:#69f;font-family:'Segoe UI',sans-serif;font-size:0.9em;margin-bottom:2px}
+
+  /* 3D MAP */
+  #map-container{width:100%;height:800px;position:relative;background:#040410}
+  #canvas3d{width:100%;height:100%;display:block}
+  .map-legend{position:absolute;top:12px;left:12px;background:rgba(6,6,15,0.92);border:1px solid #252550;border-radius:8px;padding:14px;z-index:10;font-size:0.76em;max-width:220px}
+  .map-legend h3{margin-bottom:8px;color:#eee;font-size:0.9em}
+  .leg-item{display:flex;align-items:center;gap:7px;margin-bottom:4px;color:#aab}
+  .leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+  .map-controls{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(6,6,15,0.92);border:1px solid #252550;border-radius:8px;padding:8px 18px;z-index:10;color:#666;font-size:0.76em}
+  .map-info{position:absolute;top:12px;right:12px;background:rgba(6,6,15,0.92);border:1px solid #252550;border-radius:8px;padding:14px;z-index:10;font-size:0.78em;max-width:240px;color:#aab}
+  .map-info h3{color:#eee;margin-bottom:6px;font-size:0.9em}
+  .tooltip3d{position:absolute;background:rgba(6,6,15,0.96);border:1px solid #39f;border-radius:7px;padding:11px 14px;pointer-events:none;z-index:20;display:none;max-width:320px;font-size:0.82em}
+  .tooltip3d h4{color:#fff;margin-bottom:4px}.tooltip3d p{color:#99a;line-height:1.4}
+  .tooltip3d .conn{color:#69f;font-size:0.85em;margin-top:4px}
+
+  /* TABLE */
+  .data-table{width:100%;border-collapse:collapse;font-size:0.84em}
+  .data-table th{background:#111128;color:#69f;padding:8px 10px;text-align:left;border-bottom:1px solid #252550;font-weight:600}
+  .data-table td{padding:7px 10px;border-bottom:1px solid #151535;color:#aab}
+  .data-table tr:hover td{background:#0d0d22}
+
+  a{color:#39f;text-decoration:none}a:hover{text-decoration:underline}
+  .disclaimer{max-width:1300px;margin:20px auto;padding:15px 20px;color:#555;font-size:0.72em;border-top:1px solid #151535;text-align:center}
+  .sep{height:1px;background:#1e1e45;margin:16px 0}
+
+  /* Collapsible */
+  .collapsible{cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center}
+  .collapsible::after{content:'+';color:#69f;font-size:1.2em;transition:transform .2s}
+  .collapsible.open::after{content:'-'}
+  .collapse-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .collapse-body.open{max-height:5000px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CLAUDE EGUIENTA</h1>
+  <div class="subtitle">Full Intelligence Profile &mdash; Crypto Ventures, Exploits &amp; Association Network</div>
+  <div class="updated">Compiled from public sources &bull; Social media, forums, blockchain data, news archives &bull; March 2026</div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('profile')">Profile</button>
+  <button class="tab-btn" onclick="switchTab('social')">Social Media</button>
+  <button class="tab-btn" onclick="switchTab('timeline')">Timeline</button>
+  <button class="tab-btn" onclick="switchTab('entities')">People &amp; Entities</button>
+  <button class="tab-btn" onclick="switchTab('exploits')">Exploits Deep Dive</button>
+  <button class="tab-btn" onclick="switchTab('forensics')">Financial Forensics</button>
+  <button class="tab-btn" onclick="switchTab('whistleblower')">Whistleblower</button>
+  <button class="tab-btn" onclick="switchTab('findings')">Key Findings</button>
+  <button class="tab-btn" onclick="switchTab('map')">3D Connection Map</button>
+</div>
+
+<!-- ========== PROFILE ========== -->
+<div id="tab-profile" class="tab-content active">
+<div class="section">
+  <div class="stats">
+    <div class="stat"><div class="n n-red">7</div><div class="l">Crypto ventures</div></div>
+    <div class="stat"><div class="n n-red">$80M</div><div class="l">TenX ICO raised</div></div>
+    <div class="stat"><div class="n n-orange">$25M</div><div class="l">Telcoin token sale</div></div>
+    <div class="stat"><div class="n n-red">99.93%</div><div class="l">Investor losses (PAY&rarr;MIMO)</div></div>
+    <div class="stat"><div class="n n-purple">$60M+</div><div class="l">DAO hack (associate accused)</div></div>
+    <div class="stat"><div class="n n-orange">$1.3M</div><div class="l">Telcoin exploit</div></div>
+    <div class="stat"><div class="n n-orange">$14.5M</div><div class="l">TrustSwap/Team Finance hack</div></div>
+    <div class="stat"><div class="n n-blue">10+</div><div class="l">Years in crypto</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Identity &amp; Background</h2>
+    <table class="data-table">
+      <tr><td style="width:180px;color:#69f;">Full Name</td><td>Claude P. Eguienta</td></tr>
+      <tr><td style="color:#69f;">Nationality</td><td>French</td></tr>
+      <tr><td style="color:#69f;">Education</td><td>Master's in CS (distributed systems) &mdash; Supinfo; Bachelor's from Shandong University (China); Lycee Descartes</td></tr>
+      <tr><td style="color:#69f;">Languages</td><td>French, English, Chinese (Mandarin), Japanese</td></tr>
+      <tr><td style="color:#69f;">Locations</td><td>Dubai/Singapore (current); previously Japan (most of career); grew up in France; studied in China &amp; US</td></tr>
+      <tr><td style="color:#69f;">Current Roles</td><td>CEO of Mimo Capital AG / Mimo Labs; Board Member at TrustSwap; Founder of Aya Wallet</td></tr>
+      <tr><td style="color:#69f;">Prior Role</td><td>Software System Architect at CyberAgent (Japan)</td></tr>
+      <tr><td style="color:#69f;">Twitter / X</td><td><a href="https://x.com/klodio" target="_blank">@klodio</a> (personal, low activity) &bull; <a href="https://x.com/mimo_labs" target="_blank">@mimo_labs</a> (company)</td></tr>
+      <tr><td style="color:#69f;">GitHub</td><td><a href="https://github.com/klodio" target="_blank">klodio</a> (18 followers, JS/Go repos)</td></tr>
+      <tr><td style="color:#69f;">LinkedIn</td><td><a href="https://sg.linkedin.com/in/claudeeguienta" target="_blank">claudeeguienta</a></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Risk Assessment</h2>
+    <p style="color:#777;margin-bottom:10px;font-size:0.84em">Based on publicly available information. No direct personal fraud charges found.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <span class="badge b-red">HIGH &mdash; Leads rebranded entity of $80M failed ICO</span>
+      <span class="badge b-red">HIGH &mdash; Current business partner accused as DAO hacker</span>
+      <span class="badge b-red">HIGH &mdash; Hoenisch still at Mimo as CFPO despite accusations</span>
+      <span class="badge b-orange">MED &mdash; Entity recycling (TenX Pte. Ltd = Mimo)</span>
+      <span class="badge b-orange">MED &mdash; 75% staff fired, called "healthy contraction"</span>
+      <span class="badge b-orange">MED &mdash; Whistleblower called leadership "dysfunctional"</span>
+      <span class="badge b-orange">MED &mdash; Every associated token down 99%+</span>
+      <span class="badge b-orange">MED &mdash; Board member at TrustSwap (own $14.5M hack)</span>
+      <span class="badge b-blue">INFO &mdash; No personal fraud charges found</span>
+      <span class="badge b-blue">INFO &mdash; Never publicly addressed DAO hack association</span>
+      <span class="badge b-green">POS &mdash; Telcoin received US bank charter (2025)</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Venture Portfolio</h2>
+    <div class="grid">
+      <div class="gcard green">
+        <h3>Kabotip</h3><div class="role">Co-Founder &bull; 2013-2016 &bull; Japan</div>
+        <p>Crypto tipping startup. OnLab Incubator. Where he met Toby Hoenisch in 2014. Project dissolved.</p>
+      </div>
+      <div class="gcard orange">
+        <h3>Telcoin (TEL)</h3><div class="role">Co-Founder &amp; CEO &bull; 2017</div>
+        <p>$25M token sale. Blockchain remittances. Co-founded with Paul Neuner. $1.3M exploit Dec 2023 (proxy vulnerability on Polygon). TEL dropped 40-48%. Later received Nebraska bank charter Nov 2025.</p>
+      </div>
+      <div class="gcard red">
+        <h3>TenX (PAY/TENX)</h3><div class="role">CEO &bull; Mid-2020 &rarr; Shutdown Apr 2021</div>
+        <p>$80M ICO (June 2017, sold out in 7 minutes). Promised crypto debit cards &mdash; never delivered. Card issuers WaveCrest (Jan 2018) and Wirecard (Jun 2020) both collapsed. Co-founders linked to pyramid scheme &amp; DAO hack. PAY collapsed from $4.91 to $0.001. Monthly burn: $740K with no product.</p>
+      </div>
+      <div class="gcard red">
+        <h3>Mimo Capital / Parallel Protocol</h3><div class="role">CEO &bull; 2021-present</div>
+        <p>Rebranded from TenX &mdash; <strong>same legal entity</strong> (TenX Pte. Ltd, confirmed by USPTO trademark filing). PAR stablecoin (Euro), paUSD, KUMA Protocol (RWA bonds). Token swap: 0.24 MIMO per PAY. MIMO token down 99%+ from ATH ($0.43 &rarr; $0.0001). Near-zero trading volume. Toby Hoenisch remains as CFPO.</p>
+      </div>
+      <div class="gcard orange">
+        <h3>TrustSwap</h3><div class="role">Board Member &bull; Nov 2023</div>
+        <p>DeFi tools platform. Subsidiary Team Finance was hacked for $14.5M in Oct 2022. Hatch DAO exit scam. SWAP token down ~99.3% from ATH. 1-star Trustpilot reviews (2.9 rating). Mimo Capital AG also invested in TrustSwap.</p>
+      </div>
+      <div class="gcard orange">
+        <h3>Aya Wallet</h3><div class="role">Founder / Architect &bull; 2024-present</div>
+        <p>AI-powered crypto "super app." Non-custodial. Stores private keys via iCloud/Google Cloud (security concern). Pre-launch/development as of mid-2025. 18.4K followers on X. Same team as "ONE OF US" web3 sports community.</p>
+      </div>
+      <div class="gcard purple">
+        <h3>KUMA Protocol</h3><div class="role">Mimo subsidiary</div>
+        <p>Interest-bearing tokens backed by tokenized bonds (US Treasury Bills). Jan 2025: partnered with Plume Network for $50M+ in tokenized AI compute bonds. Latest pivot.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ========== SOCIAL MEDIA ========== -->
+<div id="tab-social" class="tab-content">
+<div class="section">
+  <div class="card">
+    <h2>Social Media Presence</h2>
+    <p style="color:#777;font-size:0.84em;margin-bottom:14px">Eguienta maintains a deliberately low-profile personal social media presence. In his own words: "I don't use Twitter that much. I use it to consume news more. I'm more of a Telegram person." He prefers to communicate through company accounts.</p>
+
+    <div class="social-card">
+      <div class="platform">Twitter / X &mdash; Personal</div>
+      <div class="handle"><a href="https://x.com/klodio" target="_blank">@klodio</a></div>
+      <p>Low activity. Confirmed in podcast: "K-L-O-D-I-O, just Claudio." Reconnected to an old account. Barely tweets. Uses Twitter primarily to consume news.</p>
+    </div>
+    <div class="social-card" style="border-left-color:#fa0;">
+      <div class="platform">Twitter / X &mdash; Company</div>
+      <div class="handle"><a href="https://x.com/mimo_labs" target="_blank">@mimo_labs</a></div>
+      <p>"I'm more vocal as part of my company." Official Mimo Labs account. More active than personal handle.</p>
+    </div>
+    <div class="social-card" style="border-left-color:#fa0;">
+      <div class="platform">Twitter / X &mdash; Aya Wallet</div>
+      <div class="handle"><a href="https://x.com/theayawallet" target="_blank">@theayawallet</a></div>
+      <p>Joined Feb 2024. ~18.4K followers. Runs campaigns via Telegram bot.</p>
+    </div>
+    <div class="social-card" style="border-left-color:#4c4;">
+      <div class="platform">GitHub</div>
+      <div class="handle"><a href="https://github.com/klodio" target="_blank">klodio</a></div>
+      <p>18 followers. Repositories in JavaScript and Go. Confirms "klodio" username across platforms.</p>
+    </div>
+    <div class="social-card" style="border-left-color:#4c4;">
+      <div class="platform">LinkedIn</div>
+      <div class="handle"><a href="https://sg.linkedin.com/in/claudeeguienta" target="_blank">Claude Eguienta</a></div>
+      <p>Listed as CEO at Mimo. Based in Singapore. Prior: CyberAgent, Telcoin, TenX.</p>
+    </div>
+    <div class="social-card" style="border-left-color:#888;">
+      <div class="platform">Legacy Handle</div>
+      <div class="handle">@jeguienta</div>
+      <p>Older/alternate X account. Possibly "J. Eguienta." Limited activity.</p>
+    </div>
+    <div class="social-card" style="border-left-color:#888;">
+      <div class="platform">Telegram</div>
+      <div class="handle">Primary communication platform (handle unknown)</div>
+      <p>Self-described as "more of a Telegram person." Uses Telegram for community management and DMs.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Social Media Mentions &amp; Sentiment</h2>
+    <h3>Positive / Neutral</h3>
+    <div class="finding"><div class="dot" style="background:#4c4"></div><p><strong>@UsoroEmmanuel (SenatorSkelz):</strong> "Claude Eguienta's interview with @defactor_ gives an intriguing look into how Mimo is innovating in crypto with real-world assets. The AI wallet concept sounds especially useful." &mdash; <a href="https://x.com/UsoroEmmanuel/status/1850144391815434572" target="_blank">Link</a></p></div>
+    <div class="finding"><div class="dot" style="background:#4c4"></div><p><strong>@aba_summit:</strong> Featured as speaker at Asia Blockchain Summit 2024. &mdash; <a href="https://x.com/aba_summit/status/1808168756448751649" target="_blank">Link</a></p></div>
+    <div class="finding"><div class="dot" style="background:#4c4"></div><p><strong>@telcoin:</strong> Hosted AMA with "Telcoin's CEO Claude Eguienta" (Oct 2019). &mdash; <a href="https://x.com/telcoin/status/1189429257228828672" target="_blank">Link</a></p></div>
+
+    <h3 style="margin-top:16px">Critical / Negative</h3>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>TenX Whistleblower (born2invest):</strong> Anonymous insider described management as "dysfunctional." 75% of staff laid off; Eguienta called it "healthy contraction." Both he and Hoenisch "base decisions solely on numbers and leave empathy out of the equation."</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Glassdoor Employee Review (June 2019, 1.0/5):</strong> Title: <em>"CEOs are psychopathic scammers."</em> Pros: "Ponzi tier company" where "CEOs made a lot of money." Cons: "Everyone that invested in this company lost everything." &mdash; <a href="https://www.glassdoor.com/Reviews/Employee-Review-TenX-RVW27658054.htm" target="_blank">Link</a></p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Julian Hosp on X (Dec 2024-Feb 2025):</strong> "@cryptonashs Toby Hoenisch is your guy" and "ask Toby Hoenisch what he did with the money and where he took off to!" &mdash; Publicly implicating Eguienta's current business partner. <a href="https://x.com/julianhosp/status/1871816518054687015" target="_blank">Link 1</a> / <a href="https://x.com/julianhosp/status/1892535099691807141" target="_blank">Link 2</a></p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>TenX Twitter account:</strong> Last post October 2020 &mdash; went completely silent under Eguienta's leadership. Facebook also abandoned.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Reddit r/Ethereum:</strong> TenX called a "straight-up scam." TenX team member responded: "It's very saddening to hear people call our company and team a scam when we are working our hardest to get the product out." &mdash; No product was ever delivered.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Reddit investor:</strong> "No f***ing cards after two years of so-called development and over 30 million in ICO funds." &mdash; r/CryptoCurrency</p></div>
+    <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>Reddit presence:</strong> Zero direct Reddit mentions of "Claude Eguienta" found. r/tenx subreddit is essentially dead. He maintains no visible Reddit activity.</p></div>
+
+    <h3 style="margin-top:16px">Notable Silence</h3>
+    <div class="finding"><div class="dot" style="background:#a8f"></div><p><strong>No public response to DAO hack accusations:</strong> When Toby Hoenisch was accused as the DAO hacker in Feb 2022, Claude Eguienta made <strong>no public statement</strong> about his continued business partnership with Hoenisch at Mimo. Hoenisch deleted his entire Twitter feed. He remains CFPO at Mimo.</p></div>
+  </div>
+
+  <div class="card">
+    <h2>Media Appearances &amp; Interviews</h2>
+    <table class="data-table">
+      <tr><th>Date</th><th>Platform</th><th>Topic</th></tr>
+      <tr><td>Apr 2021</td><td>Cryptonites (YouTube/SwissBorg)</td><td>DeFi culture, stablecoins, Telcoin origin</td></tr>
+      <tr><td>Oct 2021</td><td>Mimo DeFi Podcast #01</td><td>PAR stablecoin, Mimo tech, managing teams</td></tr>
+      <tr><td>Nov 2021</td><td>The Bit (Bittrex Global)</td><td>Future of DeFi and stablecoins</td></tr>
+      <tr><td>Dec 2021</td><td>Journal du Coin (YouTube, French)</td><td>"He creates his own bank and stablecoin on Ethereum"</td></tr>
+      <tr><td>2021</td><td>Mainnet Conference</td><td>"Mimo, the crypto-euro that beats the ECB?"</td></tr>
+      <tr><td>2023</td><td>Risk Management Show</td><td>Real-world assets in blockchain, risks</td></tr>
+      <tr><td>2023</td><td>Web3 Needs Some Soul! Podcast</td><td>Bridging creatives and web3</td></tr>
+      <tr><td>2023</td><td>Around the Coin Podcast #488</td><td>"Crypto has been like Covid for money"</td></tr>
+      <tr><td>2024</td><td>Asia Blockchain Summit (Taipei)</td><td>RWA tokenization, AI + Web3</td></tr>
+      <tr><td>Oct 2024</td><td>Defactor Interview</td><td>RWA innovation, AI wallet</td></tr>
+      <tr><td>Apr 2025</td><td>DL News</td><td>Aya Wallet: "even my mother could use"</td></tr>
+      <tr><td>Various</td><td>Blockchain Africa Conference</td><td>Financial inclusion, telecom partnerships</td></tr>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- ========== TIMELINE ========== -->
+<div id="tab-timeline" class="tab-content">
+<div class="section">
+  <div class="card">
+    <h2>Complete Chronological Timeline</h2>
+    <div class="tl">
+      <div class="tl-item blue"><div class="yr">2013-2016</div><h3>Kabotip &mdash; Co-Founder</h3><p>Crypto tipping startup in Japan. OnLab Incubator. Met Toby Hoenisch at OnLab in 2014 &mdash; a connection that would define his career. Prior: Software System Architect at CyberAgent.</p></div>
+
+      <div class="tl-item purple"><div class="yr">June 17, 2016</div><h3>The DAO Hack &mdash; 3.64M ETH stolen</h3><p>Attacker exploits reentrancy vulnerability in The DAO smart contract, draining ~$60M worth of ETH (later valued at ~$11B). Leads to controversial Ethereum hard fork creating ETH/ETC split. Toby Hoenisch (Eguienta's OnLab associate, future TenX co-founder) later accused as the hacker.</p></div>
+
+      <div class="tl-item blue"><div class="yr">March 2017</div><h3>Telcoin &mdash; Co-Founder &amp; CEO</h3><p>Co-founded with Paul Neuner. Raised $25M in token sale. Blockchain remittances via telecom partnerships. GCash partnership in Philippines. Focus on financial inclusion.</p></div>
+
+      <div class="tl-item"><div class="yr">June 24, 2017</div><h3>TenX ICO &mdash; $80M raised in 7 minutes</h3><p>Founded by Toby Hoenisch, Julian Hosp, Paul Kitti, Michael Sperk. Promised crypto debit cards via VISA. Vitalik Buterin falsely listed as partner before ICO. 4,000+ investors. Token allocation: 51% public, 29% business dev, 10% company, 10% founders (4yr vesting). PAY holders promised 0.5% of monthly transaction volume.</p></div>
+
+      <div class="tl-item"><div class="yr">Aug 12, 2017</div><h3>PAY Token all-time high: $4.91</h3><p>Peak market cap. Investors optimistic about crypto debit card future.</p></div>
+
+      <div class="tl-item orange"><div class="yr">Jan 5, 2018</div><h3>WaveCrest loses VISA license</h3><p>VISA terminates relationship with WaveCrest Holdings (TenX card issuer) for "continued non-compliance." All TenX cards deactivated. ~500K crypto debit cards shut down industry-wide. TenX promises replacement by Q1 2018 &mdash; fails.</p></div>
+
+      <div class="tl-item orange"><div class="yr">Sep 6, 2018</div><h3>TenX Q2 Transparency Report</h3><p>First financial disclosure under community pressure. $70.5M fiat + ~$34M crypto = $104.5M total. Burn rate: $740K/month ($530K on salaries for ~70 employees). Analyst Larry Cermak: "They have 70 people working for eight months, and they don't have any product."</p></div>
+
+      <div class="tl-item orange"><div class="yr">Oct 2018</div><h3>PAY holder rewards eliminated</h3><p>Promised 0.5% of transaction volume to PAY holders &mdash; never implemented, now formally removed. Key whitepaper promise broken.</p></div>
+
+      <div class="tl-item"><div class="yr">Late 2018</div><h3>Julian Hosp's Lyoness connection exposed</h3><p>Hosp linked to Lyoness, declared illegal pyramid scheme in Norway, Austria, Switzerland. Built 25,000-person downline. Earned "6-figure income" from scheme. Deleted all evidence from LinkedIn before TenX ICO. Investors were never informed.</p></div>
+
+      <div class="tl-item"><div class="yr">Dec 16-30, 2018</div><h3>Julian Hosp alleged PAY token dump</h3><p>~2.2M PAY tokens transferred to Bittrex. 545 BTC volume in 90-minute spike. PAY/BTC down 70% over 2 weeks. Redditor u/GMGH traces wallet via Hosp's verified Ethereum signature + monthly 6,250 PAY payments.</p></div>
+
+      <div class="tl-item"><div class="yr">Jan 8, 2019</div><h3>Julian Hosp forced out of TenX</h3><p>Announces "resignation" as President. Later claims he was forced out by Hoenisch and Kitti. Accused of insider trading. FinTelegram: "He has conducted an insider transaction... violated relevant insider regulations to the detriment of other PAY token owners."</p></div>
+
+      <div class="tl-item"><div class="yr">Mid-2020 (Q2)</div><h3>Claude Eguienta becomes CEO of TenX</h3><p>Leaves Telcoin. Takes over from Toby Hoenisch, who moves to CFO/Chairman. Announced in TenX Q2 2020 Transparency Report (July 2, 2020). 75% of staff already gone or about to be fired. Eguienta calls it "healthy contraction."</p></div>
+
+      <div class="tl-item"><div class="yr">June 18-25, 2020</div><h3>Wirecard insolvency &mdash; TenX cards frozen again</h3><p>Wirecard discloses $2.1B in accounts "likely did not exist." CEO Markus Braun arrested. Wirecard files insolvency &mdash; largest fraud in German corporate history. TenX cards frozen for UK/European users. Second card issuer collapse. TenX now cannot function at all.</p></div>
+
+      <div class="tl-item orange"><div class="yr">Jun 2020</div><h3>Class action lawsuit call</h3><p>Investor (claimed $25K ICO investment) organizes class action attempt against Hoenisch/TenX. Alleges exit scam preparation, false KYC/AML claims, money laundering. Urges documentation preservation. No confirmed successful judgment found.</p></div>
+
+      <div class="tl-item orange"><div class="yr">Oct 2020</div><h3>TenX Twitter goes silent</h3><p>Last post from @tenxwallet. All community communication ceases under Eguienta's leadership. Facebook also abandoned.</p></div>
+
+      <div class="tl-item"><div class="yr">Jan 2021</div><h3>Whistleblower report published</h3><p>Anonymous TenX employee to born2invest: "Remaining long-term employees no longer have confidence in the dysfunctional management team." PAY and TENX tokens "no longer play any role whatsoever." Hoenisch "continues to dominate the board" despite stepping down.</p></div>
+
+      <div class="tl-item"><div class="yr">Apr 1, 2021</div><h3>TenX shuts down &mdash; MIMO token swap</h3><p>Users advised to withdraw. Storage/withdrawal fees introduced. Snapshot: 0.24 MIMO per PAY, 0.37 MIMO per TENX. TenX effectively dead. Same legal entity (TenX Pte. Ltd) continues as Mimo. Community manager admits old tokens are "seemingly worthless."</p></div>
+
+      <div class="tl-item blue"><div class="yr">2021</div><h3>Mimo launches &mdash; PAR stablecoin</h3><p>DeFi lending platform. Mint PAR (Euro-pegged) against ETH/wBTC/USDC collateral. Quantstamp audit: "well-written, well-documented." TVL peaked at ~$40M. Toby Hoenisch joins as CFPO.</p></div>
+
+      <div class="tl-item"><div class="yr">Oct 21, 2021</div><h3>MIMO token ATH: $0.4307</h3><p>Brief peak during DeFi boom. Would collapse 99%+ from here.</p></div>
+
+      <div class="tl-item purple"><div class="yr">Feb 22, 2022</div><h3>Toby Hoenisch accused as DAO hacker</h3><p>Laura Shin + Chainalysis publish investigation. Evidence chain: stolen ETH &rarr; BTC &rarr; Wasabi Wallet &rarr; de-mixed &rarr; 4 exchanges &rarr; Grin coin &rarr; node "grin.toby.ai" &rarr; IP also hosts "TenX" node + "ln.toby.ai." Amazon Singapore IP matches TenX corporate location. Hoenisch: "factually inaccurate." Deletes entire Twitter. Never provides promised rebuttal. Hosp: "this version is very possible."</p></div>
+
+      <div class="tl-item purple"><div class="yr">Oct 2022</div><h3>TrustSwap/Team Finance hacked &mdash; $14.5M</h3><p>TrustSwap subsidiary Team Finance exploited during Uniswap v2-to-v3 migration. Vulnerability missed despite audits (team had dismissed it as "intended logic"). Hacker returns ~$7M, keeps 10% bounty. Eguienta would join TrustSwap board 13 months later.</p></div>
+
+      <div class="tl-item blue"><div class="yr">Nov 2023</div><h3>Eguienta joins TrustSwap Board</h3><p>Appointed alongside new CEO Naim Boughazi. Mimo Capital AG also invests in TrustSwap. SWAP token already down ~99% from ATH.</p></div>
+
+      <div class="tl-item purple"><div class="yr">Dec 25, 2023</div><h3>Telcoin exploited &mdash; $1.3M stolen</h3><p>Christmas Day. Proxy initialization vulnerability on Polygon. 4,958 attacks by 6 attacker accounts. ~$1.1M MATIC + $84K ETH + 3B TEL tokens. TEL drops 40-48%. CertiK: "this contract was not in scope of our audit." Telcoin restores balances from treasury.</p></div>
+
+      <div class="tl-item blue"><div class="yr">2024</div><h3>Aya Wallet announced</h3><p>AI-powered crypto "super app." Non-custodial. Private keys stored via iCloud/Google Cloud. In development. Same team as "ONE OF US" web3 community.</p></div>
+
+      <div class="tl-item blue"><div class="yr">Jan 2025</div><h3>Mimo + Plume Network: $50M tokenized bonds</h3><p>Pivot to tokenized AI compute bonds. Partnership with Plume Network. Shift away from original PAR stablecoin focus.</p></div>
+
+      <div class="tl-item purple"><div class="yr">Mar 11, 2025</div><h3>MIMO token hits all-time low: $0.0001396</h3><p>Down 99.97% from ATH. Near-zero trading volume. Market cap ~$116K. Original $80M ICO investors' journey: PAY ($1.07) &rarr; MIMO swap (0.24:1) &rarr; $0.0001 = 99.93% total loss.</p></div>
+
+      <div class="tl-item green"><div class="yr">Nov 2025</div><h3>Telcoin receives US bank charter</h3><p>First regulated digital asset bank under Nebraska's Financial Innovation Act. TEL surged 95%. Planning eUSD stablecoin launch in 2026.</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ========== PEOPLE & ENTITIES ========== -->
+<div id="tab-entities" class="tab-content">
+<div class="section">
+  <div class="card">
+    <h2>Key People</h2>
+    <div class="grid">
+      <div class="gcard red">
+        <h3>Toby Hoenisch</h3><div class="role">TenX Co-Founder &bull; Current Mimo CFPO</div>
+        <p><strong>Met Eguienta:</strong> OnLab Incubator, 2014.<br>
+        <strong>Accused:</strong> 2016 DAO hacker ($60M+ ETH). Evidence: grin.toby.ai node, IP hosting "TenX" node, Amazon Singapore IP.<br>
+        <strong>Response:</strong> Called it "factually inaccurate." Deleted Twitter. Never provided rebuttal.<br>
+        <strong>Status:</strong> Still at Mimo as Chief Financial Product Officer alongside Eguienta.<br>
+        <strong>Hosp alleges:</strong> "may have needed ICO funds to launder DAO hack money."</p>
+      </div>
+      <div class="gcard red">
+        <h3>Julian Hosp</h3><div class="role">TenX Co-Founder &bull; Former President</div>
+        <p><strong>Pyramid scheme:</strong> Top leader in Lyoness (25K downline, 6-figure income). Deleted evidence before ICO.<br>
+        <strong>Token dump:</strong> ~2.2M PAY tokens dumped on Bittrex before resignation. Traced via verified Ethereum signature.<br>
+        <strong>Forced out:</strong> Jan 2019 by Hoenisch &amp; Kitti.<br>
+        <strong>On X (2024-25):</strong> "Toby Hoenisch is your guy" &amp; "ask Toby Hoenisch what he did with the money."<br>
+        <strong>Now:</strong> Runs Cake DeFi / DeFiChain projects.</p>
+      </div>
+      <div class="gcard orange">
+        <h3>Paul Kitti (Kittiwongsunthorn)</h3><div class="role">TenX Co-Founder &bull; COO</div>
+        <p>Part of original founding team. Julian Hosp alleges Kitti and Hoenisch forced him out. Limited public presence post-TenX. Both Hoenisch &amp; Kitti would need to "answer where the $80M went" per Hosp.</p>
+      </div>
+      <div class="gcard orange">
+        <h3>Paul Neuner</h3><div class="role">Telcoin Co-Founder &bull; CEO</div>
+        <p>Co-founded Telcoin with Eguienta. Currently leads Telcoin. Oversaw the $1.3M exploit response (restored all user balances from treasury). Secured Nebraska bank charter.</p>
+      </div>
+      <div class="gcard green">
+        <h3>Laura Shin</h3><div class="role">Journalist &bull; Author of "The Cryptopians"</div>
+        <p>Investigated DAO hack for years. Published findings Feb 2022 via Forbes and her book. Used Chainalysis data + Julian Hosp testimony to identify Hoenisch. Key evidence provider against Eguienta's business partner.</p>
+      </div>
+      <div class="gcard green">
+        <h3>Naim Boughazi</h3><div class="role">TrustSwap CEO (Oct 2023)</div>
+        <p>Appointed as CEO shortly before Eguienta joined the board. Jointly leading TrustSwap's direction.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Key Organizations &amp; Entities</h2>
+    <div class="grid">
+      <div class="gcard red">
+        <h3>TenX Pte. Ltd (Singapore)</h3><div class="role">Registration: 201525701M &bull; Status: Active</div>
+        <p>Legal entity behind BOTH TenX and Mimo. Confirmed by USPTO trademark filing for "MIMO." $80M ICO raised, product never delivered. Same entity simply rebranded. Address: 11 Keppel Road #07-00 ABI Plaza, Singapore.</p>
+      </div>
+      <div class="gcard red">
+        <h3>Wirecard AG</h3><div class="role">TenX Card Issuer #2 &bull; Collapsed June 2020</div>
+        <p>German payment processor. Disclosed $2.1B in phantom accounts. CEO arrested. Largest German corporate fraud. Directly caused TenX's final inability to deliver cards. TenX's second card issuer failure.</p>
+      </div>
+      <div class="gcard red">
+        <h3>WaveCrest Holdings</h3><div class="role">TenX Card Issuer #1 &bull; Collapsed Jan 2018</div>
+        <p>VISA terminated for "continued non-compliance." All TenX cards deactivated. ~500K crypto cards shut down industry-wide. First of two card issuer failures for TenX.</p>
+      </div>
+      <div class="gcard red">
+        <h3>The DAO (2016)</h3><div class="role">Ethereum Smart Contract</div>
+        <p>Raised 12.7M ETH from 11K+ participants. Hacked via reentrancy exploit: 3.64M ETH drained. Led to ETH/ETC hard fork. Hoenisch (Eguienta's partner) accused as hacker.</p>
+      </div>
+      <div class="gcard red">
+        <h3>Lyoness / myWorld</h3><div class="role">Declared Illegal Pyramid Scheme</div>
+        <p>Austrian discount shopping MLM. Illegal in Norway, Austria, Switzerland. Julian Hosp was top leader (25K downline). Hosp may have leveraged his Lyoness network for TenX ICO.</p>
+      </div>
+      <div class="gcard orange">
+        <h3>Team Finance (TrustSwap subsidiary)</h3><div class="role">Hacked Oct 2022 &bull; $14.5M lost</div>
+        <p>Exploited during Uniswap migration. Vulnerability dismissed as "intended logic" during audit. Hacker returned ~$7M. Eguienta joined parent company TrustSwap board 13 months later.</p>
+      </div>
+      <div class="gcard green">
+        <h3>Chainalysis</h3><div class="role">Blockchain Analytics Firm</div>
+        <p>Used "previously undisclosed capability" to de-mix Wasabi Wallet CoinJoin transactions. Traced DAO hack funds to Hoenisch. Key forensic evidence provider.</p>
+      </div>
+      <div class="gcard green">
+        <h3>OnLab Incubator (Japan)</h3><div class="role">Startup Accelerator</div>
+        <p>Where Eguienta (Kabotip) met Hoenisch in 2014. The incubator connection that started the chain of associations.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ========== EXPLOITS DEEP DIVE ========== -->
+<div id="tab-exploits" class="tab-content">
+<div class="section">
+
+  <!-- DAO HACK -->
+  <div class="exploit-box">
+    <h3>THE DAO HACK (June 17, 2016) &mdash; Toby Hoenisch Accused</h3>
+    <div class="amount">3.64 Million ETH Stolen (~$11B at peak valuation)</div>
+    <p style="color:#aab;margin:10px 0;font-size:0.88em">Connection to Eguienta: Hoenisch is his current business partner at Mimo (CFPO). They met in 2014 at OnLab. Eguienta took the CEO role directly from Hoenisch at TenX.</p>
+    <div class="sep"></div>
+
+    <h3 style="color:#69f">Technical Exploit Mechanism</h3>
+    <p style="font-size:0.84em;color:#aab;margin:8px 0">The attacker exploited a <strong>reentrancy vulnerability</strong> &mdash; a now-classic smart contract flaw:</p>
+    <div class="exploit-step"><div class="num">1</div><p>Attacker calls <code>withdraw()</code> on The DAO contract</p></div>
+    <div class="exploit-step"><div class="num">2</div><p>Contract sends ETH <strong>before updating the internal balance</strong></p></div>
+    <div class="exploit-step"><div class="num">3</div><p>Attacker's malicious contract uses a fallback function to <strong>recursively call withdraw() again</strong></p></div>
+    <div class="exploit-step"><div class="num">4</div><p>Loop repeats, draining funds each iteration &mdash; balance never decremented</p></div>
+    <div class="exploit-step"><div class="num">5</div><p>3.64M ETH siphoned into a "child DAO" under attacker's control</p></div>
+    <p style="font-size:0.82em;color:#888;margin-top:8px">Root cause: Missing "checks-effects-interactions" pattern. External call executed before state update.</p>
+
+    <div class="sep"></div>
+    <h3 style="color:#69f">Forensic Evidence Chain (Laura Shin / Chainalysis, Feb 2022)</h3>
+    <div class="exploit-step"><div class="num">1</div><p><strong>Stolen ETH &rarr; Bitcoin:</strong> Hacker converts portion of stolen ETH to BTC</p></div>
+    <div class="exploit-step"><div class="num">2</div><p><strong>BTC &rarr; Wasabi Wallet:</strong> Bitcoin sent to Wasabi Wallet (privacy wallet using CoinJoin mixing)</p></div>
+    <div class="exploit-step"><div class="num">3</div><p><strong>Chainalysis de-mixes:</strong> Using a "previously undisclosed capability," Chainalysis <strong>de-mixes the CoinJoin transactions</strong> &mdash; first public use of this tool</p></div>
+    <div class="exploit-step"><div class="num">4</div><p><strong>Traced to 4 exchanges:</strong> De-mixed outputs lead to four different crypto exchanges</p></div>
+    <div class="exploit-step"><div class="num">5</div><p><strong>BTC &rarr; Grin (privacy coin):</strong> On one exchange, BTC exchanged for Grin (MimbleWimble protocol)</p></div>
+    <div class="exploit-step"><div class="num">6</div><p><strong>Grin withdrawn to "grin.toby.ai":</strong> Non-custodial Grin node with identifier <strong>"grin.toby.ai"</strong></p></div>
+    <div class="exploit-step"><div class="num">7</div><p><strong>"toby.ai" = Toby Hoenisch:</strong> Handle used across social media, email addresses, and Twitter (@tobyai)</p></div>
+    <div class="exploit-step"><div class="num">8</div><p><strong>IP address hosts "TenX" node:</strong> Same IP running grin.toby.ai also hosts nodes named <strong>"TenX"</strong>, <strong>"ln.toby.ai"</strong>, and <strong>"lnd.ln.toby.ai"</strong></p></div>
+    <div class="exploit-step"><div class="num">9</div><p><strong>Amazon Singapore IP:</strong> The IP is hosted on AWS in Singapore &mdash; TenX's corporate headquarters location</p></div>
+
+    <div class="sep"></div>
+    <h3 style="color:#69f">Additional Circumstantial Evidence</h3>
+    <ul>
+      <li>Hoenisch was familiar with The DAO's code, having communicated with slock.it (DAO creator) about vulnerabilities <strong>before the hack</strong></li>
+      <li>36-year-old Austrian programmer living in Singapore &mdash; matched hacker profile</li>
+      <li>Evidence suggests he trolled Vitalik Buterin with indirect references to the hack</li>
+      <li>Julian Hosp (TenX co-founder) told Laura Shin he considered it "very possible" Hoenisch was the hacker</li>
+      <li>Hosp alleged: "may have needed the ICO funds to launder money from the DAO hack"</li>
+      <li>After being confronted, Hoenisch <strong>deleted his entire Twitter feed</strong>, left only one post: "Moving to Mastodon"</li>
+      <li>Promised Laura Shin a detailed rebuttal &mdash; <strong>never provided one</strong></li>
+    </ul>
+  </div>
+
+  <!-- TELCOIN EXPLOIT -->
+  <div class="exploit-box">
+    <h3>TELCOIN EXPLOIT (Dec 25, 2023)</h3>
+    <div class="amount">~$1.3M Stolen &bull; TEL Down 40-48%</div>
+    <p style="color:#aab;margin:10px 0;font-size:0.88em">Connection to Eguienta: Co-founded Telcoin in 2017 with Paul Neuner. Set early architectural decisions. Had moved on by 2023.</p>
+    <div class="sep"></div>
+
+    <h3 style="color:#69f">Technical Details</h3>
+    <p style="font-size:0.84em;color:#aab;margin:8px 0"><strong>Vulnerability:</strong> Proxy initialization flaw on Polygon blockchain</p>
+    <div class="exploit-step"><div class="num">1</div><p><strong>CloneableProxy</strong> used storage slot 0 for <code>_initialized</code> and <code>_initializing</code> flags</p></div>
+    <div class="exploit-step"><div class="num">2</div><p><strong>Wallet contract</strong> also wrote to slot 0 for wallet state data &mdash; storage collision</p></div>
+    <div class="exploit-step"><div class="num">3</div><p>After wallet initialization, slot 0's least significant bytes reset to zero</p></div>
+    <div class="exploit-step"><div class="num">4</div><p>This <strong>circumvented the initializer modifier</strong>, allowing re-initialization</p></div>
+    <div class="exploit-step"><div class="num">5</div><p>Attacker altered the <strong>Beacon contract address</strong> in vulnerable proxies</p></div>
+    <div class="exploit-step"><div class="num">6</div><p><strong>4,958 total attacks</strong> executed by <strong>6 distinct attacker accounts</strong></p></div>
+
+    <div class="sep"></div>
+    <h3 style="color:#69f">Losses</h3>
+    <ul>
+      <li>~$1.1M in Polygon (MATIC)</li>
+      <li>~$84K in Ethereum (ETH)</li>
+      <li>3+ billion TEL tokens in suspicious transactions</li>
+      <li>TEL price dropped 40-48% within 24 hours</li>
+    </ul>
+
+    <h3 style="color:#69f;margin-top:10px">Audit Failure</h3>
+    <p style="font-size:0.84em;color:#aab">CertiK publicly stated: "this contract was not in the scope of the audit conducted by CertiK." The proxy contracts that were exploited fell outside ALL prior audits. The critical vulnerability went undetected.</p>
+
+    <h3 style="color:#69f;margin-top:10px">Response</h3>
+    <p style="font-size:0.84em;color:#aab">Telcoin CEO Paul Neuner preemptively restored all user balances from company treasury. 400% increase in deposits post-incident. Stolen funds remained in hacker's wallet. No admin keys, backend, or user data breached.</p>
+  </div>
+
+  <!-- TEAM FINANCE HACK -->
+  <div class="exploit-box">
+    <h3>TEAM FINANCE / TRUSTSWAP HACK (Oct 2022)</h3>
+    <div class="amount">$14.5M Stolen</div>
+    <p style="color:#aab;margin:10px 0;font-size:0.88em">Connection to Eguienta: Joined TrustSwap (Team Finance's parent company) Board of Directors 13 months later. Mimo Capital AG also invested in TrustSwap.</p>
+    <div class="sep"></div>
+    <ul>
+      <li>Exploited during Uniswap v2-to-v3 migration</li>
+      <li>Vulnerability was identified during audit but TrustSwap team <strong>dismissed it as "intended logic"</strong></li>
+      <li>Affected projects: Tsuka, Kondux, Caw Coin, FEG</li>
+      <li>Hacker returned ~$7M, keeping 10% as a "bounty"</li>
+      <li>Additional TrustSwap issues: Hatch DAO exit scam (2020), BitcoinTalk scam accusations against founder Jeff Kirdeikis</li>
+      <li>SWAP token down ~99.3% from ATH</li>
+      <li>Trustpilot: 2.9 rating, 100% of reviews are 1-star</li>
+    </ul>
+  </div>
+
+  <!-- JULIAN HOSP TOKEN DUMP -->
+  <div class="exploit-box">
+    <h3>JULIAN HOSP PAY TOKEN DUMP (Dec 2018 - Jan 2019)</h3>
+    <div class="amount">~2.2 Million PAY Tokens Dumped</div>
+    <p style="color:#aab;margin:10px 0;font-size:0.88em">Connection to Eguienta: Hosp preceded him at TenX. Eguienta inherited the company after this scandal.</p>
+    <div class="sep"></div>
+
+    <h3 style="color:#69f">Wallet Evidence (traced by Reddit user u/GMGH)</h3>
+    <div class="wallet">
+      <div class="lbl">Method of identification:</div>
+      Verified Ethereum address (signed by Hosp) linked via transaction to secondary address. Monthly 6,250 PAY payments from TenX confirmed ownership. Both addresses held combined 2.2M PAY &rarr; transferred to Bittrex exchange wallet.
+    </div>
+
+    <h3 style="color:#69f;margin-top:10px">Timeline &amp; Impact</h3>
+    <ul>
+      <li><strong>Dec 16-30, 2018:</strong> Massive selling on Bittrex &mdash; 200 BTC of PAY sold in 30 minutes, 545 BTC volume in 90-minute spike</li>
+      <li><strong>PAY/BTC down 70%</strong> from Dec 16 to late December</li>
+      <li><strong>Jan 8, 2019:</strong> Hosp announces resignation</li>
+      <li><strong>Jan 9, 2019:</strong> Reddit investigation published</li>
+      <li>Coincided with a PAY token snapshot &mdash; "the perfect smokescreen to cover him exiting his position"</li>
+    </ul>
+
+    <h3 style="color:#69f;margin-top:10px">Hosp's Defense</h3>
+    <blockquote>"I sold part of my cryptocurrency at the end of the year to pay my income taxes in Singapore. I get tokens as income, so I have to sell part of it."</blockquote>
+    <p style="font-size:0.82em;color:#888;margin-top:6px">FinTelegram classified it as insider trading. Hosp later claimed he was "forced out" by Hoenisch and Kitti and "verifiably did NOT conduct an Insider Token Dump."</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== FINANCIAL FORENSICS ========== -->
+<div id="tab-forensics" class="tab-content">
+<div class="section">
+  <div class="card">
+    <h2>TenX ICO Financial Breakdown</h2>
+    <table class="data-table">
+      <tr><th style="width:250px">Metric</th><th>Detail</th></tr>
+      <tr><td>ICO Date</td><td>June 24, 2017 (sold out in ~7 minutes)</td></tr>
+      <tr><td>Amount Raised</td><td>~$80-83M (245,832 ETH)</td></tr>
+      <tr><td>ICO Price</td><td>~$1.075 per PAY (350 PAY per 1 ETH, with bonuses)</td></tr>
+      <tr><td>Investors</td><td>4,000+ participants</td></tr>
+      <tr><td>Total Supply</td><td>~205 million PAY tokens</td></tr>
+      <tr><td>Public Sale</td><td>51% (~105M PAY)</td></tr>
+      <tr><td>Business Development</td><td>29% (~59.5M PAY) &mdash; 4-year release</td></tr>
+      <tr><td>Company Reserve</td><td>10% (~20.5M PAY)</td></tr>
+      <tr><td>Founders/Employees</td><td>10% (~20.5M PAY) &mdash; 4-year vesting</td></tr>
+      <tr><td>Bonus Structure</td><td>+20% (day 1), +10% (day 2-3), +5% (day 4-7), +2.5% (day 8-14)</td></tr>
+      <tr><td>Planned Spending</td><td>45% COMIT, 20% Marketing, 10% Integration, 10% Admin, 5% Dev, 5% Legal, 5% Bug Bounty</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Where Did the $80 Million Go?</h2>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Q2 2018 Report:</strong> $70.5M fiat + ~$34M crypto = $104.5M total (grew because TenX sold ETH during Dec 2017 rally)</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Monthly burn:</strong> $740K/month ($8.9M/year) &mdash; <strong>$530K/month on salaries alone</strong> for ~70 employees, while having NO product for 8 months</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>After Hosp's departure (Jan 2019):</strong> TenX <strong>stopped publishing transparency reports</strong>. Hosp: "at the end of 2018, the $80 million was still in company accounts." After being forced out, only Hoenisch &amp; Kitti could account for the money.</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Julian Hosp publicly asked:</strong> "So where is the $80 million today?" and directed everyone to "ask Toby Hoenisch what he did with the money and where he took off to!"</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Analyst Larry Cermak (Diar/The Block):</strong> "There is no way a company should need $80 million dollars for starting this business. It's a pretty simple product."</p></div>
+    <div class="finding"><div class="dot" style="background:#a8f"></div><p><strong>Hosp's speculation:</strong> Hoenisch "may have needed the ICO funds to launder money from the DAO hack." (Unproven allegation)</p></div>
+  </div>
+
+  <div class="card">
+    <h2>Token Value Destruction Timeline</h2>
+    <table class="data-table">
+      <tr><th>Token</th><th>Peak</th><th>Current</th><th>Loss</th></tr>
+      <tr><td>PAY (TenX)</td><td>$4.91 (Aug 2017)</td><td>~$0.001</td><td style="color:#ff3b3b">-99.98%</td></tr>
+      <tr><td>MIMO</td><td>$0.4307 (Oct 2021)</td><td>~$0.0001</td><td style="color:#ff3b3b">-99.97%</td></tr>
+      <tr><td>SWAP (TrustSwap)</td><td>$5.00</td><td>~$0.035</td><td style="color:#ff3b3b">-99.3%</td></tr>
+      <tr><td>TEL (Telcoin)</td><td>$0.066 (2021)</td><td>~$0.002</td><td style="color:#fa0">-97%</td></tr>
+    </table>
+    <div class="sep"></div>
+    <h3>Investor Loss Calculator: $1,000 at TenX ICO</h3>
+    <table class="data-table">
+      <tr><td>$1,000 at ICO ($1.075/PAY)</td><td>= 930 PAY tokens</td></tr>
+      <tr><td>MIMO swap (0.24:1)</td><td>= 223 MIMO tokens</td></tr>
+      <tr><td>Current MIMO value (~$0.0003)</td><td>= <strong>$0.07</strong></td></tr>
+      <tr><td style="color:#ff3b3b;font-weight:700">Total loss</td><td style="color:#ff3b3b;font-weight:700">99.993% &mdash; $1,000 &rarr; $0.07</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>MIMO Token &amp; Mimo Protocol Status</h2>
+    <table class="data-table">
+      <tr><td style="width:200px;color:#69f">MIMO Price (ATH)</td><td>$0.4307 (Oct 21, 2021)</td></tr>
+      <tr><td style="color:#69f">MIMO Price (ATL)</td><td>$0.0001396 (Mar 11, 2025)</td></tr>
+      <tr><td style="color:#69f">MIMO Current</td><td>~$0.0003 (near-zero volume)</td></tr>
+      <tr><td style="color:#69f">Market Cap</td><td>~$116K (CoinMarketCap rank #6375)</td></tr>
+      <tr><td style="color:#69f">Total Supply</td><td>~802 million MIMO</td></tr>
+      <tr><td style="color:#69f">Legal Entity</td><td>TenX Pte. Ltd (Singapore) &mdash; confirmed via USPTO trademark</td></tr>
+      <tr><td style="color:#69f">Products</td><td>PAR (Euro stablecoin), paUSD, KUMA Protocol (RWA bonds)</td></tr>
+      <tr><td style="color:#69f">Last Audit</td><td>Quantstamp (2021 launch). No recent audits found (2024-2025)</td></tr>
+      <tr><td style="color:#69f">Historical TVL</td><td>~$28-40M (now unclear)</td></tr>
+      <tr><td style="color:#69f">Key Risk</td><td>Algorithmic stablecoin (post-Terra/UST era), near-zero liquidity</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Broken Promises to Investors</h2>
+    <table class="data-table">
+      <tr><th>Promise</th><th>Status</th></tr>
+      <tr><td>Crypto debit card "anywhere, anytime"</td><td style="color:#ff3b3b">Never delivered (card issuers collapsed twice)</td></tr>
+      <tr><td>0.5% of monthly transaction volume to PAY holders</td><td style="color:#ff3b3b">Never implemented, formally removed Oct 2018</td></tr>
+      <tr><td>Cards in North America end of 2017</td><td style="color:#ff3b3b">Never delivered</td></tr>
+      <tr><td>Cards in Europe Q1/Q2 2018</td><td style="color:#ff3b3b">Never delivered</td></tr>
+      <tr><td>COMIT network Q1 2018</td><td style="color:#ff3b3b">Never delivered</td></tr>
+      <tr><td>Regular transparency reports</td><td style="color:#ff3b3b">Stopped after Q2 2018 report</td></tr>
+      <tr><td>PAY/TENX tokens relevant to new project</td><td style="color:#ff3b3b">Whistleblower: "no longer play any role whatsoever"</td></tr>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- ========== WHISTLEBLOWER ========== -->
+<div id="tab-whistleblower" class="tab-content">
+<div class="section">
+  <div class="card">
+    <h2>TenX Insider Whistleblower Report (January 2021)</h2>
+    <p style="color:#69f;font-size:0.84em;margin-bottom:14px">Source: Anonymous TenX employee, published by <a href="https://born2invest.com/articles/development-tenx-hopeless/" target="_blank">Born2Invest</a> (sourced from Block-Builders.de)</p>
+
+    <h3>On Claude Eguienta:</h3>
+    <blockquote>"Called the firing of 75% of staff a 'healthy contraction'"</blockquote>
+    <blockquote>"Sees no benefit in supporting TenX's followers"</blockquote>
+    <blockquote>"New management appointments under him were untrained and inexperienced"</blockquote>
+
+    <h3>On Toby Hoenisch:</h3>
+    <blockquote>"Despite stepping down as CEO, former CEO and TenX co-founder Toby Hoenisch continues to dominate the board"</blockquote>
+
+    <h3>On Both Leaders:</h3>
+    <blockquote>"Both Hoenisch and Eguienta base their decisions solely on numbers and leave empathy out of the equation, ignoring the human, emotional factor"</blockquote>
+
+    <h3>On the Tokens:</h3>
+    <blockquote>"PAY Token and TenX Token no longer play any role whatsoever in the projects under development" &mdash; effectively classified as "shitcoins or dead coins"</blockquote>
+
+    <h3>On the Company:</h3>
+    <blockquote>"Remaining long-term employees no longer have confidence in the dysfunctional management team"</blockquote>
+    <blockquote>"The company was basically discontinuing communication with customers and the community"</blockquote>
+
+    <h3>Final Statement:</h3>
+    <blockquote style="border-left-color:#ff3b3b;background:#1a0a0a">"To all of you out there who still have faith in the company &mdash; this is misplaced and undeserved."</blockquote>
+  </div>
+
+  <div class="card">
+    <h2>Glassdoor Employee Review (June 2019)</h2>
+    <p style="color:#69f;font-size:0.84em;margin-bottom:10px">Rating: 1.0/5 &bull; Title: "CEOs are psychopathic scammers" &bull; Source: <a href="https://www.glassdoor.com/Reviews/Employee-Review-TenX-RVW27658054.htm" target="_blank">Glassdoor</a></p>
+    <blockquote><strong>Pros:</strong> "Ponzi tier company" where "CEOs made a lot of money"</blockquote>
+    <blockquote><strong>Cons:</strong> "Everyone that invested in this company lost everything"</blockquote>
+    <p style="font-size:0.82em;color:#888;margin-top:8px">Note: This review is from June 2019, before Eguienta became CEO (mid-2020). It likely refers to Hoenisch and Hosp.</p>
+  </div>
+
+  <div class="card">
+    <h2>Community &amp; Forum Sentiment</h2>
+    <h3>TenX Official Forum (Now Offline)</h3>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>"Is TenX in a coma?"</strong> (July 2020) &mdash; Users questioned whether employees still worked at TenX and whether any announcements would ever come.</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>"What else does TenX expect us to discuss?"</strong> (July 2020) &mdash; "Most of our questions are just ignored or can't even get a proper answer from the company" since 2017.</p></div>
+
+    <h3 style="margin-top:14px">Reddit Investor Quotes</h3>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>r/Ethereum:</strong> TenX called a "straight-up scam." TenX team member u/blitzio_tenx responded: "It's very saddening to hear people call our company and team a scam."</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Reddit user CryptoGod12:</strong> "They say they [released the card] in Japan but after reading around it seems like people in Japan never even actually got them so nope."</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Reddit user:</strong> "No f***ing cards after [two] years of so-called development and over 30 million in ICO funds."</p></div>
+
+    <h3 style="margin-top:14px">TenX-to-Mimo Sentiment</h3>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Mimo community manager admitted:</strong> "Unless Mimo gains momentum, there isn't much financial incentive for new Mimo users to adopt old, seemingly worthless tokens."</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Analyst warning:</strong> "Being one of the largest ICOs back in 2017, there should still be many small individual token holders. One can only imagine the potential uproar and dissatisfaction."</p></div>
+    <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>Medium analysis:</strong> "If TenX was really looking to make an exit scam, they would honestly have done it by now... if there was any place worse to run an exit scam, it would be Singapore." But acknowledged "a lot of FUD and negativity from the original community."</p></div>
+
+    <h3 style="margin-top:14px">Class Action Attempt (June 2020)</h3>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p>An investor claiming $25K ICO investment organized a class action attempt against Hoenisch/TenX, alleging: exit scam preparation, false KYC/AML claims, money laundering, tax evasion. Urged preservation of documents. <strong>No successful judgment found.</strong></p></div>
+  </div>
+</div>
+</div>
+
+<!-- ========== KEY FINDINGS ========== -->
+<div id="tab-findings" class="tab-content">
+<div class="section">
+  <div class="card">
+    <h2>Critical Findings Summary</h2>
+
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Entity Recycling:</strong> TenX Pte. Ltd (Singapore, reg. 201525701M) is the <strong>same legal entity</strong> as Mimo. Confirmed by USPTO trademark filing. An $80M ICO that failed to deliver was rebranded rather than dissolved. Investors got 0.24 MIMO per PAY &mdash; now worth ~$0.00007 per original PAY. 99.993% total loss from ICO.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Business partner accused as $11B hacker:</strong> Toby Hoenisch (Eguienta's Mimo CFPO) was identified by Laura Shin + Chainalysis as the 2016 DAO hacker. Evidence: grin.toby.ai node, co-located "TenX" node, Amazon Singapore IP. Hoenisch denied claims, deleted Twitter, never provided promised rebuttal. <strong>Still at Mimo.</strong> Eguienta has <strong>never publicly addressed this.</strong></p></div>
+
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Hosp's laundering theory:</strong> Julian Hosp alleged Hoenisch "may have needed the ICO funds to launder money from the DAO hack." If true, Eguienta inherited and now leads the corporate vehicle used for this purpose. (Unproven allegation)</p></div>
+
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Where is the $80M?</strong> After Q2 2018, TenX held $104.5M (original $80M + crypto gains). Transparency reports stopped. By Jan 2019, Hosp says money was still in accounts. After his departure, only Hoenisch &amp; Kitti could account for it. <strong>No public accounting has been provided since.</strong></p></div>
+
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>"Healthy contraction" of 75% layoffs:</strong> Under Eguienta's leadership as CEO, approximately 75% of TenX's ~70 employees were laid off or quit. He characterized this as a "healthy contraction." Whistleblower called the management "dysfunctional."</p></div>
+
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Every associated token collapsed 97-99%+:</strong> PAY (-99.98%), MIMO (-99.97%), SWAP (-99.3%), TEL (-97%). A consistent pattern across every project Eguienta has been involved with at leadership level.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Serial pivot pattern:</strong> Kabotip (tipping) &rarr; Telcoin (remittances) &rarr; TenX (debit cards) &rarr; Mimo (stablecoins) &rarr; KUMA (bonds) &rarr; Aya Wallet (AI). Each involves token issuance. Total known fundraising: $105M+ across projects.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Board seat at hacked company:</strong> Joined TrustSwap board 13 months after its subsidiary Team Finance was hacked for $14.5M. Mimo Capital AG also invested in TrustSwap. SWAP token down 99.3% from ATH with 1-star Trustpilot reviews.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Deliberately low profile:</strong> Personal Twitter @klodio has minimal activity. Zero Reddit presence. Self-describes as "Telegram person." Prefers company accounts. No public response to any major controversy. All communication carefully controlled.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>No personal charges:</strong> Despite all of the above, no direct fraud charges, lawsuits, or regulatory actions against Claude Eguienta personally have been found in public records. The controversies attach to his co-founders and the projects themselves.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>Industry acceptance:</strong> Still speaks at major conferences (ABS 2024, Blockchain Africa), serves on boards, launches new products. Not blacklisted by the crypto industry.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#4c4"></div><p><strong>Telcoin banking charter:</strong> Telcoin (which he co-founded) received approval in Nov 2025 to become the first regulated digital asset bank in the US. This is a legitimate achievement, though Eguienta is no longer actively leading Telcoin.</p></div>
+  </div>
+
+  <div class="card">
+    <h2>Financial Impact Summary</h2>
+    <div class="stats">
+      <div class="stat"><div class="n n-red">$80M</div><div class="l">TenX ICO &rarr; no product</div></div>
+      <div class="stat"><div class="n n-red">$104.5M</div><div class="l">Peak TenX treasury (Q2 2018) &mdash; unaccounted</div></div>
+      <div class="stat"><div class="n n-red">99.993%</div><div class="l">ICO investor total loss (PAY&rarr;MIMO)</div></div>
+      <div class="stat"><div class="n n-purple">~$11B</div><div class="l">DAO hack value (partner accused)</div></div>
+      <div class="stat"><div class="n n-orange">$1.3M</div><div class="l">Telcoin exploit (co-founded)</div></div>
+      <div class="stat"><div class="n n-orange">$14.5M</div><div class="l">TrustSwap/Team Finance hack (board member)</div></div>
+      <div class="stat"><div class="n n-orange">~2.2M PAY</div><div class="l">Hosp alleged token dump</div></div>
+      <div class="stat"><div class="n n-blue">$25M</div><div class="l">Telcoin token sale (co-founded)</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 3D MAP ========== -->
+<div id="tab-map" class="tab-content">
+  <div id="map-container">
+    <canvas id="canvas3d"></canvas>
+    <div class="map-legend">
+      <h3>Node Types</h3>
+      <div class="leg-item"><div class="leg-dot" style="background:#ff3b3b"></div> High risk / Central</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#fa0"></div> Medium risk / Controversial</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#39f"></div> Company / Project</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#4c4"></div> External / Neutral</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#a8f"></div> Event / Incident</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#f8f"></div> Financial / Token</div>
+      <div style="margin-top:6px;border-top:1px solid #252550;padding-top:6px;font-size:0.9em">
+        <div class="leg-item" style="color:#ff3b3b">&#9644;&#9644; Direct / Strong</div>
+        <div class="leg-item" style="color:#fa0">&#9644; &#9644; Indirect</div>
+        <div class="leg-item" style="color:#39f">&#183;&#183;&#183;&#183; Association</div>
+      </div>
+    </div>
+    <div class="map-info">
+      <h3>Network Summary</h3>
+      <p><strong>27 nodes</strong> &bull; <strong>38 connections</strong></p>
+      <p style="margin-top:4px">Central cluster: Eguienta &harr; TenX &harr; Hoenisch &harr; DAO Hack forms the core risk nexus. Every path through the network passes through this cluster.</p>
+    </div>
+    <div class="map-controls">Click &amp; drag to rotate &bull; Scroll to zoom &bull; Hover nodes for details</div>
+    <div class="tooltip3d" id="tooltip3d">
+      <h4 id="tip-title"></h4>
+      <p id="tip-desc"></p>
+      <div class="conn" id="tip-conn"></div>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  Compiled from publicly available sources only (news articles, blockchain data, social media, court records, forums).
+  Does not constitute legal advice, accusations, or findings of fact. No direct personal fraud charges against Claude Eguienta have been found.
+  Information may be incomplete or outdated. All claims attributed to their original sources. Verify independently.
+</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+  if(id==='map'&&!mapInit)initMap();
+}
+
+let mapInit=false;
+function initMap(){
+  mapInit=true;
+  const C=document.getElementById('map-container'),c=document.getElementById('canvas3d'),tt=document.getElementById('tooltip3d');
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(55,C.clientWidth/C.clientHeight,0.1,1000);
+  cam.position.set(0,0,22);
+  const R=new THREE.WebGLRenderer({canvas:c,antialias:true,alpha:true});
+  R.setSize(C.clientWidth,C.clientHeight);R.setPixelRatio(window.devicePixelRatio);R.setClearColor(0x040410);
+  scene.add(new THREE.AmbientLight(0x303050,0.9));
+  const pl=new THREE.PointLight(0xffffff,0.9,100);pl.position.set(10,10,10);scene.add(pl);
+  const pl2=new THREE.PointLight(0x4444ff,0.4,80);pl2.position.set(-10,-5,8);scene.add(pl2);
+
+  const N=[
+    // CENTRAL
+    {id:'claude',l:'Claude Eguienta',c:0xff3b3b,s:0.75,p:[0,0,0],d:'CENTRAL SUBJECT. CEO Mimo (=TenX Pte. Ltd). Former CEO TenX. Co-founder Telcoin & Kabotip. Board: TrustSwap. Founder: Aya Wallet. Based Dubai/Singapore. Twitter: @klodio.'},
+    // PEOPLE - RED
+    {id:'toby',l:'Toby Hoenisch',c:0xff3b3b,s:0.6,p:[-5.5,0.5,-2],d:'TenX co-founder. Current Mimo CFPO. Accused as 2016 DAO hacker ($60M+/$11B ETH). Evidence: grin.toby.ai, co-located TenX node. Denied, deleted Twitter, no rebuttal. Met Eguienta 2014.'},
+    {id:'julian',l:'Julian Hosp',c:0xff3b3b,s:0.5,p:[-7,3.5,0.5],d:'TenX co-founder & ex-President. Lyoness pyramid scheme (25K downline). Dumped ~2.2M PAY tokens before resignation. Forced out Jan 2019. Now says: "ask Toby what he did with the money."'},
+    {id:'kitti',l:'Paul Kitti',c:0xfa8800,s:0.35,p:[-6.5,2,-1.5],d:'TenX co-founder & COO. Hosp alleges Kitti + Hoenisch forced him out and control the $80M funds. Limited public presence.'},
+    // PEOPLE - NEUTRAL/GREEN
+    {id:'neuner',l:'Paul Neuner',c:0x44cc44,s:0.35,p:[-2,-4,2.5],d:'Telcoin co-founder & CEO. Restored user balances from treasury after $1.3M exploit. Secured Nebraska bank charter.'},
+    {id:'laura',l:'Laura Shin',c:0x44cc44,s:0.35,p:[-9,-2.5,-2],d:'Journalist. Author "The Cryptopians." Investigated DAO hack for years. Named Hoenisch as hacker Feb 2022. Used Chainalysis data + Hosp testimony.'},
+    {id:'boughazi',l:'Naim Boughazi',c:0x44cc44,s:0.25,p:[6.5,1,1.5],d:'TrustSwap CEO (Oct 2023). Appointed shortly before Eguienta joined board.'},
+    // COMPANIES - BLUE
+    {id:'tenx',l:'TenX',c:0xff3b3b,s:0.6,p:[-3.5,2,-0.5],d:'$80M ICO (Jun 2017, 7 min). Crypto debit cards never delivered. Card issuers WaveCrest + Wirecard both collapsed. Monthly burn $740K. Shut down Apr 2021. Same entity as Mimo.'},
+    {id:'mimo',l:'Mimo Capital',c:0x3399ff,s:0.5,p:[3,2.5,1],d:'Rebranded TenX. Same legal entity (TenX Pte. Ltd). PAR stablecoin, KUMA bonds, Aya Wallet. MIMO token: ATH $0.43, now $0.0001 (-99.97%). Near-zero volume. Hoenisch is CFPO.'},
+    {id:'telcoin',l:'Telcoin',c:0xfa8800,s:0.45,p:[-2.5,-3,2],d:'Co-founded by Eguienta 2017. $25M token sale. Remittances. $1.3M exploit Dec 2023. Later: Nebraska bank charter Nov 2025. TEL down ~97%.'},
+    {id:'kabotip',l:'Kabotip',c:0x3399ff,s:0.25,p:[1.5,-4,-2],d:'Crypto tipping startup (2013-16). OnLab Incubator, Japan. Where Eguienta met Hoenisch in 2014. Dissolved.'},
+    {id:'trustswap',l:'TrustSwap',c:0xfa8800,s:0.4,p:[5.5,0,1.5],d:'DeFi tools. Eguienta on board (Nov 2023). Mimo invested. Team Finance hacked $14.5M. Hatch DAO exit scam. SWAP -99.3%. Trustpilot 2.9 (all 1-star).'},
+    {id:'aya',l:'Aya Wallet',c:0x3399ff,s:0.3,p:[4.5,-2,0.5],d:'AI-powered crypto super app. Founded by Eguienta. Non-custodial. Keys stored iCloud/GCloud (security concern). Pre-launch. 18.4K X followers.'},
+    {id:'kuma',l:'KUMA Protocol',c:0x3399ff,s:0.25,p:[4,3.5,0],d:'Mimo subsidiary. Interest-bearing tokens backed by tokenized bonds. Jan 2025: $50M partnership with Plume Network for AI compute bonds.'},
+    // RED ENTITIES
+    {id:'wirecard',l:'Wirecard',c:0xff3b3b,s:0.4,p:[-1.5,4.5,-2],d:'TenX card issuer #2. $2.1B accounting fraud. CEO arrested. Insolvency Jun 2020. Directly caused TenX final failure.'},
+    {id:'wavecrest',l:'WaveCrest',c:0xff3b3b,s:0.35,p:[-2.5,5,-1],d:'TenX card issuer #1. VISA terminated for non-compliance Jan 2018. All TenX cards deactivated. 500K crypto cards killed industry-wide.'},
+    {id:'lyoness',l:'Lyoness',c:0xff3b3b,s:0.35,p:[-8.5,5,1],d:'Illegal pyramid scheme (Norway, Austria, Switzerland). Hosp was top leader, 25K downline, 6-figure income. Deleted evidence before TenX ICO.'},
+    {id:'teamfin',l:'Team Finance',c:0xfa8800,s:0.3,p:[6.5,-1.5,0.5],d:'TrustSwap subsidiary. Hacked $14.5M (Oct 2022). Uniswap migration exploit. Vulnerability dismissed as "intended logic." Hacker returned $7M.'},
+    // EVENTS - PURPLE
+    {id:'dao',l:'DAO Hack',c:0xaa55ff,s:0.5,p:[-7.5,-1.5,-3],d:'Jun 17, 2016. 3.64M ETH stolen (~$60M, later ~$11B). Reentrancy exploit. Led to ETH/ETC fork. Hoenisch accused as hacker. Changed crypto history forever.'},
+    {id:'ico',l:'TenX ICO',c:0xaa55ff,s:0.4,p:[-4,4,-0.5],d:'Jun 24, 2017. $80M raised in 7 minutes. 4,000+ investors. Vitalik falsely listed as partner. 51% public, 10% founders. Promised 0.5% revenue sharing (never happened).'},
+    {id:'exploit',l:'Telcoin Exploit',c:0xaa55ff,s:0.35,p:[-3.5,-5,3],d:'Dec 25, 2023. $1.3M stolen. Proxy initialization vulnerability on Polygon. 4,958 attacks by 6 accounts. CertiK: "not in scope of audit." TEL -48%.'},
+    {id:'shutdown',l:'TenX Shutdown',c:0xaa55ff,s:0.35,p:[-1,3.5,-1],d:'Apr 1, 2021. Users told to withdraw. Fees introduced. Token swap: 0.24 MIMO/PAY. Community manager: tokens are "seemingly worthless."'},
+    // FINANCIAL - PINK
+    {id:'pay',l:'PAY Token',c:0xff55aa,s:0.3,p:[-1.5,2.5,0.5],d:'TenX native token. ICO: $1.075. ATH: $4.91. Now: $0.001. Rewards promised (0.5% volume) never delivered. Swapped to MIMO at 0.24:1.'},
+    {id:'mimo_token',l:'MIMO Token',c:0xff55aa,s:0.3,p:[2,1.5,0.5],d:'Mimo governance token. ATH: $0.4307. ATL: $0.0001396 (Mar 2025). -99.97%. Market cap $116K. CoinMarketCap rank #6375. Near-zero volume.'},
+    {id:'tel_token',l:'TEL Token',c:0xff55aa,s:0.25,p:[-3.5,-3.5,1.5],d:'Telcoin token. ATH: $0.066. Exploited Dec 2023 (-48%). Now ~$0.002 (-97%). Surged 95% on Nebraska bank charter news.'},
+    // FORENSICS
+    {id:'chainalysis',l:'Chainalysis',c:0x44cc44,s:0.3,p:[-9.5,-1,-1],d:'Blockchain analytics firm. De-mixed Wasabi Wallet CoinJoin transactions. "Previously undisclosed capability." Traced DAO funds to Hoenisch.'},
+    {id:'onlab',l:'OnLab Incubator',c:0x44cc44,s:0.22,p:[0.5,-5,-1.5],d:'Japanese startup accelerator. Origin point: Eguienta (Kabotip) met Hoenisch here in 2014. The connection that started everything.'},
+  ];
+
+  const E=[
+    // Eguienta connections
+    {f:'claude',t:'tenx',c:0xff3b3b,s:3},{f:'claude',t:'mimo',c:0xff3b3b,s:3},{f:'claude',t:'toby',c:0xff3b3b,s:3},
+    {f:'claude',t:'telcoin',c:0xfa8800,s:3},{f:'claude',t:'trustswap',c:0x3399ff,s:2},{f:'claude',t:'aya',c:0x3399ff,s:2},
+    {f:'claude',t:'kabotip',c:0x3399ff,s:2},{f:'claude',t:'onlab',c:0x3399ff,s:1},{f:'claude',t:'neuner',c:0xfa8800,s:2},
+    // TenX cluster
+    {f:'tenx',t:'toby',c:0xff3b3b,s:3},{f:'tenx',t:'julian',c:0xff3b3b,s:2},{f:'tenx',t:'kitti',c:0xfa8800,s:2},
+    {f:'tenx',t:'wirecard',c:0xff3b3b,s:2},{f:'tenx',t:'wavecrest',c:0xff3b3b,s:2},
+    {f:'tenx',t:'ico',c:0xaa55ff,s:3},{f:'tenx',t:'pay',c:0xff55aa,s:2},{f:'tenx',t:'shutdown',c:0xaa55ff,s:2},
+    {f:'tenx',t:'mimo',c:0xfa8800,s:3},
+    // Mimo cluster
+    {f:'mimo',t:'toby',c:0xff3b3b,s:3},{f:'mimo',t:'kuma',c:0x3399ff,s:2},{f:'mimo',t:'aya',c:0x3399ff,s:2},
+    {f:'mimo',t:'mimo_token',c:0xff55aa,s:2},{f:'mimo',t:'trustswap',c:0xfa8800,s:1},
+    {f:'pay',t:'mimo_token',c:0xff55aa,s:2},{f:'pay',t:'shutdown',c:0xaa55ff,s:2},
+    // DAO hack cluster
+    {f:'toby',t:'dao',c:0xff3b3b,s:3},{f:'toby',t:'onlab',c:0x3399ff,s:1},{f:'toby',t:'kitti',c:0xfa8800,s:2},
+    {f:'dao',t:'laura',c:0x44cc44,s:2},{f:'dao',t:'chainalysis',c:0x44cc44,s:2},{f:'laura',t:'chainalysis',c:0x44cc44,s:2},
+    {f:'laura',t:'julian',c:0xfa8800,s:1},
+    // Julian cluster
+    {f:'julian',t:'lyoness',c:0xff3b3b,s:2},{f:'julian',t:'pay',c:0xff55aa,s:2},
+    // Telcoin cluster
+    {f:'telcoin',t:'neuner',c:0x44cc44,s:2},{f:'telcoin',t:'exploit',c:0xaa55ff,s:2},{f:'telcoin',t:'tel_token',c:0xff55aa,s:2},
+    // TrustSwap
+    {f:'trustswap',t:'teamfin',c:0xfa8800,s:2},{f:'trustswap',t:'boughazi',c:0x44cc44,s:1},
+  ];
+
+  const nMap={},meshes=[];
+  N.forEach(n=>{
+    const g=new THREE.SphereGeometry(n.s,32,32);
+    const m=new THREE.MeshPhongMaterial({color:n.c,emissive:n.c,emissiveIntensity:0.25,shininess:80});
+    const mesh=new THREE.Mesh(g,m);
+    mesh.position.set(...n.p);
+    mesh.userData={id:n.id,label:n.l,desc:n.d,color:n.c};
+    scene.add(mesh);nMap[n.id]=mesh;meshes.push(mesh);
+    // glow
+    const gg=new THREE.SphereGeometry(n.s*1.5,16,16);
+    const gm=new THREE.MeshBasicMaterial({color:n.c,transparent:true,opacity:0.06});
+    mesh.add(new THREE.Mesh(gg,gm));
+    // ring for central
+    if(n.id==='claude'){
+      const rg=new THREE.RingGeometry(n.s*1.3,n.s*1.5,32);
+      const rm=new THREE.MeshBasicMaterial({color:0xff3b3b,transparent:true,opacity:0.3,side:THREE.DoubleSide});
+      const ring=new THREE.Mesh(rg,rm);ring.userData.isRing=true;
+      mesh.add(ring);
+    }
+    // label sprite
+    const cv=document.createElement('canvas'),cx=cv.getContext('2d');
+    cv.width=512;cv.height=56;
+    cx.clearRect(0,0,512,56);
+    cx.font='bold 24px Arial';cx.fillStyle='#ffffff';cx.textAlign='center';
+    cx.shadowColor='rgba(0,0,0,0.8)';cx.shadowBlur=4;
+    cx.fillText(n.l,256,35);
+    const tx=new THREE.CanvasTexture(cv);
+    const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tx,transparent:true,opacity:0.85}));
+    sp.position.set(n.p[0],n.p[1]+n.s+0.55,n.p[2]);
+    sp.scale.set(3.8,0.42,1);
+    scene.add(sp);
+  });
+
+  // edges
+  E.forEach(e=>{
+    const a=nMap[e.f],b=nMap[e.t];if(!a||!b)return;
+    const pts=[a.position.clone(),b.position.clone()];
+    const g=new THREE.BufferGeometry().setFromPoints(pts);
+    const m=new THREE.LineBasicMaterial({color:e.c,transparent:true,opacity:e.s===3?0.55:e.s===2?0.3:0.15});
+    scene.add(new THREE.Line(g,m));
+  });
+
+  // particles
+  const pg=new THREE.BufferGeometry(),pp=new Float32Array(800*3);
+  for(let i=0;i<800*3;i++)pp[i]=(Math.random()-0.5)*50;
+  pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
+  scene.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0x1a2255,size:0.04,transparent:true,opacity:0.35})));
+
+  // interaction
+  let drag=false,pm={x:0,y:0},rot={x:0,y:0},trot={x:0,y:0};
+  const rc=new THREE.Raycaster(),mv=new THREE.Vector2();
+  c.addEventListener('mousedown',e=>{drag=true;pm={x:e.clientX,y:e.clientY}});
+  c.addEventListener('mouseup',()=>drag=false);
+  c.addEventListener('mouseleave',()=>drag=false);
+  c.addEventListener('mousemove',e=>{
+    if(drag){trot.y+=(e.clientX-pm.x)*0.005;trot.x+=(e.clientY-pm.y)*0.005;pm={x:e.clientX,y:e.clientY}}
+    const r=c.getBoundingClientRect();
+    mv.x=((e.clientX-r.left)/r.width)*2-1;mv.y=-((e.clientY-r.top)/r.height)*2+1;
+    rc.setFromCamera(mv,cam);
+    const hits=rc.intersectObjects(meshes);
+    if(hits.length>0){
+      const o=hits[0].object;
+      document.getElementById('tip-title').textContent=o.userData.label;
+      document.getElementById('tip-desc').textContent=o.userData.desc;
+      // count connections
+      const conns=E.filter(e=>e.f===o.userData.id||e.t===o.userData.id).length;
+      document.getElementById('tip-conn').textContent=conns+' connections';
+      tt.style.display='block';
+      tt.style.left=Math.min(e.clientX-r.left+15,r.width-330)+'px';
+      tt.style.top=Math.min(e.clientY-r.top+15,r.height-120)+'px';
+      c.style.cursor='pointer';
+      o.material.emissiveIntensity=0.7;
+    }else{
+      tt.style.display='none';c.style.cursor='grab';
+      meshes.forEach(m=>m.material.emissiveIntensity=0.25);
+    }
+  });
+  c.addEventListener('wheel',e=>{cam.position.z+=e.deltaY*0.012;cam.position.z=Math.max(8,Math.min(40,cam.position.z))});
+
+  // animate
+  (function anim(){
+    requestAnimationFrame(anim);
+    rot.x+=(trot.x-rot.x)*0.05;rot.y+=(trot.y-rot.y)*0.05;
+    trot.y+=0.0008;
+    scene.rotation.x=rot.x;scene.rotation.y=rot.y;
+    const t=Date.now()*0.001;
+    meshes.forEach((m,i)=>{const s=1+Math.sin(t*1.5+i*0.7)*0.025;m.scale.set(s,s,s)});
+    // rotate central ring
+    if(nMap.claude&&nMap.claude.children[1]&&nMap.claude.children[1].userData.isRing){
+      nMap.claude.children[1].rotation.z+=0.01;
+      nMap.claude.children[1].rotation.x=Math.sin(t)*0.3;
+    }
+    R.render(scene,cam);
+  })();
+
+  window.addEventListener('resize',()=>{cam.aspect=C.clientWidth/C.clientHeight;cam.updateProjectionMatrix();R.setSize(C.clientWidth,C.clientHeight)});
+}
+</script>
+</body>
+</html>
