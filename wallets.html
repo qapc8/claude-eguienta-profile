@@ -130,6 +130,11 @@ a.back:hover{border-color:#69f;color:#fff}
   <div class="flow"><span class="amt">2.2M PAY</span><span class="arr">&rarr;</span><span class="lbl">Hosp wallets &rarr; Bittrex (dump)</span><span class="deg t-purple">3rd</span></div>
   <div class="flow"><span class="amt">750 ETH</span><span class="arr">&rarr;</span><span class="lbl">Mimo Wallet &rarr; 0x957f (unknown)</span><span class="deg t-orange">2nd</span></div>
   <div class="flow"><span class="amt">~282 BTC</span><span class="arr">&rarr;</span><span class="lbl">DAO hack ETH &rarr; ShapeShift &rarr; BTC</span><span class="deg t-purple">3rd</span></div>
+  <div class="flow" style="border-top:1px solid #252550;margin-top:4px;padding-top:6px"><span class="amt" style="color:#f5a">CLAUDE WALLET</span><span class="arr"></span><span class="lbl" style="color:#f5a">0x33ce...d3c5 (CONFIRMED)</span><span class="deg t-red">1st</span></div>
+  <div class="flow"><span class="amt">400K USDC</span><span class="arr">&larr;</span><span class="lbl">KuCoin 9 &rarr; Claude wallet (Nov 2022)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">398K USDC</span><span class="arr">&rarr;</span><span class="lbl">Claude wallet &rarr; boka.eth (Nov 2025)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">MCAG bonds</span><span class="arr">&rarr;</span><span class="lbl">Claude wallet &rarr; Kuma Protocol (Mimo product)</span><span class="deg t-red">1st</span></div>
+  <div class="flow"><span class="amt">~240K USDC</span><span class="arr">&larr;</span><span class="lbl">Unknown sources &rarr; Claude wallet (Feb 2026)</span><span class="deg t-orange">2nd</span></div>
 </div>
 
 <div class="panel" id="controls">
@@ -140,14 +145,15 @@ a.back:hover{border-color:#69f;color:#fff}
   <h3>FORENSICS SUMMARY</h3>
   <div class="st"><span class="k">BTC tracked</span><span class="v">7,100+ BTC</span></div>
   <div class="st"><span class="k">ETH tracked</span><span class="v">250,000+ ETH</span></div>
-  <div class="st"><span class="k">Nodes mapped</span><span class="v" id="s-nodes">45</span></div>
-  <div class="st"><span class="k">Connections</span><span class="v" id="s-edges">64</span></div>
+  <div class="st"><span class="k">Nodes mapped</span><span class="v" id="s-nodes">50</span></div>
+  <div class="st"><span class="k">Connections</span><span class="v" id="s-edges">72</span></div>
   <div class="sep"></div>
+  <div class="st"><span class="k">Claude wallet</span><span class="v" style="color:#f5a">$282K (confirmed)</span></div>
   <div class="st"><span class="k">Foundation BTC</span><span class="v" style="color:#ff3b3b">EMPTY (swept)</span></div>
   <div class="st"><span class="k">Dormant BTC</span><span class="v" style="color:#fa0">~1,730 BTC</span></div>
   <div class="st"><span class="k">Foundation ETH</span><span class="v" style="color:#4c4">~$2.46M</span></div>
-  <div class="st"><span class="k">Kraken links</span><span class="v" style="color:#4c4">7+ addresses</span></div>
-  <div class="st"><span class="k">Decentral Holdings</span><span class="v" style="color:#fa0">$66.6M cap</span></div>
+  <div class="st"><span class="k">Exchange split</span><span class="v" style="color:#fa0">KuCoin / Kraken</span></div>
+  <div class="st"><span class="k">Kuma Protocol</span><span class="v" style="color:#4c4">Mimo product link</span></div>
 </div>
 
 <script>
@@ -310,6 +316,22 @@ const W=[
 
   {id:'hosp',l:'Julian Hosp',sub:'Ex-CEO TenX / Lyoness link',addr:'Known wallets: 0x15b6e1, 0xf340a7',c:0xff55aa,s:0.45,p:[-9,5,-1],deg:3,
    tags:['Ex-CEO','PAY dump','Lyoness connection'],bal:'Unknown',chain:'Multi',notes:'Resigned Jan 2019 after dumping 2.2M PAY. Previously linked to Lyoness (declared illegal pyramid scheme in multiple countries). Now runs Cake DeFi / Bake.'},
+
+  // === CLAUDE EGUIENTA PERSONAL WALLET (CONFIRMED) ===
+  {id:'claudewallet',l:'Claude Personal Wallet',sub:'CONFIRMED — 0x33ce...d3c5',addr:'0x33ce2e88b5fff68f8c890756bab113ce0fb5d3c5',c:0xff55aa,s:0.65,p:[-2,5,6],deg:1,
+   tags:['CONFIRMED OWNER','$282K portfolio','9 txs','KuCoin funded'],bal:'$282K (240K USDC + 0.99 ETH)',chain:'ETH',notes:'Created May 16, 2023. Funded with 1 ETH from KuCoin 10. Received 400K USDC from KuCoin 9 (Nov 2022). Sent 398K USDC to boka.eth (Nov 2025). Interacts with Kuma Protocol MCAG bonds — a MIMO LABS product. Received 4x 40K USDC (Feb 2026). Holds 17 NFTs. NO PAY/MIMO/TENX tokens. Uses KuCoin (not Kraken like treasury wallets).'},
+
+  {id:'kucoin',l:'KuCoin Exchange',sub:'Personal exchange — NOT Kraken',addr:'KuCoin 9 + KuCoin 10 (Etherscan labeled)',c:0x44cc44,s:0.45,p:[-4,7,7],deg:2,
+   tags:['Exchange','1 ETH + 400K USDC'],bal:'N/A',chain:'ETH',notes:'Claude uses KuCoin for personal wallet. DIFFERENT exchange from treasury wallets which use Kraken. KuCoin 10 sent 1 ETH (gas). KuCoin 9 sent 400,000 USDC (Nov 2022). Exchange separation could be deliberate.'},
+
+  {id:'kuma',l:'Kuma Protocol (MCAG)',sub:'MIMO LABS PRODUCT — Bond tokens',addr:'0x74e9e8d1365358f0ec416e24f723e36181b79a7b (KUMABondToken)',c:0x00c8ff,s:0.5,p:[0,7,5],deg:2,
+   tags:['Mimo Labs product','Bond-backed NFTs','FMA approved'],bal:'Protocol',chain:'ETH',notes:'Kuma Protocol is BUILT BY MIMO LABS. Mimo Capital AG is the regulated entity that issues MCAG bond-backed NFTs. FMA Liechtenstein approved. Claude\'s personal wallet transferred MCAG tokens to Kuma Protocol (Jun+Nov 2024). CEO using own product with personal funds.'},
+
+  {id:'bokaeth',l:'boka.eth',sub:'Received $398K USDC from Claude',addr:'boka.eth (ENS) — @0xboka on Twitter',c:0xfa8800,s:0.4,p:[-1,3,8],deg:2,
+   tags:['$398K USDC received','ENS','@0xboka'],bal:'Unknown',chain:'ETH',notes:'Received 398,000 USDC from Claude\'s wallet (Nov 29, 2025). Twitter: @0xboka. Runs hedge fund with DeFi holdings. Relationship to Mimo unclear — could be investment, payment, or personal.'},
+
+  {id:'usdc40k',l:'Unknown USDC Source',sub:'4x $40K inflows (Feb 2026)',addr:'Multiple senders (Feb 15-24, 2026)',c:0xfa8800,s:0.35,p:[-3,4,8],deg:2,
+   tags:['$240K total','Recent inflows','Feb 2026'],bal:'$240K',chain:'ETH',notes:'Claude received 4 transfers of ~40,000 USDC each between Feb 15-24, 2026, plus 79,500 USDC on Feb 24. Total ~$240K in recent inflows. Source addresses not yet identified. Could be salary, protocol revenue, or other payments.'},
 ];
 
 // ===== EDGES =====
@@ -379,6 +401,16 @@ const E=[
   {f:'claude',t:'mimouk',c:0xff55aa,w:1,lbl:'Sole director',deg:3,dash:true},
   {f:'decentral',t:'mimouk',c:0x888888,w:1,lbl:'PSC',deg:3,dash:true},
   {f:'paydeployer',t:'krakenex',c:0x44cc44,w:1,lbl:'Initially funded by Kraken',deg:3},
+
+  // CLAUDE PERSONAL WALLET CONNECTIONS
+  {f:'claude',t:'claudewallet',c:0xff55aa,w:3,lbl:'CONFIRMED owner',deg:1},
+  {f:'kucoin',t:'claudewallet',c:0x44cc44,w:2,lbl:'1 ETH + 400K USDC',deg:2},
+  {f:'claudewallet',t:'kuma',c:0x00c8ff,w:2,lbl:'MCAG bond tokens (2024)',deg:1},
+  {f:'claudewallet',t:'bokaeth',c:0xfa8800,w:3,lbl:'398,000 USDC (Nov 2025)',deg:2},
+  {f:'usdc40k',t:'claudewallet',c:0xfa8800,w:2,lbl:'~$240K USDC (Feb 2026)',deg:2},
+  {f:'kuma',t:'mimoag',c:0x00c8ff,w:2,lbl:'Mimo Capital AG = issuer',deg:2},
+  {f:'kuma',t:'mimodep',c:0x00c8ff,w:1,lbl:'Mimo Labs built',deg:2,dash:true},
+  {f:'claude',t:'kuma',c:0xff55aa,w:1,lbl:'CEO of issuer (Mimo)',deg:2,dash:true},
 ];
 
 // ===== BUILD SCENE =====
