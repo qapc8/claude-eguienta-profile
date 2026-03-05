@@ -140,6 +140,7 @@
   <button class="tab-btn" onclick="switchTab('forensics')">Financial Forensics</button>
   <button class="tab-btn" onclick="switchTab('whistleblower')">Whistleblower</button>
   <button class="tab-btn" onclick="switchTab('findings')">Key Findings</button>
+  <button class="tab-btn" onclick="switchTab('wallets')">Wallet Forensics</button>
   <button class="tab-btn" onclick="switchTab('map')">3D Connection Map</button>
 </div>
 
@@ -768,6 +769,230 @@
 </div>
 </div>
 
+<!-- ========== WALLET FORENSICS ========== -->
+<div id="tab-wallets" class="tab-content">
+<div class="section">
+
+  <div class="card">
+    <h2>COMIT Foundation &mdash; The Hidden Entity</h2>
+    <p style="color:#fa0;font-size:0.88em;margin-bottom:12px">COMIT = "Cryptographically-secure Off-chain Multi-asset Instant Transaction" &mdash; TenX's core protocol project that received 45% of ICO funds (~$36M)</p>
+    <div class="grid">
+      <div class="gcard red">
+        <h3>What Was Promised</h3>
+        <p>TenX whitepaper allocated <strong>45% of ICO funds (~$36M)</strong> to COMIT. TenX was "in the process of setting up the COMIT Foundation Non-Profit Organisation... inspired by the Linux Foundation." CoBloX (Australian R&D lab, ABN 86 624 756 467) would become "standalone team directly funded by the COMIT Foundation."</p>
+      </div>
+      <div class="gcard red">
+        <h3>What Actually Happened</h3>
+        <p><strong>No evidence the COMIT Foundation was ever formally incorporated</strong> in any jurisdiction (Switzerland, Liechtenstein, Singapore). Not in Swiss Zefix register, Liechtenstein registry, or Singapore ACRA. The GitHub repository (comit-network/comit-rs) is now <strong>archived and unmaintained</strong>. The protocol was never fully realized.</p>
+      </div>
+    </div>
+    <div class="sep"></div>
+    <h3>Who Controls the Money</h3>
+    <p style="font-size:0.84em;color:#aab;margin:8px 0">The same people control everything through a layered corporate structure:</p>
+    <div style="background:#0a0a1e;border:1px solid #1e1e45;border-radius:8px;padding:16px;margin:10px 0;font-size:0.84em;font-family:'Courier New',monospace;color:#a8f">
+      <strong style="color:#ff3b3b">TenX Founders PTE LTD</strong> (Hoenisch + Kittiwongsunthorn ~91%)<br>
+      &nbsp;&nbsp;&nbsp;&darr; owns<br>
+      <strong style="color:#fa0">TenX Holdings PTE LTD</strong><br>
+      &nbsp;&nbsp;&nbsp;&darr; owns<br>
+      <strong style="color:#fa0">DECENTRAL PTE LTD</strong> (Directors: Hoenisch + Kittiwongsunthorn)<br>
+      &nbsp;&nbsp;&nbsp;&darr; 100% owns &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr; owns<br>
+      <strong style="color:#69f">TenX Pte. Ltd</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong style="color:#69f">Mimo Capital AG</strong> (Liechtenstein, FL-0002.584.786-1)<br>
+      <span style="color:#888">(= Mimo, UEN 201525701M)</span> &nbsp; <span style="color:#888">(fmr. TenX Finance GmbH, Board: Eguienta since Dec 2021)</span><br><br>
+      <strong style="color:#4c4">CoBloX Pty Ltd</strong> (Australia, ABN 86 624 756 467) &mdash; COMIT R&amp;D lab
+    </div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Only 2 shareholders remain:</strong> Tobias Hoenisch and Paul Kittiwongsunthorn bought out all other co-founders. Julian Hosp: "The problem &mdash; they completely disappeared with it." Hosp: "$80 million was still in the company account at the end of 2018."</p></div>
+    <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>Mimo Labs response (Medium):</strong> "At no time have any illicit funds or transactions been identified, including the ICO of TenX and any company funds deployed in Mimo." Cited audits by Crowe, Grant Thornton, and OA International. Partnered with Elliptic for blockchain investigation. Said Hoenisch "not been actively involved" for nearly one year.</p></div>
+  </div>
+
+  <!-- BITCOIN WALLET -->
+  <div class="exploit-box">
+    <h3>BITCOIN WALLET &mdash; "COMIT Foundation"</h3>
+    <div class="wallet"><div class="lbl">Address</div>bc1q806efdnrlv5636tld7vhfw4r0d94r622pl7kjx</div>
+    <div class="stats" style="margin-top:12px">
+      <div class="stat"><div class="n n-red">3,247.53 BTC</div><div class="l">Total received</div></div>
+      <div class="stat"><div class="n n-red">0 BTC</div><div class="l">Current balance (swept)</div></div>
+      <div class="stat"><div class="n n-blue">6</div><div class="l">Total transactions</div></div>
+      <div class="stat"><div class="n n-orange">~$130-300M</div><div class="l">Value range during holding</div></div>
+    </div>
+
+    <h3 style="color:#69f;margin-top:14px">Complete Transaction History</h3>
+    <table class="data-table">
+      <tr><th>Date</th><th>Type</th><th>Amount</th><th>Details</th></tr>
+      <tr><td>2022-02-10</td><td style="color:#4c4">IN</td><td style="color:#4c4">+3,247.529 BTC</td><td>Initial funding. Source: <span style="color:#a8f;font-size:0.8em">bc1qsdvkkn5svdeywyp544v6jxxzj3l3uprzd6a2rj</span> (pass-through, 2 txs only). Same tx sent 120 BTC to a second address.</td></tr>
+      <tr><td>2024-01-01</td><td style="color:#4c4">IN</td><td>+547 sat</td><td>Dust attack / surveillance probe</td></tr>
+      <tr><td>2024-07-09</td><td style="color:#4c4">IN</td><td>+1,530 sat</td><td>Dust attack</td></tr>
+      <tr><td>2024-09-26</td><td style="color:#4c4">IN</td><td>+6,660 sat</td><td>Dust attack</td></tr>
+      <tr><td>2024-10-17</td><td style="color:#4c4">IN</td><td>+330 sat</td><td>Dust attack</td></tr>
+      <tr><td style="color:#ff3b3b">~2025</td><td style="color:#ff3b3b">OUT</td><td style="color:#ff3b3b">-3,247.529 BTC</td><td style="color:#ff3b3b"><strong>FULL SWEEP to 32 addresses</strong> (see breakdown below)</td></tr>
+    </table>
+
+    <h3 style="color:#ff3b3b;margin-top:14px">CRITICAL: Full Sweep Distribution (32 addresses)</h3>
+    <p style="font-size:0.84em;color:#aab;margin:6px 0">Entire balance distributed in one transaction to round-number tiers:</p>
+    <table class="data-table">
+      <tr><th>Amount per address</th><th>Count</th><th>Subtotal</th><th>Notes</th></tr>
+      <tr><td>500 BTC</td><td style="color:#ff3b3b">3</td><td style="color:#ff3b3b">1,500 BTC</td><td>3 different wallet clusters. One moved all 500 BTC 2 days later. Another moved 500 BTC ~40 days later.</td></tr>
+      <tr><td>200 BTC</td><td>3</td><td>600 BTC</td><td></td></tr>
+      <tr><td>150 BTC</td><td>2</td><td>300 BTC</td><td></td></tr>
+      <tr><td>100 BTC</td><td>4</td><td>400 BTC</td><td></td></tr>
+      <tr><td>50 BTC</td><td>6</td><td>300 BTC</td><td></td></tr>
+      <tr><td>10 BTC</td><td>13</td><td>130 BTC</td><td></td></tr>
+      <tr><td>17.53 BTC (remainder)</td><td>1</td><td>17.53 BTC</td><td></td></tr>
+      <tr style="background:#1a0a0a"><td style="color:#ff3b3b;font-weight:700">TOTAL</td><td style="color:#ff3b3b;font-weight:700">32</td><td style="color:#ff3b3b;font-weight:700">~3,247.53 BTC</td><td></td></tr>
+    </table>
+
+    <h3 style="color:#fa0;margin-top:14px">Key Observations</h3>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Amount matches TenX ICO treasury:</strong> Block-Builders.de reported TenX held ~3,000 BTC from the 2017 ICO. This wallet held 3,247.53 BTC &mdash; highly consistent.</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>TIMING: Funded days after DAO hack accusation.</strong> Laura Shin published her accusation of Toby Hoenisch as the DAO hacker on Feb 22, 2022. This wallet was funded on Feb 10, 2022. The upstream pass-through address was funded on Feb 8, 2022. This suggests a treasury restructuring around the time of the investigation going public.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Cold storage for ~3 years:</strong> Zero outgoing activity from Feb 2022 to the sweep. Received only 4 dust attacks (surveillance probes). Classic treasury/cold-storage pattern.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Structured distribution:</strong> Round-number tiers (10/50/100/150/200/500 BTC) across 32 separate addresses in different wallet clusters. Suggests planned organizational distribution, not a hack or panic move.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Pass-through sourcing:</strong> Source address <span style="color:#a8f;font-size:0.85em">bc1qsdvkkn5svdeywyp544v6jxxzj3l3uprzd6a2rj</span> had only 2 transactions total &mdash; received 3,367 BTC, immediately split to this wallet + 120 BTC elsewhere. Classic pass-through pattern to obscure origin.</p></div>
+    <div class="finding"><div class="dot" style="background:#a8f"></div><p><strong>Dust attacks received:</strong> 4 unsolicited micro-transactions (547-6,660 sat) between Jan 2024 and Oct 2024. Common blockchain surveillance technique for address linking or tracking.</p></div>
+  </div>
+
+  <!-- FOUNDATION ETH WALLET -->
+  <div class="exploit-box">
+    <h3>ETHEREUM WALLET &mdash; "COMIT Foundation"</h3>
+    <div class="wallet"><div class="lbl">Address</div>0xaab0e04ca86e791b6a214028f09d0a87b36cb564</div>
+    <div class="stats" style="margin-top:12px">
+      <div class="stat"><div class="n n-blue">1,106.82 ETH</div><div class="l">Current balance (~$2.37M)</div></div>
+      <div class="stat"><div class="n n-purple">$2.46M</div><div class="l">Total portfolio (33 chains)</div></div>
+      <div class="stat"><div class="n n-orange">35.3M MIMO</div><div class="l">Governance tokens held</div></div>
+      <div class="stat"><div class="n n-orange">4.4M PAY</div><div class="l">Legacy TenX tokens</div></div>
+    </div>
+
+    <table class="data-table" style="margin-top:12px">
+      <tr><td style="width:180px;color:#69f">Type</td><td>Gnosis Safe Multisig (Mastercopy 1.1.1)</td></tr>
+      <tr><td style="color:#69f">Created</td><td>~March 2021 (block 12085860)</td></tr>
+      <tr><td style="color:#69f">Total Transactions</td><td>131</td></tr>
+      <tr><td style="color:#69f">Last Active</td><td>July 27, 2025</td></tr>
+      <tr><td style="color:#69f">NFTs</td><td>19 tokens (Killer GF, Metroverse, Quties, Snowies Club, etc.)</td></tr>
+      <tr><td style="color:#69f">Etherscan Label</td><td>None (unlabeled)</td></tr>
+    </table>
+
+    <h3 style="color:#ff3b3b;margin-top:14px">CRITICAL: Creator Address Linked to TenX</h3>
+    <div class="wallet"><div class="lbl">Creator</div>0x60f4dc3efdbe1d5886dd5d43a16641c832e2f030</div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p>This creator address received <strong>massive ETH transfers from "TenX: Multisig"</strong> (<span style="color:#a8f;font-size:0.85em">0x185f19b43d818e10a31be68f445ef8edcb8afb83</span>): <strong>16,000 ETH + 10,000 ETH + 6,000 ETH</strong> (2017-2020). It also holds PAY and TENX tokens and acted as a signer/submitter on the TenX Multisig itself. This directly links the Foundation wallet to TenX ICO funds.</p></div>
+
+    <h3 style="color:#69f;margin-top:14px">Token Holdings</h3>
+    <table class="data-table">
+      <tr><th>Token</th><th>Amount</th><th>Value (USD)</th></tr>
+      <tr><td>MIMO (Governance)</td><td>35,287,726</td><td style="color:#fa0">$65,029</td></tr>
+      <tr><td>USDC</td><td>16,811</td><td>$16,810</td></tr>
+      <tr><td>PAY (TenX legacy)</td><td>4,383,108</td><td>$5,834</td></tr>
+      <tr><td>+ 215 other tokens</td><td>various</td><td>minimal</td></tr>
+    </table>
+
+    <h3 style="color:#69f;margin-top:14px">Large Recent Movements (2025)</h3>
+    <table class="data-table">
+      <tr><th>Date</th><th>Direction</th><th>Amount</th><th>Counterparty</th></tr>
+      <tr><td>2025-07-27</td><td style="color:#ff3b3b">OUT</td><td style="color:#ff3b3b">665 ETH (~$1.42M)</td><td><span style="color:#a8f;font-size:0.85em">0x661A835A...b143e7F67</span></td></tr>
+      <tr><td>2025-07-27</td><td style="color:#4c4">IN</td><td>180 ETH + 7.5 ETH</td><td><span style="color:#a8f;font-size:0.85em">0x173AE628...82A8c674b</span></td></tr>
+      <tr><td>2025-06-04</td><td style="color:#ff3b3b">OUT</td><td>46 ETH</td><td><span style="color:#a8f;font-size:0.85em">0x661A835A...b143e7F67</span></td></tr>
+      <tr><td>2025-05-17</td><td style="color:#ff3b3b">OUT</td><td style="color:#ff3b3b">1,200 ETH (~$2.57M)</td><td><span style="color:#a8f;font-size:0.85em">0x661A835A...b143e7F67</span></td></tr>
+      <tr><td>2025-03-25</td><td style="color:#ff3b3b">OUT</td><td>1,700 ETH</td><td><span style="color:#a8f;font-size:0.85em">0x661A835A...b143e7F67</span></td></tr>
+      <tr><td>2025-03-25</td><td style="color:#4c4">IN</td><td>2,050 ETH</td><td><span style="color:#a8f;font-size:0.85em">0x173AE628...82A8c674b</span></td></tr>
+    </table>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Pattern:</strong> Large ETH flows in/out through 2 key counterparties in 2025. <span style="color:#a8f">0x661A835A...</span> is the primary recipient. <span style="color:#a8f">0x173AE628...</span> is the primary funder. Total outflows in 2025: 3,611 ETH (~$7.7M). Needs further tracing.</p></div>
+  </div>
+
+  <!-- MIMO CAPITAL ETH WALLET -->
+  <div class="exploit-box">
+    <h3>ETHEREUM WALLET &mdash; Mimo Capital</h3>
+    <div class="wallet"><div class="lbl">Address</div>0x4e24e4cce79bb6ddc4baec394880873215edaf7d</div>
+    <div class="stats" style="margin-top:12px">
+      <div class="stat"><div class="n n-blue">0.598 ETH</div><div class="l">Current balance (~$1,280)</div></div>
+      <div class="stat"><div class="n n-green">$404,605</div><div class="l">Total portfolio</div></div>
+      <div class="stat"><div class="n n-blue">783</div><div class="l">Total transactions</div></div>
+      <div class="stat"><div class="n n-green">$401K</div><div class="l">In stablecoins (USDT+USDC)</div></div>
+    </div>
+
+    <table class="data-table" style="margin-top:12px">
+      <tr><td style="width:180px;color:#69f">Type</td><td>Gnosis Safe Multisig (Singleton 1.3.0, newer version)</td></tr>
+      <tr><td style="color:#69f">Created</td><td>~May 2022</td></tr>
+      <tr><td style="color:#69f">Last Active</td><td>~March 2, 2026</td></tr>
+      <tr><td style="color:#69f">Etherscan Label</td><td>None (unlabeled)</td></tr>
+      <tr><td style="color:#69f">DeFi Activity</td><td>Aave staking (22.4 ETH), SushiSwap (85 ETH swap), LI.FI bridge, WETH wraps</td></tr>
+      <tr><td style="color:#69f">NFTs</td><td>16 tokens</td></tr>
+    </table>
+
+    <h3 style="color:#69f;margin-top:14px">Holdings</h3>
+    <table class="data-table">
+      <tr><th>Token</th><th>Amount</th><th>Weight</th></tr>
+      <tr><td>USDT</td><td>$294,725</td><td>72.84%</td></tr>
+      <tr><td>USDC</td><td>$106,380</td><td>26.29%</td></tr>
+      <tr><td>WETH</td><td>$2,137</td><td>0.53%</td></tr>
+      <tr><td>PAR (Mimo stablecoin)</td><td>$82</td><td>0.02%</td></tr>
+    </table>
+
+    <h3 style="color:#69f;margin-top:14px">Key Signers / Operators</h3>
+    <table class="data-table">
+      <tr><th>Address</th><th>Identity</th></tr>
+      <tr><td style="color:#a8f;font-size:0.85em">0xAfb96AFae3f780565406E42aC4A20165ecf99883</td><td>"Fred" &mdash; also signs on the labeled Mimo Capital: Safe Multisig</td></tr>
+      <tr><td style="color:#a8f;font-size:0.85em">0xedDd429ce2bcae8ed1d70e145a824fc52c2a6b4E</td><td>Unknown identity</td></tr>
+      <tr><td style="color:#a8f;font-size:0.85em">0xb0D9a7286659ae4ce9ffadd66cd89e0b77ce7cE9</td><td>Unknown identity</td></tr>
+    </table>
+    <div class="finding"><div class="dot" style="background:#69f"></div><p>Received 46 ETH (Jan 2023) + 0.4 ETH (Jan 2025) from the labeled <strong>"Mimo Capital: Safe Multisig"</strong> (<span style="color:#a8f;font-size:0.85em">0xcc8793d5eb95faa707ea4155e09b2d3f44f33d1e</span>). Also sent 1 ETH to <strong>jeanbrasse.eth</strong> (Jean Brasse = Co-founder of Murphy Labs, Head of DeFi at Mimo Labs).</p></div>
+  </div>
+
+  <!-- CONNECTION MAP -->
+  <div class="card">
+    <h2>On-Chain Connection Map</h2>
+    <div style="background:#0a0a1e;border:1px solid #1e1e45;border-radius:8px;padding:18px;font-family:'Courier New',monospace;font-size:0.78em;color:#a8f;line-height:2">
+<span style="color:#ff3b3b;font-weight:700">TenX: Multisig</span> <span style="color:#888">(0x185f...fb83, Etherscan-labeled)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; 16K + 10K + 6K ETH (2017-2020)<br>
+&nbsp;&nbsp;&nbsp;&#9660;<br>
+<span style="color:#fa0;font-weight:700">Creator Address</span> <span style="color:#888">(0x60f4...f030, TenX signer)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; deploys contract<br>
+&nbsp;&nbsp;&nbsp;&#9660;<br>
+<span style="color:#ff3b3b;font-weight:700">Foundation ETH Wallet</span> <span style="color:#888">(0xaab0...b564)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; Holds: 1,107 ETH + 35.3M MIMO + 4.4M PAY<br>
+&nbsp;&nbsp;&nbsp;&#9474; 2025 outflows: 3,611 ETH (~$7.7M)<br>
+<br>
+<span style="color:#69f;font-weight:700">Mimo Capital: Safe Multisig</span> <span style="color:#888">(0xcc87...3d1e, Etherscan-labeled)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; 46 ETH + 0.4 ETH<br>
+&nbsp;&nbsp;&nbsp;&#9660;<br>
+<span style="color:#69f;font-weight:700">Mimo Capital Wallet</span> <span style="color:#888">(0x4e24...af7d)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; Holds: $401K stablecoins<br>
+&nbsp;&nbsp;&nbsp;&#9474; Signer "Fred" = same on Mimo Capital Multisig<br>
+&nbsp;&nbsp;&nbsp;&#9474; Sends 1 ETH to jeanbrasse.eth (Mimo DeFi Head)<br>
+<br>
+<span style="color:#888">&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473; NO DIRECT TRANSACTIONS between Foundation &amp; Mimo wallet &#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;</span><br>
+<span style="color:#888">Indirect link: Both trace to TenX ecosystem. Foundation created by TenX-funded address. Both hold TenX/Mimo tokens.</span><br>
+<br>
+<span style="color:#ff3b3b;font-weight:700">Foundation BTC Wallet</span> <span style="color:#888">(bc1q806e...7kjx)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; Received: 3,247.53 BTC (Feb 2022)<br>
+&nbsp;&nbsp;&nbsp;&#9474; Swept: 3,247.53 BTC &rarr; 32 addresses<br>
+&nbsp;&nbsp;&nbsp;&#9474; Now: 0 BTC<br>
+&nbsp;&nbsp;&nbsp;&#9474; <span style="color:#ff3b3b">TIMING: Funded days before DAO hack accusation published</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>All Known Wallet Addresses</h2>
+    <table class="data-table">
+      <tr><th>Label</th><th>Chain</th><th>Address</th><th>Status</th></tr>
+      <tr><td style="color:#ff3b3b">Foundation BTC</td><td>Bitcoin</td><td style="font-size:0.78em;color:#a8f">bc1q806efdnrlv5636tld7vhfw4r0d94r622pl7kjx</td><td style="color:#ff3b3b">EMPTY (swept)</td></tr>
+      <tr><td style="color:#ff3b3b">Foundation ETH</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0xaab0e04ca86e791b6a214028f09d0a87b36cb564</td><td style="color:#4c4">~$2.46M</td></tr>
+      <tr><td style="color:#69f">Mimo Capital Wallet</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x4e24e4cce79bb6ddc4baec394880873215edaf7d</td><td style="color:#4c4">~$404K</td></tr>
+      <tr><td style="color:#69f">Mimo Capital: Safe Multisig</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0xcc8793d5eb95faa707ea4155e09b2d3f44f33d1e</td><td>~$278K (labeled)</td></tr>
+      <tr><td style="color:#fa0">TenX: Multisig (legacy)</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x185f19b43d818e10a31be68f445ef8edcb8afb83</td><td>~$103K (labeled)</td></tr>
+      <tr><td style="color:#fa0">TenX: Token Sale</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0xd43D09Ec1bC5e57C8F3D0c64020d403b04c7f783</td><td>Labeled</td></tr>
+      <tr><td style="color:#888">Foundation Creator</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x60f4dc3efdbe1d5886dd5d43a16641c832e2f030</td><td>TenX signer</td></tr>
+      <tr><td style="color:#888">BTC Pass-through</td><td>Bitcoin</td><td style="font-size:0.78em;color:#a8f">bc1qsdvkkn5svdeywyp544v6jxxzj3l3uprzd6a2rj</td><td>EMPTY (2 txs only)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>@MTTMCOM &amp; Legal Threats</h2>
+    <div class="finding"><div class="dot" style="background:#888"></div><p><strong>@MTTMCOM (Telegram):</strong> No indexed web content found for this handle across Twitter/X, Reddit, forums, or news. Either operates exclusively in private Telegram channels, handle changed/deleted, or information not publicly published.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Class action attempt (June 2020):</strong> An investor who put $25K into TenX ICO called for class action on a WordPress blog, alleging money laundering, tax evasion, fraud, and fund funneling. No evidence it was ever formally filed.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>No formal lawsuits found:</strong> No confirmed court filings or concluded legal proceedings about TenX ICO fund misuse or COMIT Foundation fund diversion in any jurisdiction. Finance Magnates (2018): analyst was "amazed there has not been a class action lawsuit yet."</p></div>
+    <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>No MAS enforcement:</strong> No specific Monetary Authority of Singapore action against TenX was found in public records.</p></div>
+  </div>
+
+</div>
+</div>
+
 <!-- ========== 3D MAP ========== -->
 <div id="tab-map" class="tab-content">
   <div id="map-container">
@@ -788,8 +1013,8 @@
     </div>
     <div class="map-info">
       <h3>Network Summary</h3>
-      <p><strong>27 nodes</strong> &bull; <strong>38 connections</strong></p>
-      <p style="margin-top:4px">Central cluster: Eguienta &harr; TenX &harr; Hoenisch &harr; DAO Hack forms the core risk nexus. Every path through the network passes through this cluster.</p>
+      <p><strong>34 nodes</strong> &bull; <strong>54 connections</strong></p>
+      <p style="margin-top:4px">Core risk nexus: Eguienta &harr; TenX &harr; Hoenisch &harr; DAO Hack. New cluster: COMIT Foundation &harr; BTC/ETH wallets &harr; TenX Multisig traces ICO fund flows.</p>
     </div>
     <div class="map-controls">Click &amp; drag to rotate &bull; Scroll to zoom &bull; Hover nodes for details</div>
     <div class="tooltip3d" id="tooltip3d">
@@ -863,6 +1088,14 @@ function initMap(){
     // FORENSICS
     {id:'chainalysis',l:'Chainalysis',c:0x44cc44,s:0.3,p:[-9.5,-1,-1],d:'Blockchain analytics firm. De-mixed Wasabi Wallet CoinJoin transactions. "Previously undisclosed capability." Traced DAO funds to Hoenisch.'},
     {id:'onlab',l:'OnLab Incubator',c:0x44cc44,s:0.22,p:[0.5,-5,-1.5],d:'Japanese startup accelerator. Origin point: Eguienta (Kabotip) met Hoenisch here in 2014. The connection that started everything.'},
+    // WALLET / COMIT NODES
+    {id:'comit',l:'COMIT Foundation',c:0xff3b3b,s:0.45,p:[2,-1,-3],d:'45% of $80M ICO (~$36M) allocated. Never formally incorporated. Same people control it. COMIT GitHub archived. BTC wallet held 3,247 BTC, now swept to 32 addresses.'},
+    {id:'btcwallet',l:'Foundation BTC',c:0xff55aa,s:0.35,p:[3,-2.5,-4],d:'bc1q806e...7kjx. Held 3,247.53 BTC (~$130-300M). Funded Feb 2022 (days before DAO hack accusation). Swept to 32 addresses in round tiers. Now EMPTY.'},
+    {id:'ethwallet',l:'Foundation ETH',c:0xff55aa,s:0.35,p:[1,0.5,-4],d:'0xaab0...b564. Gnosis Safe. Created by TenX-funded address. Holds 1,107 ETH + 35.3M MIMO + 4.4M PAY. Total ~$2.46M. 3,611 ETH outflows in 2025.'},
+    {id:'mimowallet',l:'Mimo Wallet',c:0x3399ff,s:0.3,p:[4,1,-2],d:'0x4e24...af7d. Gnosis Safe. 783 txs. $401K stablecoins. Funded by Mimo Capital Multisig. Signer "Fred" overlaps with governance.'},
+    {id:'tenxmulti',l:'TenX Multisig',c:0xfa8800,s:0.35,p:[-1,-1,-4],d:'0x185f...fb83. Etherscan-labeled. Sent 32,000+ ETH to Foundation creator. Legacy ICO treasury. Now ~$103K remnants.'},
+    {id:'decentral',l:'DECENTRAL PTE',c:0xfa8800,s:0.3,p:[-3.5,-1,-3],d:'Singapore. Directors: Hoenisch + Kittiwongsunthorn. 100% owns TenX Pte. Ltd + Mimo Capital AG. The real control entity.'},
+    {id:'coblox',l:'CoBloX',c:0x3399ff,s:0.22,p:[3.5,-3.5,-3],d:'Australian R&D lab (ABN 86624756467). Built COMIT protocol. "Standalone team funded by COMIT Foundation." GitHub archived.'},
   ];
 
   const E=[
@@ -889,6 +1122,13 @@ function initMap(){
     {f:'telcoin',t:'neuner',c:0x44cc44,s:2},{f:'telcoin',t:'exploit',c:0xaa55ff,s:2},{f:'telcoin',t:'tel_token',c:0xff55aa,s:2},
     // TrustSwap
     {f:'trustswap',t:'teamfin',c:0xfa8800,s:2},{f:'trustswap',t:'boughazi',c:0x44cc44,s:1},
+    // WALLET / COMIT edges
+    {f:'claude',t:'comit',c:0xff3b3b,s:2},{f:'toby',t:'comit',c:0xff3b3b,s:3},{f:'kitti',t:'comit',c:0xfa8800,s:2},
+    {f:'comit',t:'btcwallet',c:0xff55aa,s:3},{f:'comit',t:'ethwallet',c:0xff55aa,s:3},{f:'comit',t:'coblox',c:0x3399ff,s:2},
+    {f:'tenxmulti',t:'ethwallet',c:0xff3b3b,s:3},{f:'tenx',t:'tenxmulti',c:0xfa8800,s:2},
+    {f:'mimo',t:'mimowallet',c:0x3399ff,s:2},{f:'ethwallet',t:'mimowallet',c:0xfa8800,s:1},
+    {f:'toby',t:'decentral',c:0xff3b3b,s:3},{f:'kitti',t:'decentral',c:0xfa8800,s:3},{f:'decentral',t:'tenx',c:0xfa8800,s:3},{f:'decentral',t:'mimo',c:0xfa8800,s:2},
+    {f:'ico',t:'tenxmulti',c:0xaa55ff,s:2},{f:'ico',t:'comit',c:0xaa55ff,s:2},
   ];
 
   const nMap={},meshes=[];
