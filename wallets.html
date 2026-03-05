@@ -3,357 +3,502 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>COMIT / TenX / Mimo - 3D Wallet Flow Map</title>
+<title>COMIT / TenX / Mimo - Multi-Degree Wallet Correlation Map</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#020208;color:#d0d0e0;font-family:'SF Mono','Courier New',monospace;overflow:hidden}
 #canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1}
 
-/* PANELS */
 .panel{position:fixed;z-index:10;background:rgba(4,4,16,0.94);border:1px solid #1a1a40;border-radius:10px;backdrop-filter:blur(8px)}
 
-/* HEADER */
-#header{top:12px;left:50%;transform:translateX(-50%);padding:10px 28px;text-align:center}
-#header h1{font-size:1.1em;color:#ff3b3b;letter-spacing:2px;text-shadow:0 0 20px rgba(255,59,59,0.4)}
-#header p{font-size:0.68em;color:#556;margin-top:3px}
+#header{top:10px;left:50%;transform:translateX(-50%);padding:10px 24px;text-align:center}
+#header h1{font-size:1em;color:#ff3b3b;letter-spacing:2px;text-shadow:0 0 20px rgba(255,59,59,0.4)}
+#header p{font-size:0.62em;color:#556;margin-top:2px}
 
-/* LEGEND */
-#legend{top:70px;left:12px;padding:14px;width:230px;font-size:0.72em}
-#legend h3{color:#eee;margin-bottom:8px;font-size:0.9em;letter-spacing:1px}
-.lg{display:flex;align-items:center;gap:7px;margin-bottom:5px;color:#99a}
-.ld{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.ll{display:flex;align-items:center;gap:7px;margin-bottom:4px;color:#778;font-size:0.9em}
-.sep{height:1px;background:#1a1a40;margin:8px 0}
+/* DEGREE FILTER */
+#degfilter{top:55px;left:50%;transform:translateX(-50%);padding:6px 14px;display:flex;gap:6px;align-items:center}
+#degfilter .dbtn{padding:5px 12px;border-radius:15px;font-size:0.68em;cursor:pointer;border:1px solid #252550;background:#0a0a1e;color:#778;transition:all .2s;font-family:inherit}
+#degfilter .dbtn.active{border-color:#ff3b3b;color:#fff;background:rgba(255,59,59,0.15)}
+#degfilter .dbtn:hover{border-color:#69f;color:#bbc}
+.dl{font-size:0.65em;color:#556;margin-right:4px}
+#degfilter .d1.active{border-color:#ff3b3b;background:rgba(255,59,59,0.15);color:#f66}
+#degfilter .d2.active{border-color:#fa0;background:rgba(255,160,0,0.12);color:#fa0}
+#degfilter .d3.active{border-color:#a855f7;background:rgba(168,85,247,0.12);color:#b8f}
 
-/* INFO PANEL */
-#info{top:70px;right:12px;padding:14px;width:300px;font-size:0.72em;display:none}
-#info h3{color:#ff3b3b;margin-bottom:6px;font-size:0.95em}
-#info .addr{color:#a8f;word-break:break-all;font-size:0.88em;margin:4px 0;padding:6px;background:#0a0a1e;border-radius:4px}
-#info .row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #111128}
-#info .row .k{color:#69f}.row .v{color:#dde;text-align:right}
-#info .tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.85em;margin:2px}
+#legend{top:90px;left:12px;padding:12px;width:220px;font-size:0.68em;max-height:calc(100vh - 200px);overflow-y:auto}
+#legend h3{color:#eee;margin-bottom:6px;font-size:0.85em;letter-spacing:1px}
+.lg{display:flex;align-items:center;gap:6px;margin-bottom:4px;color:#99a}
+.ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.sep{height:1px;background:#1a1a40;margin:6px 0}
+.ll{display:flex;align-items:center;gap:6px;margin-bottom:3px;color:#778;font-size:0.9em}
+
+#info{top:90px;right:12px;padding:12px;width:310px;font-size:0.7em;display:none;max-height:calc(100vh - 120px);overflow-y:auto}
+#info h3{color:#ff3b3b;margin-bottom:4px;font-size:0.9em}
+#info .addr{color:#a8f;word-break:break-all;font-size:0.82em;margin:3px 0;padding:5px;background:#0a0a1e;border-radius:4px}
+#info .row{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #111128;font-size:0.92em}
+#info .row .k{color:#69f}.row .v{color:#dde;text-align:right;max-width:160px}
+#info .tag{display:inline-block;padding:2px 7px;border-radius:10px;font-size:0.8em;margin:1px}
 .t-red{background:rgba(255,59,59,0.2);color:#f66;border:1px solid rgba(255,59,59,0.3)}
 .t-orange{background:rgba(255,160,0,0.15);color:#fa0;border:1px solid rgba(255,160,0,0.3)}
 .t-blue{background:rgba(60,120,255,0.15);color:#69f;border:1px solid rgba(60,120,255,0.3)}
 .t-green{background:rgba(60,200,80,0.15);color:#6c6;border:1px solid rgba(60,200,80,0.3)}
 .t-purple{background:rgba(160,80,255,0.15);color:#b8f;border:1px solid rgba(160,80,255,0.3)}
+.t-pink{background:rgba(255,85,170,0.15);color:#f5a;border:1px solid rgba(255,85,170,0.3)}
+.deg-badge{position:absolute;top:4px;right:8px;font-size:0.7em;padding:1px 6px;border-radius:8px}
 
-/* FLOW PANEL */
-#flows{bottom:12px;left:12px;padding:14px;width:380px;font-size:0.7em;max-height:260px;overflow-y:auto}
-#flows h3{color:#eee;margin-bottom:8px;font-size:0.85em}
-.flow{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid #0a0a1e}
-.flow .amt{color:#ff3b3b;font-weight:700;min-width:100px}
+#flows{bottom:12px;left:12px;padding:10px;width:400px;font-size:0.66em;max-height:220px;overflow-y:auto}
+#flows h3{color:#eee;margin-bottom:6px;font-size:0.8em}
+.flow{display:flex;align-items:center;gap:5px;padding:3px 0;border-bottom:1px solid #0a0a1e}
+.flow .amt{color:#ff3b3b;font-weight:700;min-width:90px}
 .flow .arr{color:#fa0}.flow .lbl{color:#99a}
+.flow .deg{font-size:0.85em;padding:1px 5px;border-radius:8px;margin-left:auto;flex-shrink:0}
 
-/* CONTROLS */
-#controls{bottom:12px;left:50%;transform:translateX(-50%);padding:8px 20px;color:#556;font-size:0.7em;text-align:center}
-
-/* STATS */
-#stats{bottom:12px;right:12px;padding:14px;width:220px;font-size:0.72em}
-#stats h3{color:#eee;margin-bottom:8px;font-size:0.85em}
-.st{display:flex;justify-content:space-between;padding:3px 0}
+#stats{bottom:12px;right:12px;padding:12px;width:210px;font-size:0.68em}
+#stats h3{color:#eee;margin-bottom:6px;font-size:0.8em}
+.st{display:flex;justify-content:space-between;padding:2px 0}
 .st .k{color:#69f}.st .v{color:#ff3b3b;font-weight:700}
+
+#controls{bottom:12px;left:50%;transform:translateX(-50%);padding:6px 16px;color:#556;font-size:0.65em;text-align:center}
+a.back{position:fixed;top:12px;left:12px;z-index:20;color:#69f;text-decoration:none;font-size:0.75em;padding:6px 12px;border:1px solid #252550;border-radius:6px;background:rgba(4,4,16,0.9)}
+a.back:hover{border-color:#69f;color:#fff}
 </style>
 </head>
 <body>
 <canvas id="canvas"></canvas>
+<a class="back" href="index.html">&larr; Main Profile</a>
 
 <div class="panel" id="header">
-  <h1>WALLET FLOW MAP</h1>
-  <p>COMIT Foundation &bull; TenX &bull; Mimo Capital &mdash; On-Chain Fund Tracing</p>
+  <h1>MULTI-DEGREE WALLET CORRELATION MAP</h1>
+  <p>1st &bull; 2nd &bull; 3rd Degree Connections &mdash; Companies &amp; Stakeholders</p>
+</div>
+
+<div class="panel" id="degfilter">
+  <span class="dl">SHOW:</span>
+  <button class="dbtn d1 active" onclick="toggleDeg(1)">1st Degree</button>
+  <button class="dbtn d2 active" onclick="toggleDeg(2)">2nd Degree</button>
+  <button class="dbtn d3 active" onclick="toggleDeg(3)">3rd Degree</button>
+  <button class="dbtn" onclick="showAll()" style="margin-left:6px;border-color:#3a3a6a">All</button>
 </div>
 
 <div class="panel" id="legend">
-  <h3>WALLET TYPES</h3>
-  <div class="lg"><div class="ld" style="background:#ff3b3b"></div> ICO Treasury / Foundation</div>
-  <div class="lg"><div class="ld" style="background:#fa0"></div> Pass-through / Intermediary</div>
-  <div class="lg"><div class="ld" style="background:#3399ff"></div> Operational / Mimo</div>
-  <div class="lg"><div class="ld" style="background:#a855f7"></div> Sweep Destination</div>
-  <div class="lg"><div class="ld" style="background:#44cc44"></div> External / Labeled</div>
+  <h3>NODE TYPES</h3>
+  <div class="lg"><div class="ld" style="background:#ff3b3b"></div> ICO / Foundation Treasury</div>
+  <div class="lg"><div class="ld" style="background:#fa0"></div> Intermediary / Pass-through</div>
+  <div class="lg"><div class="ld" style="background:#3399ff"></div> Mimo Operational</div>
+  <div class="lg"><div class="ld" style="background:#a855f7"></div> Sweep / Distribution</div>
+  <div class="lg"><div class="ld" style="background:#44cc44"></div> Exchange (Kraken/Bittrex)</div>
   <div class="lg"><div class="ld" style="background:#ff55aa"></div> Person / Controller</div>
+  <div class="lg"><div class="ld" style="background:#00c8ff"></div> Smart Contract / Token</div>
+  <div class="lg"><div class="ld" style="background:#888"></div> Corporate Entity</div>
   <div class="sep"></div>
-  <h3>FLOW LINES</h3>
-  <div class="ll"><span style="color:#ff3b3b">&#9644;&#9644;&#9644;</span> Large flow (&gt;1,000 ETH/BTC)</div>
-  <div class="ll"><span style="color:#fa0">&#9644;&#9644;</span> Medium flow (10-1,000)</div>
-  <div class="ll"><span style="color:#3399ff">&#9644;</span> Small flow / link</div>
-  <div class="ll"><span style="color:#a855f7">- - -</span> Sweep distribution</div>
+  <h3>DEGREE</h3>
+  <div class="lg"><div class="ld" style="background:#ff3b3b;box-shadow:0 0 6px #ff3b3b"></div> 1st — Direct transactions</div>
+  <div class="lg"><div class="ld" style="background:#fa0;box-shadow:0 0 6px #fa0"></div> 2nd — One hop away</div>
+  <div class="lg"><div class="ld" style="background:#a855f7;box-shadow:0 0 6px #a855f7"></div> 3rd — Two hops / indirect</div>
   <div class="sep"></div>
-  <div style="color:#556;font-size:0.88em">
-    Click nodes for details<br>
-    Drag to rotate &bull; Scroll to zoom
-  </div>
+  <h3>EDGES</h3>
+  <div class="ll"><span style="color:#ff3b3b">&#9644;&#9644;&#9644;</span> Large flow (&gt;1K ETH/BTC)</div>
+  <div class="ll"><span style="color:#fa0">&#9644;&#9644;</span> Medium flow (10-1K)</div>
+  <div class="ll"><span style="color:#3399ff">&#9644;</span> Small / operational</div>
+  <div class="ll"><span style="color:#a855f7">- - -</span> Control / indirect link</div>
+  <div class="sep"></div>
+  <div style="color:#556;font-size:0.85em">Click nodes for details<br>Drag rotate &bull; Scroll zoom</div>
 </div>
 
 <div class="panel" id="info">
   <h3 id="i-name"></h3>
   <div class="addr" id="i-addr"></div>
+  <div id="i-deg"></div>
   <div id="i-tags"></div>
   <div id="i-rows"></div>
-  <div id="i-notes" style="margin-top:8px;color:#889;font-size:0.9em"></div>
+  <div id="i-notes" style="margin-top:6px;color:#889;font-size:0.88em"></div>
 </div>
 
 <div class="panel" id="flows">
   <h3>KEY FUND FLOWS</h3>
-  <div class="flow"><span class="amt">32,000+ ETH</span><span class="arr">&rarr;</span><span class="lbl">TenX Multisig &rarr; Foundation Creator (2017-20)</span></div>
-  <div class="flow"><span class="amt">3,247.53 BTC</span><span class="arr">&rarr;</span><span class="lbl">Pass-through &rarr; Foundation BTC (Feb 2022)</span></div>
-  <div class="flow"><span class="amt">3,247.53 BTC</span><span class="arr">&rarr;</span><span class="lbl">Foundation BTC &rarr; 32 sweep addresses (~2025)</span></div>
-  <div class="flow"><span class="amt">3,611 ETH</span><span class="arr">&rarr;</span><span class="lbl">Foundation ETH &rarr; 0x661A... (2025 outflows)</span></div>
-  <div class="flow"><span class="amt">2,050 ETH</span><span class="arr">&rarr;</span><span class="lbl">0x173A... &rarr; Foundation ETH (Mar 2025)</span></div>
-  <div class="flow"><span class="amt">1,200 ETH</span><span class="arr">&rarr;</span><span class="lbl">Foundation ETH &rarr; 0x661A... (May 2025)</span></div>
-  <div class="flow"><span class="amt">665 ETH</span><span class="arr">&rarr;</span><span class="lbl">Foundation ETH &rarr; 0x661A... (Jul 2025)</span></div>
-  <div class="flow"><span class="amt">500 BTC x3</span><span class="arr">&rarr;</span><span class="lbl">Sweep &rarr; 3 large destinations (diff clusters)</span></div>
-  <div class="flow"><span class="amt">46 ETH</span><span class="arr">&rarr;</span><span class="lbl">Mimo Multisig &rarr; Mimo Wallet (Jan 2023)</span></div>
-  <div class="flow"><span class="amt">1 ETH</span><span class="arr">&rarr;</span><span class="lbl">Mimo Wallet &rarr; jeanbrasse.eth (Mimo DeFi Head)</span></div>
+  <div class="flow"><span class="amt">245,832 ETH</span><span class="arr">&rarr;</span><span class="lbl">ICO &rarr; TenX Multisig</span><span class="deg t-red">1st</span></div>
+  <div class="flow"><span class="amt">94,844 ETH</span><span class="arr">&rarr;</span><span class="lbl">TenX Multisig &rarr; Creator (0x60f4)</span><span class="deg t-red">1st</span></div>
+  <div class="flow"><span class="amt">77,000 ETH</span><span class="arr">&rarr;</span><span class="lbl">TenX Multisig &rarr; PAY Deployer (0x839e)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">33,000 ETH</span><span class="arr">&rarr;</span><span class="lbl">TenX Multisig &rarr; 0xa3fa &rarr; 0x7725</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">3,247 BTC</span><span class="arr">&rarr;</span><span class="lbl">Peel chain &rarr; Foundation BTC</span><span class="deg t-red">1st</span></div>
+  <div class="flow"><span class="amt">3,247 BTC</span><span class="arr">&rarr;</span><span class="lbl">Foundation BTC &rarr; 32 sweep addr</span><span class="deg t-red">1st</span></div>
+  <div class="flow"><span class="amt">3,000 ETH</span><span class="arr">&rarr;</span><span class="lbl">Mimo Vaults Core &rarr; Foundation ETH</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">1,500 BTC</span><span class="arr">&rarr;</span><span class="lbl">3x500 BTC sweeps &rarr; sub-distributions</span><span class="deg t-red">1st</span></div>
+  <div class="flow"><span class="amt">610 BTC</span><span class="arr">&rarr;</span><span class="lbl">Peel-offs &rarr; Kraken + unlabeled</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">151+ BTC</span><span class="arr">&rarr;</span><span class="lbl">Sweep sub-dest &rarr; Kraken deposits</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">2.2M PAY</span><span class="arr">&rarr;</span><span class="lbl">Hosp wallets &rarr; Bittrex (dump)</span><span class="deg t-purple">3rd</span></div>
+  <div class="flow"><span class="amt">750 ETH</span><span class="arr">&rarr;</span><span class="lbl">Mimo Wallet &rarr; 0x957f (unknown)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">~282 BTC</span><span class="arr">&rarr;</span><span class="lbl">DAO hack ETH &rarr; ShapeShift &rarr; BTC</span><span class="deg t-purple">3rd</span></div>
 </div>
 
 <div class="panel" id="controls">
-  Click &amp; drag to rotate &bull; Scroll to zoom &bull; Click node for details &bull; Right-click drag to pan
+  Click drag to rotate &bull; Scroll to zoom &bull; Click node for details &bull; Toggle degree filters above
 </div>
 
 <div class="panel" id="stats">
-  <h3>TOTALS TRACKED</h3>
-  <div class="st"><span class="k">BTC moved</span><span class="v">6,495+ BTC</span></div>
-  <div class="st"><span class="k">ETH moved</span><span class="v">38,000+ ETH</span></div>
-  <div class="st"><span class="k">Wallets mapped</span><span class="v">22</span></div>
-  <div class="st"><span class="k">Connections</span><span class="v">28</span></div>
+  <h3>FORENSICS SUMMARY</h3>
+  <div class="st"><span class="k">BTC tracked</span><span class="v">7,100+ BTC</span></div>
+  <div class="st"><span class="k">ETH tracked</span><span class="v">250,000+ ETH</span></div>
+  <div class="st"><span class="k">Nodes mapped</span><span class="v" id="s-nodes">45</span></div>
+  <div class="st"><span class="k">Connections</span><span class="v" id="s-edges">64</span></div>
   <div class="sep"></div>
-  <div class="st"><span class="k">Foundation BTC</span><span class="v" style="color:#ff3b3b">EMPTY</span></div>
+  <div class="st"><span class="k">Foundation BTC</span><span class="v" style="color:#ff3b3b">EMPTY (swept)</span></div>
+  <div class="st"><span class="k">Dormant BTC</span><span class="v" style="color:#fa0">~1,730 BTC</span></div>
   <div class="st"><span class="k">Foundation ETH</span><span class="v" style="color:#4c4">~$2.46M</span></div>
-  <div class="st"><span class="k">Mimo Wallet</span><span class="v" style="color:#4c4">~$404K</span></div>
-  <div class="st"><span class="k">TenX Multisig</span><span class="v" style="color:#fa0">~$103K</span></div>
+  <div class="st"><span class="k">Kraken links</span><span class="v" style="color:#4c4">7+ addresses</span></div>
+  <div class="st"><span class="k">Decentral Holdings</span><span class="v" style="color:#fa0">$66.6M cap</span></div>
 </div>
 
 <script>
 const scene=new THREE.Scene();
-const cam=new THREE.PerspectiveCamera(50,window.innerWidth/window.innerHeight,0.1,500);
-cam.position.set(0,2,28);
+const cam=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,0.1,600);
+cam.position.set(0,3,38);
 const R=new THREE.WebGLRenderer({canvas:document.getElementById('canvas'),antialias:true});
-R.setSize(window.innerWidth,window.innerHeight);R.setPixelRatio(Math.min(window.devicePixelRatio,2));R.setClearColor(0x020208);
+R.setSize(innerWidth,innerHeight);R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0x020208);
 
-// Lighting
 scene.add(new THREE.AmbientLight(0x252540,1));
-const pl1=new THREE.PointLight(0xffffff,0.7,80);pl1.position.set(12,12,12);scene.add(pl1);
-const pl2=new THREE.PointLight(0x3344ff,0.4,60);pl2.position.set(-10,-8,10);scene.add(pl2);
-const pl3=new THREE.PointLight(0xff3333,0.3,60);pl3.position.set(0,10,-10);scene.add(pl3);
+const pl1=new THREE.PointLight(0xffffff,0.6,100);pl1.position.set(15,15,15);scene.add(pl1);
+const pl2=new THREE.PointLight(0x3344ff,0.35,80);pl2.position.set(-12,-10,12);scene.add(pl2);
+const pl3=new THREE.PointLight(0xff3333,0.25,80);pl3.position.set(0,12,-12);scene.add(pl3);
 
-// Grid helper
-const grid=new THREE.GridHelper(40,40,0x0a0a20,0x0a0a20);grid.position.y=-8;scene.add(grid);
+const grid=new THREE.GridHelper(60,60,0x080818,0x080818);grid.position.y=-10;scene.add(grid);
 
-// NODES
+// ===== NODES =====
+// deg: 1=1st degree, 2=2nd degree, 3=3rd degree
 const W=[
-  // ICO SOURCE
-  {id:'ico',l:'TenX ICO',sub:'$80M raised Jun 2017',addr:'245,832 ETH collected',c:0xff3b3b,s:0.9,p:[-8,4,0],
-   tags:['t-red','ICO'],bal:'$80M (2017)',chain:'ETH',notes:'Sold out in 7 minutes. 4,000+ investors. 45% allocated to COMIT.'},
+  // === CORE (1ST DEGREE) ===
+  {id:'ico',l:'TenX ICO',sub:'$80M Jun 2017',addr:'0xd43D09Ec1bC5e57C8F3D0c64020d403b04c7f783',c:0xff3b3b,s:0.9,p:[0,6,0],deg:1,
+   tags:['ICO','245,832 ETH'],bal:'$80M (2017)',chain:'ETH',notes:'Token sale contract (sale.tenxpay.eth). Sold out in 7 minutes. 4,000+ investors. Created by 0x839ea851.'},
 
-  // TENX MULTISIG
-  {id:'tenxms',l:'TenX: Multisig',sub:'Etherscan-labeled',addr:'0x185f19b43d818e10a31be68f445ef8edcb8afb83',c:0xff3b3b,s:0.75,p:[-5,2,0],
-   tags:['t-red','Treasury','Labeled'],bal:'~$103K (remnants)',chain:'ETH',notes:'ICO proceeds treasury. Sent 16K+10K+6K ETH to Foundation creator. 235 total transactions.'},
+  {id:'tenxms',l:'TenX: Multisig',sub:'Treasury (Etherscan labeled)',addr:'0x185f19b43d818e10a31be68f445ef8edcb8afb83',c:0xff3b3b,s:0.8,p:[0,3,0],deg:1,
+   tags:['Treasury','Labeled','2,909 internal txs'],bal:'~$103K remnants',chain:'ETH',notes:'Received all ICO ETH. Distributed to 3 main recipients: Creator (94,844 ETH), PAY Deployer (77,000 ETH), 0xa3fa (33,000 ETH).'},
 
-  // TENX TOKEN SALE
-  {id:'tenxsale',l:'TenX: Token Sale',sub:'Etherscan-labeled',addr:'0xd43D09Ec1bC5e57C8F3D0c64020d403b04c7f783',c:0xfa8800,s:0.5,p:[-8,1,-2],
-   tags:['t-orange','Labeled'],bal:'Contract',chain:'ETH',notes:'PAY token sale contract. sale.tenxpay.eth'},
+  {id:'creator',l:'Foundation Creator',sub:'0x60f4...e030 — Key Link',addr:'0x60f4dc3efdbe1d5886dd5d43a16641c832e2f030',c:0xfa8800,s:0.65,p:[3,1,0],deg:1,
+   tags:['TenX Signer','94,844 ETH received','398 txs'],bal:'Various',chain:'ETH',notes:'Received 94,844 ETH from TenX Multisig (2017-2021). Deployed Foundation ETH Safe. Initially funded by PAY Deployer (4 ETH, Aug 2017). Also TenX Multisig signer.'},
 
-  // CREATOR ADDRESS
-  {id:'creator',l:'Foundation Creator',sub:'TenX signer',addr:'0x60f4dc3efdbe1d5886dd5d43a16641c832e2f030',c:0xfa8800,s:0.6,p:[-2,1,-1],
-   tags:['t-orange','TenX Signer','Key Link'],bal:'Various',chain:'ETH',notes:'Received 32K+ ETH from TenX Multisig. Deployed Foundation Safe. Also acted as signer on TenX Multisig. Holds PAY+TENX. 398 transactions.'},
+  {id:'fndeth',l:'Foundation ETH Safe',sub:'COMIT Foundation',addr:'0xaab0e04ca86e791b6a214028f09d0a87b36cb564',c:0xff3b3b,s:0.9,p:[6,0,0],deg:1,
+   tags:['Gnosis Safe 1.1.1','1,107 ETH','35.3M MIMO','4.4M PAY'],bal:'~$2.46M',chain:'ETH',notes:'Created Mar 2021 by Creator. 131 txs. Received 3,000 ETH from Mimo Vaults Core (Aug 2024). Two-way flow with Kraken via intermediaries. 19 NFTs.'},
 
-  // FOUNDATION ETH
-  {id:'fndeth',l:'Foundation ETH',sub:'COMIT Foundation',addr:'0xaab0e04ca86e791b6a214028f09d0a87b36cb564',c:0xff3b3b,s:0.85,p:[1,0,0],
-   tags:['t-red','Gnosis Safe 1.1.1','35.3M MIMO','4.4M PAY'],bal:'~$2.46M (1,107 ETH)',chain:'ETH',notes:'Created Mar 2021 by TenX-funded address. 131 txs. 3,611 ETH outflows in 2025. Holds legacy PAY + MIMO governance tokens. 19 NFTs.'},
+  {id:'fndbtc',l:'Foundation BTC',sub:'3,247.53 BTC — NOW EMPTY',addr:'bc1q806efdnrlv5636tld7vhfw4r0d94r622pl7kjx',c:0xff3b3b,s:0.9,p:[6,-4,0],deg:1,
+   tags:['SWEPT','Cold Storage','P2WPKH'],bal:'0 BTC (was 3,247.53)',chain:'BTC',notes:'Funded Feb 10, 2022 — 12 days before DAO hack article. 6 total txs. Swept Feb 15, 2026 to 32 addresses in round-number tiers. 4 dust attacks received (SRC-20 spam). All dust spent in sweep tx.'},
 
-  // FOUNDATION BTC
-  {id:'fndbtc',l:'Foundation BTC',sub:'3,247.53 BTC held then swept',addr:'bc1q806efdnrlv5636tld7vhfw4r0d94r622pl7kjx',c:0xff3b3b,s:0.85,p:[1,-3,-2],
-   tags:['t-red','SWEPT','Cold Storage'],bal:'0 BTC (was 3,247.53)',chain:'BTC',notes:'Funded Feb 10, 2022 — days before DAO hack accusation. Dormant ~3 years. 4 dust attacks received. Fully swept to 32 addresses in round-number tiers. Amount matches TenX reported ~3,000 BTC.'},
+  {id:'mimoms',l:'Mimo Capital: Multisig',sub:'Etherscan labeled',addr:'0xcc8793d5eb95faa707ea4155e09b2d3f44f33d1e',c:0x3399ff,s:0.6,p:[9,3,3],deg:1,
+   tags:['Labeled','549 txs','2.4M PAY'],bal:'~$278K',chain:'ETH',notes:'Official Mimo Capital Safe. Signer overlap with Mimo Wallet (Fred signer: 0xAfb96A).'},
 
-  // BTC PASS-THROUGH
-  {id:'btcpass',l:'BTC Pass-Through',sub:'2 transactions only',addr:'bc1qsdvkkn5svdeywyp544v6jxxzj3l3uprzd6a2rj',c:0xfa8800,s:0.5,p:[-2,-3,-3],
-   tags:['t-orange','Pass-Through'],bal:'0 BTC',chain:'BTC',notes:'Received 3,367.53 BTC on Feb 8, 2022. Split: 3,247.53 to Foundation + 120 BTC elsewhere. Only 2 transactions total. Classic pass-through to obscure origin.'},
+  {id:'mimow',l:'Mimo Capital Wallet',sub:'Operational',addr:'0x4e24e4cce79bb6ddc4baec394880873215edaf7d',c:0x3399ff,s:0.6,p:[10,0,2],deg:1,
+   tags:['Gnosis Safe 1.3.0','$401K stables','783 txs'],bal:'~$404K',chain:'ETH',notes:'$294K USDT + $106K USDC. Active DeFi: Aave, SushiSwap, LI.FI bridge. Created May 2022.'},
 
-  // BTC UPSTREAM
-  {id:'btcup',l:'BTC Upstream',sub:'Origin unknown',addr:'bc1qjjzgcwhpw8mn5m3f7azet6zycfp67el402h7q6',c:0xfa8800,s:0.4,p:[-5,-4,-4],
-   tags:['t-orange','Origin'],bal:'Unknown',chain:'BTC',notes:'Funded the pass-through address. Ultimate source of the 3,247 BTC. Needs further tracing upstream.'},
+  // SWEEP DESTINATIONS (1st degree)
+  {id:'sweep500a',l:'Sweep 500 BTC #1',sub:'Sub-distributed to 8 addr',addr:'bc1qx5n3zpp4nahrrsddakqfu4ymhaaqrs0expra7j',c:0xa855f7,s:0.5,p:[10,-6,-2],deg:1,
+   tags:['500 BTC','SPENT'],bal:'0 (distributed)',chain:'BTC',notes:'Distributed to 8 sub-addresses (10-103 BTC chunks). 100 BTC went to Kraken.'},
+  {id:'sweep500b',l:'Sweep 500 BTC #2',sub:'Moved 2 days later',addr:'bc1q4ew3a6xh3nl707j575cr24fy8gp9533zmey448',c:0xa855f7,s:0.5,p:[9,-7,0],deg:1,
+   tags:['500 BTC','SPENT','Rapid movement'],bal:'0 (moved)',chain:'BTC',notes:'Distributed to 10 sub-addresses. 1 BTC confirmed to Kraken (3AvGeYGXFKZv6ndoDyA6fofQFgBC5MuBAS).'},
+  {id:'sweep500c',l:'Sweep 500 BTC #3',sub:'Moved ~40 days later',addr:'bc1qezqxftdcr208vqgza4dzt0yqa9srlhp6tm82tt',c:0xa855f7,s:0.5,p:[11,-5,1],deg:1,
+   tags:['500 BTC','SPENT'],bal:'0 (moved)',chain:'BTC',notes:'Distributed to 6 sub-addresses. 50 BTC confirmed to Kraken (3GsiFBdkXwpCXoTZ22tbyBKx8pBPJy7yqR).'},
+  {id:'sweepdormant',l:'Dormant Sweeps (26 addr)',sub:'All P2WSH multisig — UNSPENT',addr:'26 addresses (10/50/100/150/200 BTC tiers)',c:0xa855f7,s:0.55,p:[8,-3,2],deg:1,
+   tags:['~1,730 BTC','ALL UNSPENT','P2WSH Multisig'],bal:'~1,730 BTC ($170M+)',chain:'BTC',notes:'13x10 + 6x50 + 4x100 + 2x150 + 3x200 BTC. All P2WSH (script-hash wrapped) = likely 2-of-3 multisig cold storage. None have moved.'},
+  {id:'sweepchange',l:'Sweep Change',sub:'17.53 BTC remainder',addr:'bc1qckuw33jylg83nxald7zrthwxa2z35hpyx7j4gu',c:0xa855f7,s:0.3,p:[7,-5,-1],deg:1,
+   tags:['17.53 BTC','SPENT'],bal:'0',chain:'BTC',notes:'Change address. Immediately moved to P2WSH address within seconds — automated custody.'},
 
-  // SWEEP DESTINATIONS
-  {id:'sweep500a',l:'Sweep: 500 BTC #1',sub:'Cluster 1196bdf200',addr:'bc1qx5n3zpp4nahrrsddakqfu4ymhaaqrs0expra7j',c:0xa855f7,s:0.5,p:[5,-5,-3],
-   tags:['t-purple','500 BTC'],bal:'Needs tracing',chain:'BTC',notes:'One of three 500 BTC recipients. Different wallet cluster from others.'},
-  {id:'sweep500b',l:'Sweep: 500 BTC #2',sub:'Cluster 86cc49e75f',addr:'bc1q4ew3a6xh3nl707j575cr24fy8gp9533zmey448',c:0xa855f7,s:0.5,p:[4,-6,-1],
-   tags:['t-purple','500 BTC','Moved 2 days later'],bal:'Needs tracing',chain:'BTC',notes:'Received 500 BTC, sent it ALL just 2 days later. Rapid movement.'},
-  {id:'sweep500c',l:'Sweep: 500 BTC #3',sub:'Cluster c5160c56e8',addr:'bc1qezqxftdcr208vqgza4dzt0yqa9srlhp6tm82tt',c:0xa855f7,s:0.5,p:[6,-4,-2],
-   tags:['t-purple','500 BTC','Moved ~40 days later'],bal:'Needs tracing',chain:'BTC',notes:'Received 500 BTC, sent it all ~40 days later (Jan 25, 2026).'},
-  {id:'sweep200',l:'Sweep: 3x 200 BTC',sub:'600 BTC total',addr:'3 addresses',c:0xa855f7,s:0.4,p:[7,-3,-1],
-   tags:['t-purple','200 BTC each'],bal:'600 BTC total',chain:'BTC',notes:'3 addresses each received exactly 200 BTC.'},
-  {id:'sweepsmall',l:'Sweep: 26 others',sub:'10-150 BTC each',addr:'26 addresses (10/50/100/150 BTC tiers)',c:0xa855f7,s:0.35,p:[5,-2,0],
-   tags:['t-purple','1,147 BTC total'],bal:'1,147 BTC across 26 addr',chain:'BTC',notes:'13x10 BTC + 6x50 BTC + 4x100 BTC + 2x150 BTC + 1x17.53 BTC remainder.'},
+  // CONTROLLERS (1st degree — direct corporate control)
+  {id:'toby',l:'Toby Hoenisch',sub:'TenX Co-Founder / DAO Hack Accused',addr:'Director: DECENTRAL PTE LTD',c:0xff55aa,s:0.7,p:[-5,0,3],deg:1,
+   tags:['Controller','DAO Hack Accused','@tobyai'],bal:'Unknown personal',chain:'Multi',notes:'Controls TenX entities via DECENTRAL PTE. BTC on Keybase: 32RcqAbuz4fMLT5skDopgEdmywxz6YE1g5. Deleted Twitter. Mimo stated he "not actively involved for nearly one year" by Apr 2022.'},
+  {id:'kitti',l:'Paul Kittiwongsunthorn',sub:'TenX Co-Founder / CDO',addr:'Director: DECENTRAL PTE LTD',c:0xff55aa,s:0.5,p:[-6,2,4],deg:1,
+   tags:['Controller','Lowest profile'],bal:'No wallets found',chain:'N/A',notes:'Co-director with Hoenisch. No personal wallets found publicly. Only 2 shareholders remain in TenX entities.'},
+  {id:'claude',l:'Claude Eguienta',sub:'CEO Mimo / Board Mimo Capital AG',addr:'Board: Mimo Capital AG (since Dec 2021)',c:0xff55aa,s:0.6,p:[-3,3,4],deg:1,
+   tags:['CEO','@klodio','No personal wallets found'],bal:'Unknown',chain:'N/A',notes:'CEO of Mimo (=TenX). Board Mimo Capital AG (Liechtenstein). Sole director of dissolved Mimo Capital Limited (UK). Never publicly addressed wallet movements.'},
 
-  // ETH OUTFLOW DESTINATIONS
-  {id:'eth661',l:'0x661A...7F67',sub:'Primary ETH recipient (2025)',addr:'0x661A835A...b143e7F67',c:0xfa8800,s:0.55,p:[4,2,-1],
-   tags:['t-orange','Major Recipient'],bal:'Unknown',chain:'ETH',notes:'Received 3,611 ETH (~$7.7M) from Foundation in 2025: 1,700 ETH (Mar) + 1,200 ETH (May) + 46 ETH (Jun) + 665 ETH (Jul). Identity unknown.'},
-  {id:'eth173',l:'0x173A...674b',sub:'Primary ETH funder (2025)',addr:'0x173AE628...82A8c674b',c:0x44cc44,s:0.45,p:[-1,3,1],
-   tags:['t-green','Funder'],bal:'Unknown',chain:'ETH',notes:'Sent 2,050 ETH + 180 ETH + 7.5 ETH to Foundation wallet in 2025. Source identity unknown.'},
+  // === 2ND DEGREE ===
+  {id:'paydeployer',l:'PAY Token Deployer',sub:'0x839e...8c3d — Kraken funded',addr:'0x839ea851397707c4e44bc06f68a540d388298c3d',c:0xfa8800,s:0.55,p:[-2,5,-2],deg:2,
+   tags:['77,000 ETH received','ICO creator','Kraken origin'],bal:'Depleted',chain:'ETH',notes:'Deployed PAY token + ICO contract (Jun 2017). Received 77,000 ETH from TenX Multisig. Initially funded by Kraken (Aug 2016) — suggests founder personal account. Also funded Creator with 4 ETH (Aug 2017).'},
 
-  // MIMO ECOSYSTEM
-  {id:'mimoms',l:'Mimo Capital: Multisig',sub:'Etherscan-labeled',addr:'0xcc8793d5eb95faa707ea4155e09b2d3f44f33d1e',c:0x3399ff,s:0.6,p:[5,3,3],
-   tags:['t-blue','Labeled','549 txs'],bal:'~$278K (143M PRL + 2.4M PAY)',chain:'ETH',notes:'Official Mimo Capital Safe Multisig. Labeled on Etherscan. Funds the Mimo operational wallet. Signer "Fred" (0xAfb96A...) also signs on Mimo Wallet.'},
+  {id:'ethfwd',l:'ETH Forwarder',sub:'0xa3fa...e047 — unlabeled multisig',addr:'0xa3fa6924167f5eef9d2d3db188ff7afab82be047',c:0xfa8800,s:0.4,p:[-4,4,-3],deg:2,
+   tags:['33,000 ETH','Pass-through'],bal:'Forwarded',chain:'ETH',notes:'Received 33,000 ETH from TenX Multisig (Jul 2017). Forwarded to 0x7725e0bc. Second largest ICO fund recipient.'},
 
-  {id:'mimow',l:'Mimo Capital Wallet',sub:'Operational',addr:'0x4e24e4cce79bb6ddc4baec394880873215edaf7d',c:0x3399ff,s:0.65,p:[6,1,2],
-   tags:['t-blue','Gnosis Safe 1.3.0','DeFi Active'],bal:'~$404K ($401K stables)',chain:'ETH',notes:'783 txs. $294K USDT + $106K USDC. Aave staking, SushiSwap, LI.FI. Signer "Fred" overlaps with Mimo Multisig. Created May 2022.'},
+  {id:'krakenex',l:'Kraken Exchange',sub:'7+ linked addresses confirmed',addr:'Multiple addresses (3MvGR2k, 3QWvkWj, 3AvGeYG, 3GsiFBd, 3GSntMt, 3Fmqt5S, 3CgnH1f...)',c:0x44cc44,s:0.7,p:[12,-2,5],deg:2,
+   tags:['Exchange','Upstream source','Downstream recipient'],bal:'N/A',chain:'BTC+ETH',notes:'DOMINANT exchange touchpoint. Upstream: contributed 85 BTC + received 243 BTC peel-off. Downstream: received 151+ BTC from sweep sub-distributions. Peel-off: received 170 BTC. Foundation ETH: two-way flow via intermediaries.'},
 
-  {id:'jeanbrasse',l:'jeanbrasse.eth',sub:'Jean Brasse - Mimo DeFi Head',addr:'jeanbrasse.eth (ENS)',c:0x3399ff,s:0.3,p:[7,-1,3],
-   tags:['t-blue','Person'],bal:'N/A',chain:'ETH',notes:'Co-founder Murphy Labs, Head of DeFi at Mimo Labs. Received 1 ETH from Mimo wallet.'},
+  {id:'kraken4',l:'Kraken 4 (ETH)',sub:'Foundation ETH counterparty',addr:'0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0',c:0x44cc44,s:0.5,p:[9,2,5],deg:2,
+   tags:['Kraken 4','Two-way flow'],bal:'N/A',chain:'ETH',notes:'Sends ETH to Foundation via 0x1d763d5d. Receives ETH from Foundation via 0x661a. Estimated 8,000+ ETH throughput (2022-2025).'},
 
-  {id:'fred',l:'"Fred" Signer',sub:'Multi-wallet signer',addr:'0xAfb96AFae3f780565406E42aC4A20165ecf99883',c:0xff55aa,s:0.35,p:[6.5,2.5,1],
-   tags:['t-purple','Signer'],bal:'N/A',chain:'ETH',notes:'Signs transactions on BOTH the Mimo Capital Multisig and the Mimo Capital Wallet. Key operational controller.'},
+  {id:'btcpeel',l:'BTC Peel Chain',sub:'6 hops, Feb 5-10 2022',addr:'bc1qjjzg...→bc1qf30s...→bc1q4axh...→bc1qyfjg...→bc1qtvnl...',c:0xfa8800,s:0.5,p:[2,-6,-3],deg:2,
+   tags:['Obfuscation','610 BTC peeled off','6 hops over 5 days'],bal:'Transit',chain:'BTC',notes:'Deliberate peel chain stripping 50-120 BTC per hop. Two peel-off destinations confirmed Kraken. Classic treasury obfuscation technique.'},
 
-  // CONTROLLERS
-  {id:'toby',l:'Toby Hoenisch',sub:'TenX Co-Founder / Accused DAO Hacker',addr:'Director: DECENTRAL PTE LTD',c:0xff55aa,s:0.65,p:[-6,-1,2],
-   tags:['t-red','Controller','DAO Hack Accused'],bal:'Unknown personal',chain:'N/A',notes:'Controls TenX entities via DECENTRAL PTE. Accused as 2016 DAO hacker. Deleted Twitter. Mimo CFPO. Only 2 shareholders remain (+ Kittiwongsunthorn).'},
-  {id:'kitti',l:'Paul Kittiwongsunthorn',sub:'TenX Co-Founder',addr:'Director: DECENTRAL PTE LTD',c:0xff55aa,s:0.5,p:[-7,1,3],
-   tags:['t-orange','Controller'],bal:'Unknown personal',chain:'N/A',notes:'Co-founder, co-director with Hoenisch. Only 2 shareholders remain. Hosp: "they disappeared with the money."'},
-  {id:'claude',l:'Claude Eguienta',sub:'CEO Mimo / Board Member',addr:'Board: Mimo Capital AG (since Dec 2021)',c:0xff55aa,s:0.55,p:[-4,3,3],
-   tags:['t-orange','CEO'],bal:'Unknown personal',chain:'N/A',notes:'CEO of Mimo (=TenX). Board of Mimo Capital AG (Liechtenstein). Never publicly addressed wallet movements or DAO hack association.'},
+  {id:'btcorigin',l:'BTC Consolidation',sub:'3,857 BTC consolidated Aug 2021',addr:'bc1qtvnldgwn60xgesdcafk0xzjlq5a4k84ndrlqlv',c:0xfa8800,s:0.45,p:[-1,-7,-4],deg:2,
+   tags:['Consolidation point','3 source UTXOs','Aug 18, 2021'],bal:'0 (forwarded)',chain:'BTC',notes:'Consolidated 3,857 BTC from 3 sources before peel chain. Sources: 276 BTC from 18MJ3zh (Jul 2019), 49 BTC mixed, 60 BTC via Kraken.'},
+
+  {id:'eth661',l:'0x661A...7F67',sub:'Primary Foundation ETH outflow',addr:'0x661a835ae4eeb41f178e0f2a383b376b143e7f67',c:0xfa8800,s:0.5,p:[9,-1,-2],deg:2,
+   tags:['3,611 ETH received','Intermediary to Kraken'],bal:'Transit',chain:'ETH',notes:'Received 1,700+1,200+46+665 ETH from Foundation (2025). Routes funds to Kraken 4. Acts as intermediary.'},
+
+  {id:'eth173',l:'0x173A...674b',sub:'Primary Foundation ETH funder',addr:'0x173AE62882A8c674b',c:0x44cc44,s:0.4,p:[3,2,2],deg:2,
+   tags:['2,237 ETH sent to Foundation'],bal:'Unknown',chain:'ETH',notes:'Sent 2,050+180+7.5 ETH to Foundation (2025). Source identity unknown.'},
+
+  {id:'ethintmd',l:'ETH Intermediary',sub:'0x1d76...06d6 — Kraken relay',addr:'0x1d763d5d4235f6f2ecffca51234fd52e8c7806d6',c:0xfa8800,s:0.35,p:[7,3,4],deg:2,
+   tags:['Kraken relay','Contract'],bal:'Transit',chain:'ETH',notes:'Relays 500-850 ETH from Kraken 4 to Foundation ETH Safe (2022-2023). Also received 0.01 ETH from OKX 3.'},
+
+  {id:'mimovc',l:'Mimo: Vaults Core',sub:'DeFi protocol contract',addr:'0x4026bdcd023331d52533e3374983ded99ccbb6d4',c:0x00c8ff,s:0.45,p:[8,4,1],deg:2,
+   tags:['Smart Contract','3,000 ETH to Foundation'],bal:'Protocol',chain:'ETH',notes:'Mimo DeFi lending contract. Sent 3,000 ETH directly to Foundation ETH Safe (Aug 2024). Protocol revenue flowing to ICO-era entity.'},
+
+  {id:'mimodep',l:'Mimo: Deployer',sub:'0xded9...d078 — All contracts',addr:'0xded9f901d40a96c3ee558e6885bcc7efc51ad078',c:0x00c8ff,s:0.4,p:[7,5,2],deg:2,
+   tags:['Deployer','Dormant since Jan 2022'],bal:'Depleted',chain:'ETH',notes:'Deployed MIMO token, PAR stablecoin, VotingEscrow, DemandMiner (2021). Last active Jan 2022 — went dormant just before DAO hack article. First funded Dec 2020 from 0x7086ee (high-activity EOA, no direct TenX link).'},
+
+  {id:'fred',l:'"Fred" Signer',sub:'Multi-wallet signer',addr:'0xAfb96AFae3f780565406E42aC4A20165ecf99883',c:0xff55aa,s:0.35,p:[10,2,1],deg:2,
+   tags:['Signer','Overlapping control'],bal:'N/A',chain:'ETH',notes:'Signs on BOTH Mimo Capital Multisig and Mimo Capital Wallet. Likely Frederic Moniroth Ly (current Managing Director Mimo Capital AG, appointed Jul 2024).'},
+
+  {id:'jeanbrasse',l:'jeanbrasse.eth',sub:'Jean Brasse — Head of DeFi',addr:'jeanbrasse.eth (ENS)',c:0x3399ff,s:0.3,p:[11,-2,3],deg:2,
+   tags:['Person','ENS'],bal:'N/A',chain:'ETH',notes:'Co-founder Murphy Labs, Head of DeFi at Mimo Labs. Received funds from Mimo Wallet. Regular transfers.'},
+
+  {id:'mimo957',l:'Unknown Recipient',sub:'0x957f...d9c1',addr:'0x957ffde35b2d84f01d9bcaeb7528a2bcc268b9c1',c:0xfa8800,s:0.35,p:[12,-3,1],deg:2,
+   tags:['750 ETH received'],bal:'Unknown',chain:'ETH',notes:'Received 250 ETH (Aug 2022) + 500 ETH (Jan 2023) from Mimo Wallet. Identity unknown.'},
+
+  // CORPORATE ENTITIES (2nd degree)
+  {id:'decentral',l:'DECENTRAL PTE LTD',sub:'Singapore — Hoenisch + Kitti directors',addr:'UEN: 201731446N, 109 North Bridge Rd #05-136',c:0x888888,s:0.5,p:[-6,-2,1],deg:2,
+   tags:['Holding Co','Head office activities'],bal:'N/A',chain:'Corporate',notes:'Incorporated Nov 2017. Directors: Hoenisch + Kittiwongsunthorn. Controls TenX Pte Ltd and Mimo Capital AG. Same address as all TenX entities.'},
+
+  {id:'decenthold',l:'Decentral Holdings PTE',sub:'$66.6M paid-up capital',addr:'UEN: 201835199R, 109 North Bridge Rd #05-136',c:0x888888,s:0.55,p:[-7,-1,0],deg:2,
+   tags:['$66.6M capital','Matches ICO raise'],bal:'$66.6M paid-up',chain:'Corporate',notes:'Incorporated Oct 2018. Paid-up capital USD $66,591,930 — closely matches ~$80M ICO raise. The financial vehicle for ICO proceeds.'},
+
+  {id:'mimoag',l:'Mimo Capital AG',sub:'Liechtenstein — Services for TenX Group',addr:'FL-0002.584.786-1',c:0x888888,s:0.45,p:[-4,5,5],deg:2,
+   tags:['Liechtenstein','Purpose: TenX Group services'],bal:'N/A',chain:'Corporate',notes:'Incorporated Jul 2018. Board: Eguienta. MD: Frederic Ly (Jul 2024). Previous MD: Sven Schrader (removed Oct 2023), Hoenisch (removed). Purpose explicitly states "within the TenX Group".'},
+
+  // === 3RD DEGREE ===
+  {id:'btcsrc1',l:'BTC Source: 18MJ3zh',sub:'2,761 BTC (Jul 2019)',addr:'18MJ3zh8Zudt5mmpUR1qGY8jqmzuskeFPg',c:0xa855f7,s:0.4,p:[-4,-8,-5],deg:3,
+   tags:['276 BTC contributed','22 UTXOs consolidated'],bal:'Spent Sep 2019',chain:'BTC',notes:'Received ~2,761 BTC in Jul 2019. Contributed 276.13 BTC to the consolidation (Aug 2021). Unlabeled — suggests self-custody or OTC desk.'},
+
+  {id:'btcsrc2',l:'BTC Source: Kraken',sub:'85 BTC in + 243 BTC peel-off',addr:'3Fmqt5SpcUwfgMA65EAkwrKtZrHruT6d6s (confirmed Kraken)',c:0x44cc44,s:0.35,p:[-2,-9,-6],deg:3,
+   tags:['Kraken','Upstream source'],bal:'Exchange',chain:'BTC',notes:'Contributed 85 BTC (45+40) to consolidation. 243 BTC also peeled to Kraken during transit. Kraken involved both upstream and downstream.'},
+
+  {id:'darkdao',l:'The Dark DAO',sub:'$60M stolen ETH (2016)',addr:'0x304a554a310C7e546dfe434669C62820b7D83490',c:0xff3b3b,s:0.5,p:[-8,-3,6],deg:3,
+   tags:['DAO Hack','3.6M ETH stolen','Etherscan labeled'],bal:'Frozen/HF recovered',chain:'ETH',notes:'Child DAO that received 3.6M stolen ETH in June 2016. Laura Shin / Chainalysis traced funds through ShapeShift (→282 BTC) → Wasabi Wallet (CoinJoin) → Grin → grin.toby.ai → Hoenisch.'},
+
+  {id:'hospwallet',l:'Julian Hosp Wallet',sub:'Verified via cryptographic sig',addr:'0x15b6e1aC3c84c0673E3cb6D4Ef138E274b763Dbf',c:0xff55aa,s:0.45,p:[-8,4,-3],deg:3,
+   tags:['Verified','Crypto signature'],bal:'Various',chain:'ETH',notes:'Hosp did not deny ownership. Linked to salary address 0xf340a734 (received monthly 6,250 PAY from TenX). Transferred 2.2M PAY to Bittrex (Dec 2018 - Jan 2019) before resigning.'},
+
+  {id:'hospsalary',l:'Hosp Salary Wallet',sub:'0xf340...0555 — Monthly 6,250 PAY',addr:'0xf340a7341c992ef0b06a4c1d4e7ac83020f80555',c:0xff55aa,s:0.3,p:[-9,3,-4],deg:3,
+   tags:['Monthly PAY payments','Linked to main wallet'],bal:'Various',chain:'ETH',notes:'Received recurrent monthly 6,250 PAY (salary/compensation from TenX). On-chain tx links to Hosp main wallet.'},
+
+  {id:'bittrex',l:'Bittrex Exchange',sub:'2.2M PAY dumped',addr:'0xa1fa9422ed2159b57fff31fc0172d0bd83455a78 (deposit addr)',c:0x44cc44,s:0.4,p:[-10,2,-2],deg:3,
+   tags:['Exchange','PAY dump destination'],bal:'N/A',chain:'ETH',notes:'Received ~2,222,035 PAY from Hosp wallets in late Dec 2018 / early Jan 2019. Hosp resigned 7 days after last transfer. Claimed sales for "Singapore tax obligations".'},
+
+  {id:'tobybtc',l:'Hoenisch BTC (Keybase)',sub:'Self-published on keybase.io/tobyai',addr:'32RcqAbuz4fMLT5skDopgEdmywxz6YE1g5',c:0xff55aa,s:0.3,p:[-7,-4,5],deg:3,
+   tags:['Self-published','Keybase verified'],bal:'Unknown',chain:'BTC',notes:'Published on Toby Hoenisch\'s Keybase profile (tobyai). Also verifies tenx.tech DNS. P2SH address format.'},
+
+  {id:'grinnode',l:'grin.toby.ai',sub:'DAO hack fund endpoint',addr:'IP: Amazon Singapore (also ln.toby.ai, lnd.ln.toby.ai)',c:0x00c8ff,s:0.35,p:[-9,-5,7],deg:3,
+   tags:['Grin node','Lightning node','Same IP as TenX node'],bal:'N/A',chain:'Grin/BTC',notes:'Chainalysis traced DAO hack: ETH→ShapeShift→282 BTC→Wasabi CoinJoin→de-mixed→exchanges→Grin→this node. Same IP hosted Lightning node "TenX".'},
+
+  {id:'paytoken',l:'PAY Token Contract',sub:'205M supply, 57K holders',addr:'0xB97048628DB6B661D4C2aA833e95Dbe1A905B280',c:0x00c8ff,s:0.4,p:[-1,7,-1],deg:3,
+   tags:['ERC-20','Deployed by 0x839e'],bal:'Token contract',chain:'ETH',notes:'TenX PAY token. 51% sold in ICO, 29% community, 20% founders. Deployed same day as ICO contract by PAY Deployer.'},
+
+  {id:'mimotoken',l:'MIMO Token Contract',sub:'Governance token',addr:'0x90B831fa3Bebf58E9744A14D638E25B4eE06f9Bc',c:0x00c8ff,s:0.35,p:[6,6,3],deg:3,
+   tags:['ERC-20','Deployed by Mimo Deployer'],bal:'Token contract',chain:'ETH',notes:'Mimo governance token. 0.24 MIMO per PAY airdrop. Foundation ETH holds 35.3M MIMO. Deployed by Mimo: Deployer (0xded9f901).'},
+
+  {id:'partoken',l:'PAR Stablecoin',sub:'Euro-pegged',addr:'0x68037790a0229e9ce6eaa8a99ea92964106c4703',c:0x00c8ff,s:0.3,p:[5,7,4],deg:3,
+   tags:['Stablecoin','EUR-pegged'],bal:'Token contract',chain:'ETH',notes:'Mimo euro stablecoin. Deployed by Mimo: Deployer. Part of Mimo DeFi lending protocol.'},
+
+  {id:'coinjoin',l:'CoinJoin / Mixing',sub:'Detected in sub-distributions',addr:'115Jvxh1XqcXVoU4ZZPjxNNUGXAu6h7bTt (CoinJoinMess labeled)',c:0xa855f7,s:0.3,p:[13,-8,0],deg:3,
+   tags:['Mixing','CoinJoinMess'],bal:'0.014 BTC',chain:'BTC',notes:'Labeled CoinJoinMess on WalletExplorer. Received small amount from 120 BTC peel-off sub-distribution. Indicates some funds passed through privacy mixing.'},
+
+  {id:'huobi',l:'Huobi Exchange',sub:'Small connection detected',addr:'12AaZC3r1kzkqjFnUpoVA3dnKAvfDYyrTf',c:0x44cc44,s:0.25,p:[14,-7,2],deg:3,
+   tags:['Exchange','0.09 BTC'],bal:'N/A',chain:'BTC',notes:'Received 0.09 BTC in 120 BTC peel-off sub-distribution chain. Minor exchange touchpoint.'},
+
+  {id:'okx',l:'OKX Exchange',sub:'Micro-tx to intermediary',addr:'0xa7efae728d2936e78bda97dc267687568dd593f3 (OKX 3)',c:0x44cc44,s:0.25,p:[6,4,6],deg:3,
+   tags:['Exchange','0.01 ETH'],bal:'N/A',chain:'ETH',notes:'Sent 0.01 ETH to ETH intermediary (0x1d763d5d) on Sep 2, 2022. Micro-transaction — possibly gas funding or test.'},
+
+  {id:'mimouk',l:'Mimo Capital Limited (UK)',sub:'DISSOLVED Jun 2023',addr:'Companies House: 13063703',c:0x888888,s:0.3,p:[-5,6,6],deg:3,
+   tags:['DISSOLVED','Dormant accounts filed','Compulsory strike-off'],bal:'Dormant',chain:'Corporate',notes:'Inc Dec 2020, dissolved Jun 2023. Sole director: Claude Eguienta. PSC: Decentral Pte Ltd. Filed dormant company accounts for FY2021. Failed to file → compulsory strike-off.'},
+
+  {id:'hosp',l:'Julian Hosp',sub:'Ex-CEO TenX / Lyoness link',addr:'Known wallets: 0x15b6e1, 0xf340a7',c:0xff55aa,s:0.45,p:[-9,5,-1],deg:3,
+   tags:['Ex-CEO','PAY dump','Lyoness connection'],bal:'Unknown',chain:'Multi',notes:'Resigned Jan 2019 after dumping 2.2M PAY. Previously linked to Lyoness (declared illegal pyramid scheme in multiple countries). Now runs Cake DeFi / Bake.'},
 ];
 
-// EDGES
+// ===== EDGES =====
 const E=[
-  // ICO to TenX Multisig
-  {f:'ico',t:'tenxms',c:0xff3b3b,w:4,lbl:'ICO proceeds',amt:'$80M+'},
-  {f:'ico',t:'tenxsale',c:0xfa8800,w:2,lbl:'Token sale contract'},
+  // 1ST DEGREE — direct transactions
+  {f:'ico',t:'tenxms',c:0xff3b3b,w:5,lbl:'245,832 ETH',deg:1},
+  {f:'tenxms',t:'creator',c:0xff3b3b,w:4,lbl:'94,844 ETH (2017-21)',deg:1},
+  {f:'creator',t:'fndeth',c:0xff3b3b,w:3,lbl:'Deploys Safe (Mar 2021)',deg:1},
+  {f:'fndbtc',t:'sweep500a',c:0xa855f7,w:3,lbl:'500 BTC',deg:1,dash:true},
+  {f:'fndbtc',t:'sweep500b',c:0xa855f7,w:3,lbl:'500 BTC',deg:1,dash:true},
+  {f:'fndbtc',t:'sweep500c',c:0xa855f7,w:3,lbl:'500 BTC',deg:1,dash:true},
+  {f:'fndbtc',t:'sweepdormant',c:0xa855f7,w:3,lbl:'1,730 BTC (26 addr)',deg:1,dash:true},
+  {f:'fndbtc',t:'sweepchange',c:0xa855f7,w:1,lbl:'17.53 BTC change',deg:1,dash:true},
+  {f:'mimoms',t:'mimow',c:0x3399ff,w:2,lbl:'46 ETH + operational',deg:1},
+  {f:'toby',t:'tenxms',c:0xff55aa,w:2,lbl:'Controller',deg:1,dash:true},
+  {f:'toby',t:'fndeth',c:0xff55aa,w:1,lbl:'Via DECENTRAL',deg:1,dash:true},
+  {f:'toby',t:'fndbtc',c:0xff55aa,w:1,lbl:'Via DECENTRAL',deg:1,dash:true},
+  {f:'kitti',t:'tenxms',c:0xff55aa,w:1,lbl:'Controller',deg:1,dash:true},
+  {f:'claude',t:'mimoms',c:0xff55aa,w:2,lbl:'CEO / Board',deg:1,dash:true},
+  {f:'claude',t:'fndeth',c:0xff55aa,w:1,lbl:'Board Mimo Capital AG',deg:1,dash:true},
+  {f:'creator',t:'tenxms',c:0xfa8800,w:1,lbl:'Also TenX signer',deg:1},
 
-  // TenX Multisig to Creator
-  {f:'tenxms',t:'creator',c:0xff3b3b,w:4,lbl:'32K+ ETH',amt:'16K+10K+6K ETH'},
+  // 2ND DEGREE — one hop away
+  {f:'tenxms',t:'paydeployer',c:0xfa8800,w:4,lbl:'77,000 ETH',deg:2},
+  {f:'tenxms',t:'ethfwd',c:0xfa8800,w:3,lbl:'33,000 ETH',deg:2},
+  {f:'paydeployer',t:'creator',c:0xfa8800,w:1,lbl:'4 ETH (Aug 2017)',deg:2},
+  {f:'btcpeel',t:'fndbtc',c:0xfa8800,w:4,lbl:'3,247 BTC via peel chain',deg:2},
+  {f:'btcorigin',t:'btcpeel',c:0xfa8800,w:4,lbl:'3,857 BTC → peel',deg:2},
+  {f:'btcpeel',t:'krakenex',c:0x44cc44,w:2,lbl:'170 BTC peel-offs',deg:2},
+  {f:'sweep500a',t:'krakenex',c:0x44cc44,w:2,lbl:'100 BTC',deg:2},
+  {f:'sweep500b',t:'krakenex',c:0x44cc44,w:1,lbl:'1 BTC',deg:2},
+  {f:'sweep500c',t:'krakenex',c:0x44cc44,w:2,lbl:'50 BTC',deg:2},
+  {f:'fndeth',t:'eth661',c:0xff3b3b,w:3,lbl:'3,611 ETH (2025)',deg:2},
+  {f:'eth173',t:'fndeth',c:0x44cc44,w:2,lbl:'2,237 ETH in',deg:2},
+  {f:'ethintmd',t:'fndeth',c:0x44cc44,w:2,lbl:'500-850 ETH relays',deg:2},
+  {f:'kraken4',t:'ethintmd',c:0x44cc44,w:2,lbl:'Kraken → relay',deg:2},
+  {f:'eth661',t:'kraken4',c:0x44cc44,w:2,lbl:'→ Kraken 4',deg:2},
+  {f:'mimovc',t:'fndeth',c:0x00c8ff,w:3,lbl:'3,000 ETH (Aug 2024)',deg:2},
+  {f:'mimodep',t:'mimovc',c:0x00c8ff,w:1,lbl:'Deployed',deg:2},
+  {f:'fred',t:'mimoms',c:0xff55aa,w:1,lbl:'Signer',deg:2},
+  {f:'fred',t:'mimow',c:0xff55aa,w:1,lbl:'Signer',deg:2},
+  {f:'mimow',t:'jeanbrasse',c:0x3399ff,w:1,lbl:'ETH transfers',deg:2},
+  {f:'mimow',t:'mimo957',c:0xfa8800,w:2,lbl:'750 ETH',deg:2},
+  {f:'toby',t:'decentral',c:0xff55aa,w:2,lbl:'Director',deg:2,dash:true},
+  {f:'kitti',t:'decentral',c:0xff55aa,w:1,lbl:'Director',deg:2,dash:true},
+  {f:'decentral',t:'decenthold',c:0x888888,w:1,lbl:'Parent holding',deg:2,dash:true},
+  {f:'claude',t:'mimoag',c:0xff55aa,w:1,lbl:'Board member',deg:2,dash:true},
+  {f:'decentral',t:'mimoag',c:0x888888,w:1,lbl:'Controls',deg:2,dash:true},
+  {f:'tenxms',t:'mimoms',c:0xfa8800,w:1,lbl:'Same org lineage',deg:2,dash:true},
 
-  // Creator to Foundation ETH
-  {f:'creator',t:'fndeth',c:0xff3b3b,w:3,lbl:'Deploys Safe'},
-
-  // BTC chain
-  {f:'btcup',t:'btcpass',c:0xfa8800,w:3,lbl:'3,367 BTC'},
-  {f:'btcpass',t:'fndbtc',c:0xff3b3b,w:4,lbl:'3,247.53 BTC',amt:'Feb 10, 2022'},
-
-  // BTC Sweep
-  {f:'fndbtc',t:'sweep500a',c:0xa855f7,w:3,lbl:'500 BTC',dash:true},
-  {f:'fndbtc',t:'sweep500b',c:0xa855f7,w:3,lbl:'500 BTC',dash:true},
-  {f:'fndbtc',t:'sweep500c',c:0xa855f7,w:3,lbl:'500 BTC',dash:true},
-  {f:'fndbtc',t:'sweep200',c:0xa855f7,w:2,lbl:'3x 200 BTC',dash:true},
-  {f:'fndbtc',t:'sweepsmall',c:0xa855f7,w:2,lbl:'26 addr, 10-150 BTC',dash:true},
-
-  // Foundation ETH flows
-  {f:'fndeth',t:'eth661',c:0xff3b3b,w:3,lbl:'3,611 ETH out (2025)'},
-  {f:'eth173',t:'fndeth',c:0x44cc44,w:2,lbl:'2,237 ETH in (2025)'},
-
-  // Mimo ecosystem
-  {f:'mimoms',t:'mimow',c:0x3399ff,w:2,lbl:'46 ETH + 0.4 ETH'},
-  {f:'mimow',t:'jeanbrasse',c:0x3399ff,w:1,lbl:'1 ETH'},
-  {f:'fred',t:'mimoms',c:0xff55aa,w:1,lbl:'Signer'},
-  {f:'fred',t:'mimow',c:0xff55aa,w:1,lbl:'Signer'},
-
-  // Controllers
-  {f:'toby',t:'tenxms',c:0xff55aa,w:2,lbl:'Controller'},
-  {f:'toby',t:'fndeth',c:0xff55aa,w:1,lbl:'Via DECENTRAL',dash:true},
-  {f:'toby',t:'fndbtc',c:0xff55aa,w:1,lbl:'Via DECENTRAL',dash:true},
-  {f:'kitti',t:'tenxms',c:0xff55aa,w:1,lbl:'Controller'},
-  {f:'claude',t:'mimoms',c:0xff55aa,w:2,lbl:'CEO / Board'},
-  {f:'claude',t:'fndeth',c:0xff55aa,w:1,lbl:'Board Mimo Capital AG',dash:true},
-
-  // Cross links
-  {f:'tenxms',t:'mimoms',c:0xfa8800,w:1,lbl:'Same org lineage',dash:true},
-  {f:'fndeth',t:'mimow',c:0xfa8800,w:1,lbl:'Indirect (no direct tx)',dash:true},
-  {f:'creator',t:'tenxms',c:0xfa8800,w:1,lbl:'Also TenX signer'},
+  // 3RD DEGREE — two hops / indirect
+  {f:'btcsrc1',t:'btcorigin',c:0xa855f7,w:2,lbl:'276 BTC',deg:3},
+  {f:'btcsrc2',t:'btcorigin',c:0xa855f7,w:2,lbl:'85 BTC from Kraken',deg:3},
+  {f:'paydeployer',t:'paytoken',c:0x00c8ff,w:1,lbl:'Deployed PAY',deg:3},
+  {f:'mimodep',t:'mimotoken',c:0x00c8ff,w:1,lbl:'Deployed MIMO',deg:3},
+  {f:'mimodep',t:'partoken',c:0x00c8ff,w:1,lbl:'Deployed PAR',deg:3},
+  {f:'toby',t:'darkdao',c:0xff3b3b,w:2,lbl:'Accused (Chainalysis)',deg:3,dash:true},
+  {f:'darkdao',t:'grinnode',c:0xff3b3b,w:1,lbl:'ETH→BTC→Grin trace',deg:3,dash:true},
+  {f:'toby',t:'tobybtc',c:0xff55aa,w:1,lbl:'Keybase published',deg:3,dash:true},
+  {f:'hosp',t:'hospwallet',c:0xff55aa,w:1,lbl:'Verified wallet',deg:3},
+  {f:'hospwallet',t:'hospsalary',c:0xff55aa,w:1,lbl:'On-chain link',deg:3},
+  {f:'hospsalary',t:'bittrex',c:0x44cc44,w:2,lbl:'2.2M PAY dump',deg:3},
+  {f:'hosp',t:'tenxms',c:0xff55aa,w:1,lbl:'Ex-CEO (left Jan 2019)',deg:3,dash:true},
+  {f:'sweep500a',t:'coinjoin',c:0xa855f7,w:1,lbl:'Sub-distribution',deg:3,dash:true},
+  {f:'sweep500a',t:'huobi',c:0x44cc44,w:1,lbl:'0.09 BTC',deg:3},
+  {f:'okx',t:'ethintmd',c:0x44cc44,w:1,lbl:'0.01 ETH',deg:3},
+  {f:'claude',t:'mimouk',c:0xff55aa,w:1,lbl:'Sole director',deg:3,dash:true},
+  {f:'decentral',t:'mimouk',c:0x888888,w:1,lbl:'PSC',deg:3,dash:true},
+  {f:'paydeployer',t:'krakenex',c:0x44cc44,w:1,lbl:'Initially funded by Kraken',deg:3},
 ];
 
-// BUILD SCENE
-const nMap={},meshes=[];
-W.forEach(n=>{
-  // Main sphere
-  const g=new THREE.SphereGeometry(n.s*0.45,32,32);
-  const m=new THREE.MeshPhongMaterial({color:n.c,emissive:n.c,emissiveIntensity:0.2,shininess:60,transparent:true,opacity:0.9});
-  const mesh=new THREE.Mesh(g,m);
-  mesh.position.set(...n.p);
-  mesh.userData=n;
-  scene.add(mesh);nMap[n.id]=mesh;meshes.push(mesh);
+// ===== BUILD SCENE =====
+const nMap={},meshes=[],labels=[];
+let degShow={1:true,2:true,3:true};
 
-  // Outer glow
-  const gg=new THREE.SphereGeometry(n.s*0.65,16,16);
-  const gm=new THREE.MeshBasicMaterial({color:n.c,transparent:true,opacity:0.05});
-  mesh.add(new THREE.Mesh(gg,gm));
+function buildScene(){
+  // Clear old
+  meshes.forEach(m=>scene.remove(m));labels.forEach(l=>scene.remove(l));
+  meshes.length=0;labels.length=0;
+  edgeObjs.forEach(e=>{scene.remove(e.line);if(e.particle)scene.remove(e.particle)});
+  edgeObjs.length=0;
 
-  // Ring for foundation wallets
-  if(n.id==='fndeth'||n.id==='fndbtc'){
-    const rg=new THREE.RingGeometry(n.s*0.5,n.s*0.58,32);
-    const rm=new THREE.MeshBasicMaterial({color:n.c,transparent:true,opacity:0.25,side:THREE.DoubleSide});
-    const ring=new THREE.Mesh(rg,rm);
-    ring.userData={isRing:true};
-    mesh.add(ring);
-  }
+  const activeW=W.filter(n=>degShow[n.deg]);
+  const activeE=E.filter(e=>{
+    const fn=W.find(w=>w.id===e.f),tn=W.find(w=>w.id===e.t);
+    return fn&&tn&&degShow[fn.deg]&&degShow[tn.deg]&&degShow[e.deg];
+  });
 
-  // Label
-  const cv=document.createElement('canvas'),cx=cv.getContext('2d');
-  cv.width=512;cv.height=72;
-  cx.clearRect(0,0,512,72);
-  cx.font='bold 20px SF Mono, Courier New, monospace';cx.fillStyle='#ffffff';cx.textAlign='center';
-  cx.shadowColor='rgba(0,0,0,0.9)';cx.shadowBlur=6;
-  cx.fillText(n.l,256,25);
-  cx.font='13px SF Mono, Courier New, monospace';cx.fillStyle='#888899';
-  cx.fillText(n.sub,256,50);
-  const tx=new THREE.CanvasTexture(cv);
-  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tx,transparent:true,opacity:0.85}));
-  sp.position.set(n.p[0],n.p[1]+n.s*0.55+0.4,n.p[2]);
-  sp.scale.set(3.5,0.5,1);
-  scene.add(sp);
-});
+  activeW.forEach(n=>{
+    const g=new THREE.SphereGeometry(n.s*0.42,32,32);
+    const m=new THREE.MeshPhongMaterial({color:n.c,emissive:n.c,emissiveIntensity:0.2,shininess:60,transparent:true,opacity:0.9});
+    const mesh=new THREE.Mesh(g,m);
+    mesh.position.set(...n.p);
+    mesh.userData=n;
+    scene.add(mesh);nMap[n.id]=mesh;meshes.push(mesh);
 
-// EDGES
-const edgeLines=[];
-E.forEach(e=>{
-  const a=nMap[e.f],b=nMap[e.t];if(!a||!b)return;
+    // Glow
+    const gg=new THREE.SphereGeometry(n.s*0.6,16,16);
+    const gm=new THREE.MeshBasicMaterial({color:n.c,transparent:true,opacity:0.05});
+    mesh.add(new THREE.Mesh(gg,gm));
 
-  // Curved line via quadratic bezier
-  const start=a.position.clone(),end=b.position.clone();
-  const mid=start.clone().add(end).multiplyScalar(0.5);
-  mid.y+=0.8; // slight arc
+    // Ring for foundation
+    if(n.id==='fndeth'||n.id==='fndbtc'||n.id==='tenxms'){
+      const rg=new THREE.RingGeometry(n.s*0.48,n.s*0.55,32);
+      const rm=new THREE.MeshBasicMaterial({color:n.c,transparent:true,opacity:0.2,side:THREE.DoubleSide});
+      const ring=new THREE.Mesh(rg,rm);ring.userData={isRing:true};mesh.add(ring);
+    }
 
-  const curve=new THREE.QuadraticBezierCurve3(start,mid,end);
-  const pts=curve.getPoints(30);
-  const g=new THREE.BufferGeometry().setFromPoints(pts);
+    // Label
+    const cv=document.createElement('canvas'),cx=cv.getContext('2d');
+    cv.width=512;cv.height=64;cx.clearRect(0,0,512,64);
+    cx.font='bold 18px SF Mono, Courier New, monospace';cx.fillStyle='#ffffff';cx.textAlign='center';
+    cx.shadowColor='rgba(0,0,0,0.9)';cx.shadowBlur=5;
+    cx.fillText(n.l,256,22);
+    cx.font='11px SF Mono, Courier New, monospace';
+    cx.fillStyle=n.deg===1?'#f66':n.deg===2?'#fa0':'#b8f';
+    cx.fillText((n.deg===1?'[1st]':n.deg===2?'[2nd]':'[3rd]')+' '+n.sub,256,44);
+    const tx=new THREE.CanvasTexture(cv);
+    const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tx,transparent:true,opacity:0.85}));
+    sp.position.set(n.p[0],n.p[1]+n.s*0.5+0.35,n.p[2]);
+    sp.scale.set(3.2,0.42,1);
+    scene.add(sp);labels.push(sp);
+  });
 
-  let mat;
-  if(e.dash){
-    mat=new THREE.LineDashedMaterial({color:e.c,transparent:true,opacity:0.25,dashSize:0.3,gapSize:0.15});
-  }else{
-    mat=new THREE.LineBasicMaterial({color:e.c,transparent:true,opacity:e.w>=3?0.5:e.w>=2?0.3:0.15});
-  }
-  const line=new THREE.Line(g,mat);
-  if(e.dash)line.computeLineDistances();
-  scene.add(line);
-  edgeLines.push({line,data:e});
+  activeE.forEach(e=>{
+    const a=nMap[e.f],b=nMap[e.t];if(!a||!b)return;
+    const start=a.position.clone(),end=b.position.clone();
+    const mid=start.clone().add(end).multiplyScalar(0.5);
+    mid.y+=0.7;
+    const curve=new THREE.QuadraticBezierCurve3(start,mid,end);
+    const pts=curve.getPoints(30);
+    const g=new THREE.BufferGeometry().setFromPoints(pts);
+    const degC=e.deg===1?0xff3b3b:e.deg===2?0xffaa00:0xa855f7;
+    let mat;
+    if(e.dash){
+      mat=new THREE.LineDashedMaterial({color:e.c||degC,transparent:true,opacity:0.2,dashSize:0.25,gapSize:0.12});
+    }else{
+      mat=new THREE.LineBasicMaterial({color:e.c||degC,transparent:true,opacity:e.w>=4?0.5:e.w>=3?0.35:e.w>=2?0.25:0.12});
+    }
+    const line=new THREE.Line(g,mat);
+    if(e.dash)line.computeLineDistances();
+    scene.add(line);
+    const obj={line,data:e};
 
-  // Flow particles along edges
-  if(e.w>=3&&!e.dash){
-    const pg=new THREE.SphereGeometry(0.04,8,8);
-    const pm=new THREE.MeshBasicMaterial({color:e.c,transparent:true,opacity:0.7});
-    const particle=new THREE.Mesh(pg,pm);
-    scene.add(particle);
-    edgeLines.push({particle,curve,speed:0.0003+Math.random()*0.0002,offset:Math.random()});
-  }
-});
+    if(e.w>=3&&!e.dash){
+      const pg=new THREE.SphereGeometry(0.04,8,8);
+      const pm=new THREE.MeshBasicMaterial({color:e.c||degC,transparent:true,opacity:0.7});
+      const particle=new THREE.Mesh(pg,pm);
+      scene.add(particle);
+      obj.particle=particle;obj.curve=curve;obj.speed=0.0002+Math.random()*0.0002;obj.offset=Math.random();
+    }
+    edgeObjs.push(obj);
+  });
 
-// Background particles
+  document.getElementById('s-nodes').textContent=activeW.length;
+  document.getElementById('s-edges').textContent=activeE.length;
+}
+
+const edgeObjs=[];
+buildScene();
+
+// Degree filter
+function toggleDeg(d){
+  degShow[d]=!degShow[d];
+  document.querySelectorAll('.d'+d).forEach(b=>b.classList.toggle('active'));
+  // Clear nMap
+  Object.keys(nMap).forEach(k=>delete nMap[k]);
+  buildScene();
+}
+function showAll(){
+  degShow={1:true,2:true,3:true};
+  document.querySelectorAll('.dbtn.d1,.dbtn.d2,.dbtn.d3').forEach(b=>b.classList.add('active'));
+  Object.keys(nMap).forEach(k=>delete nMap[k]);
+  buildScene();
+}
+
+// BG particles
 const bgGeo=new THREE.BufferGeometry();
-const bgPos=new Float32Array(600*3);
-for(let i=0;i<600*3;i++)bgPos[i]=(Math.random()-0.5)*60;
+const bgPos=new Float32Array(800*3);
+for(let i=0;i<800*3;i++)bgPos[i]=(Math.random()-0.5)*80;
 bgGeo.setAttribute('position',new THREE.BufferAttribute(bgPos,3));
-scene.add(new THREE.Points(bgGeo,new THREE.PointsMaterial({color:0x0a0a30,size:0.03,transparent:true,opacity:0.4})));
+scene.add(new THREE.Points(bgGeo,new THREE.PointsMaterial({color:0x0a0a30,size:0.03,transparent:true,opacity:0.3})));
 
 // INTERACTION
 let drag=false,pm={x:0,y:0},rot={x:0.1,y:0},trot={x:0.1,y:0};
-let panOffset={x:0,y:0};
 const rc=new THREE.Raycaster(),mv=new THREE.Vector2();
 const cv=document.getElementById('canvas');
 
-cv.addEventListener('mousedown',e=>{
-  if(e.button===2){e.preventDefault();return;}
-  drag=true;pm={x:e.clientX,y:e.clientY};
-});
+cv.addEventListener('mousedown',e=>{if(e.button===0){drag=true;pm={x:e.clientX,y:e.clientY}}});
 cv.addEventListener('mouseup',()=>drag=false);
 cv.addEventListener('contextmenu',e=>e.preventDefault());
 
@@ -364,19 +509,13 @@ cv.addEventListener('mousemove',e=>{
     trot.x=Math.max(-1.2,Math.min(1.2,trot.x));
     pm={x:e.clientX,y:e.clientY};
   }
-  // Hover
   const r=cv.getBoundingClientRect();
   mv.x=((e.clientX-r.left)/r.width)*2-1;
   mv.y=-((e.clientY-r.top)/r.height)*2+1;
   rc.setFromCamera(mv,cam);
   const hits=rc.intersectObjects(meshes);
-  if(hits.length>0){
-    cv.style.cursor='pointer';
-    hits[0].object.material.emissiveIntensity=0.6;
-  }else{
-    cv.style.cursor='grab';
-    meshes.forEach(m=>m.material.emissiveIntensity=0.2);
-  }
+  if(hits.length>0){cv.style.cursor='pointer';hits[0].object.material.emissiveIntensity=0.6}
+  else{cv.style.cursor='grab';meshes.forEach(m=>m.material.emissiveIntensity=0.2)}
 });
 
 cv.addEventListener('click',e=>{
@@ -390,70 +529,62 @@ cv.addEventListener('click',e=>{
     const d=hits[0].object.userData;
     document.getElementById('i-name').textContent=d.l;
     document.getElementById('i-addr').textContent=d.addr;
+    const dc=d.deg===1?'t-red':d.deg===2?'t-orange':'t-purple';
+    const dl=d.deg===1?'1st Degree':d.deg===2?'2nd Degree':'3rd Degree';
+    document.getElementById('i-deg').innerHTML=`<span class="tag ${dc}" style="margin-bottom:6px">${dl}</span>`;
     let tags='';d.tags.forEach(t=>{
       const cls=t.startsWith('t-')?t:'t-blue';
-      const txt=t.startsWith('t-')?'':t;
-      tags+=`<span class="tag ${cls}">${txt||t.replace('t-','')}</span>`;
+      const txt=t.startsWith('t-')?t.replace('t-',''):t;
+      tags+=`<span class="tag ${cls}">${txt}</span>`;
     });
     document.getElementById('i-tags').innerHTML=tags;
     let rows='';
     rows+=`<div class="row"><span class="k">Chain</span><span class="v">${d.chain}</span></div>`;
     rows+=`<div class="row"><span class="k">Balance</span><span class="v">${d.bal}</span></div>`;
-    // Count connections
-    const conns=E.filter(e=>e.f===d.id||e.t===d.id);
+    const conns=E.filter(e=>(e.f===d.id||e.t===d.id)&&degShow[e.deg]);
     rows+=`<div class="row"><span class="k">Connections</span><span class="v">${conns.length}</span></div>`;
     conns.forEach(c=>{
       const other=c.f===d.id?c.t:c.f;
       const dir=c.f===d.id?'&rarr;':'&larr;';
       const oNode=W.find(w=>w.id===other);
-      rows+=`<div class="row"><span class="k">${dir} ${oNode?oNode.l:other}</span><span class="v" style="font-size:0.9em">${c.lbl||''}</span></div>`;
+      const dc2=c.deg===1?'#f66':c.deg===2?'#fa0':'#b8f';
+      rows+=`<div class="row"><span class="k">${dir} ${oNode?oNode.l:other}</span><span class="v" style="font-size:0.85em;color:${dc2}">${c.lbl||''}</span></div>`;
     });
     document.getElementById('i-rows').innerHTML=rows;
     document.getElementById('i-notes').textContent=d.notes;
     info.style.display='block';
-  }else{
-    info.style.display='none';
-  }
+  }else{info.style.display='none'}
 });
 
 cv.addEventListener('wheel',e=>{
   cam.position.z+=e.deltaY*0.015;
-  cam.position.z=Math.max(8,Math.min(50,cam.position.z));
+  cam.position.z=Math.max(8,Math.min(60,cam.position.z));
 });
 
 // ANIMATE
 (function anim(){
   requestAnimationFrame(anim);
-  rot.x+=(trot.x-rot.x)*0.04;
-  rot.y+=(trot.y-rot.y)*0.04;
-  trot.y+=0.0005;
+  rot.x+=(trot.x-rot.x)*0.04;rot.y+=(trot.y-rot.y)*0.04;
+  trot.y+=0.0004;
   scene.rotation.x=rot.x;scene.rotation.y=rot.y;
-
   const t=Date.now()*0.001;
-  // Pulse nodes
   meshes.forEach((m,i)=>{const s=1+Math.sin(t*1.2+i*0.5)*0.02;m.scale.set(s,s,s)});
-  // Rotate rings
-  meshes.forEach(m=>{
-    if(m.children){m.children.forEach(c=>{
-      if(c.userData&&c.userData.isRing){c.rotation.z+=0.008;c.rotation.x=Math.sin(t*0.5)*0.4}
-    })}
-  });
-  // Animate flow particles
-  edgeLines.forEach(e=>{
+  meshes.forEach(m=>{if(m.children)m.children.forEach(c=>{
+    if(c.userData&&c.userData.isRing){c.rotation.z+=0.006;c.rotation.x=Math.sin(t*0.5)*0.3}
+  })});
+  edgeObjs.forEach(e=>{
     if(e.particle&&e.curve){
       const pos=(t*e.speed*100+e.offset)%1;
-      const pt=e.curve.getPoint(pos);
-      e.particle.position.copy(pt);
+      e.particle.position.copy(e.curve.getPoint(pos));
     }
   });
-
   R.render(scene,cam);
 })();
 
-window.addEventListener('resize',()=>{
-  cam.aspect=window.innerWidth/window.innerHeight;
+addEventListener('resize',()=>{
+  cam.aspect=innerWidth/innerHeight;
   cam.updateProjectionMatrix();
-  R.setSize(window.innerWidth,window.innerHeight);
+  R.setSize(innerWidth,innerHeight);
 });
 </script>
 </body>
