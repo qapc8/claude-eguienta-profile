@@ -37,6 +37,7 @@ body{background:#020208;color:#d0d0e0;font-family:'SF Mono','Courier New',monosp
 #degfilter .d1.active{border-color:#ff3b3b;background:rgba(255,59,59,0.15);color:#f66}
 #degfilter .d2.active{border-color:#fa0;background:rgba(255,160,0,0.12);color:#fa0}
 #degfilter .d3.active{border-color:#a855f7;background:rgba(168,85,247,0.12);color:#b8f}
+#degfilter .d4.active{border-color:#22d3ee;background:rgba(34,211,238,0.12);color:#22d3ee}
 
 #legend{top:90px;left:12px;padding:12px;width:220px;font-size:0.68em;max-height:calc(100vh - 200px);overflow-y:auto}
 #legend h3{color:#eee;margin-bottom:6px;font-size:0.85em;letter-spacing:1px}
@@ -57,6 +58,7 @@ body{background:#020208;color:#d0d0e0;font-family:'SF Mono','Courier New',monosp
 .t-green{background:rgba(60,200,80,0.15);color:#6c6;border:1px solid rgba(60,200,80,0.3)}
 .t-purple{background:rgba(160,80,255,0.15);color:#b8f;border:1px solid rgba(160,80,255,0.3)}
 .t-pink{background:rgba(255,85,170,0.15);color:#f5a;border:1px solid rgba(255,85,170,0.3)}
+.t-cyan{background:rgba(34,211,238,0.12);color:#22d3ee;border:1px solid rgba(34,211,238,0.3)}
 .deg-badge{position:absolute;top:4px;right:8px;font-size:0.7em;padding:1px 6px;border-radius:8px}
 
 #flows{bottom:12px;left:12px;padding:10px;width:400px;font-size:0.66em;max-height:220px;overflow-y:auto}
@@ -104,7 +106,7 @@ a.back:hover{border-color:#69f;color:#fff}
 
 <div class="panel" id="header">
   <h1>MULTI-DEGREE WALLET CORRELATION MAP</h1>
-  <p>1st &bull; 2nd &bull; 3rd Degree Connections &mdash; Companies &amp; Stakeholders</p>
+  <p>1st &bull; 2nd &bull; 3rd &bull; 4th Degree Connections &mdash; Companies &amp; Stakeholders</p>
 </div>
 
 <div class="panel" id="degfilter">
@@ -112,6 +114,7 @@ a.back:hover{border-color:#69f;color:#fff}
   <button class="dbtn d1 active" onclick="toggleDeg(1)">1st Degree</button>
   <button class="dbtn d2 active" onclick="toggleDeg(2)">2nd Degree</button>
   <button class="dbtn d3 active" onclick="toggleDeg(3)">3rd Degree</button>
+  <button class="dbtn d4 active" onclick="toggleDeg(4)">4th Degree</button>
   <button class="dbtn" onclick="showAll()" style="margin-left:6px;border-color:#3a3a6a">All</button>
 </div>
 
@@ -133,6 +136,7 @@ a.back:hover{border-color:#69f;color:#fff}
   <div class="lg"><div class="ld" style="background:#ff3b3b;box-shadow:0 0 6px #ff3b3b"></div> 1st — Direct transactions</div>
   <div class="lg"><div class="ld" style="background:#fa0;box-shadow:0 0 6px #fa0"></div> 2nd — One hop away</div>
   <div class="lg"><div class="ld" style="background:#a855f7;box-shadow:0 0 6px #a855f7"></div> 3rd — Two hops / indirect</div>
+  <div class="lg"><div class="ld" style="background:#22d3ee;box-shadow:0 0 6px #22d3ee"></div> 4th — Three hops / deep chain</div>
   <div class="sep"></div>
   <h3>EDGES</h3>
   <div class="ll"><span style="color:#ff3b3b">&#9644;&#9644;&#9644;</span> Large flow (&gt;1K ETH/BTC)</div>
@@ -172,7 +176,13 @@ a.back:hover{border-color:#69f;color:#fff}
   <div class="flow"><span class="amt">2.2M PAY</span><span class="arr">&rarr;</span><span class="lbl">Hosp wallets &rarr; Bittrex (dump)</span><span class="deg t-purple">3rd</span></div>
   <div class="flow"><span class="amt">750 ETH</span><span class="arr">&rarr;</span><span class="lbl">Mimo Wallet &rarr; 0x957f (unknown)</span><span class="deg t-orange">2nd</span></div>
   <div class="flow"><span class="amt">50 BTC</span><span class="arr">&rarr;</span><span class="lbl">bc1qkunc2 &rarr; bc1qmcgds (separate spend)</span><span class="deg t-orange">2nd</span></div>
-  <div class="flow"><span class="amt">~282 BTC</span><span class="arr">&rarr;</span><span class="lbl">DAO hack ETH &rarr; ShapeShift &rarr; BTC</span><span class="deg t-purple">3rd</span></div>
+  <div class="flow"><span class="amt">~282 BTC</span><span class="arr">&rarr;</span><span class="lbl">DAO hack ETH &rarr; ShapeShift &rarr; Wasabi &rarr; Grin</span><span class="deg t-purple">3rd</span></div>
+  <div class="flow" style="border-top:1px solid #252550;margin-top:4px;padding-top:6px"><span class="amt" style="color:#22d3ee">4TH DEGREE</span><span class="arr"></span><span class="lbl" style="color:#22d3ee">DEEP CHAIN ANALYSIS</span><span class="deg t-cyan">4th</span></div>
+  <div class="flow"><span class="amt">371+ BTC</span><span class="arr">&rarr;</span><span class="lbl">Total Kraken inflows (all sources)</span><span class="deg t-cyan">4th</span></div>
+  <div class="flow"><span class="amt">~432 BTC</span><span class="arr">&rarr;</span><span class="lbl">Consol. TX &rarr; 11 outputs (Layer 4)</span><span class="deg t-cyan">4th</span></div>
+  <div class="flow"><span class="amt">~2,485 BTC</span><span class="arr">&rarr;</span><span class="lbl">18MJ3zh remaining (untraced)</span><span class="deg t-cyan">4th</span></div>
+  <div class="flow"><span class="amt">2.2M PAY</span><span class="arr">&rarr;</span><span class="lbl">Hosp &rarr; Bittrex &rarr; ~$200K+ conversion</span><span class="deg t-cyan">4th</span></div>
+  <div class="flow"><span class="amt">$250K</span><span class="arr">&rarr;</span><span class="lbl">Mimo Multisig &rarr; Parallel Protocol (PRL/sPRL)</span><span class="deg t-cyan">4th</span></div>
   <div class="flow" style="border-top:1px solid #252550;margin-top:4px;padding-top:6px"><span class="amt" style="color:#f5a">CLAUDE WALLET</span><span class="arr"></span><span class="lbl" style="color:#f5a">0x33ce...d3c5 (CONFIRMED)</span><span class="deg t-red">1st</span></div>
   <div class="flow"><span class="amt">400K USDC</span><span class="arr">&larr;</span><span class="lbl">KuCoin 9 &rarr; Claude wallet (Nov 2022)</span><span class="deg t-orange">2nd</span></div>
   <div class="flow"><span class="amt">398K USDC</span><span class="arr">&rarr;</span><span class="lbl">Claude wallet &rarr; boka.eth (Nov 2025)</span><span class="deg t-orange">2nd</span></div>
@@ -196,8 +206,8 @@ a.back:hover{border-color:#69f;color:#fff}
   <h3>FORENSICS SUMMARY</h3>
   <div class="st"><span class="k">BTC tracked</span><span class="v">7,100+ BTC</span></div>
   <div class="st"><span class="k">ETH tracked</span><span class="v">250,000+ ETH</span></div>
-  <div class="st"><span class="k">Nodes mapped</span><span class="v" id="s-nodes">72</span></div>
-  <div class="st"><span class="k">Connections</span><span class="v" id="s-edges">105</span></div>
+  <div class="st"><span class="k">Nodes mapped</span><span class="v" id="s-nodes">90</span></div>
+  <div class="st"><span class="k">Connections</span><span class="v" id="s-edges">140</span></div>
   <div class="sep"></div>
   <div class="st"><span class="k">Boka intel</span><span class="v" style="color:#fa0">16 BTC addrs</span></div>
   <div class="st"><span class="k">Consolidation TX</span><span class="v" style="color:#ff3b3b">~432 BTC</span></div>
@@ -226,7 +236,7 @@ const pl3=new THREE.PointLight(0xff3333,0.25,80);pl3.position.set(0,12,-12);scen
 const grid=new THREE.GridHelper(60,60,0x080818,0x080818);grid.position.y=-10;scene.add(grid);
 
 // ===== NODES =====
-// deg: 1=1st degree, 2=2nd degree, 3=3rd degree
+// deg: 1=1st degree, 2=2nd degree, 3=3rd degree, 4=4th degree
 const W=[
   // === CORE (1ST DEGREE) ===
   {id:'ico',l:'TenX ICO',sub:'$80M Jun 2017',addr:'0xd43D09Ec1bC5e57C8F3D0c64020d403b04c7f783',c:0xff3b3b,s:0.9,p:[0,6,0],deg:1,
@@ -453,6 +463,82 @@ const W=[
   // === SEPARATE SPENDING DESTINATION ===
   {id:'s1_mcgds',l:'bc1qmcgds... (49.99 BTC)',sub:'From bc1qkunc2 separate spend',addr:'bc1qmcgdsrw3v9hq8...',c:0xfa8800,s:0.3,p:[15,-9,-1],deg:2,
    tags:['49.99 BTC','Separate movement'],bal:'49.99 BTC',chain:'BTC',notes:'Received 49.99 BTC from bc1qkunc2... (Sweep #1 sub-destination). This address was spent SEPARATELY from the main consolidation TX — different movement pattern.'},
+
+  // ==============================================
+  // === 4TH DEGREE — THREE HOPS / DEEP CHAIN ===
+  // ==============================================
+
+  // --- FROM DAO HACK CHAIN (darkdao → grinnode → ...) ---
+  {id:'shapeshift',l:'ShapeShift Conversion',sub:'ETH → 282 BTC (2016-2017)',addr:'ShapeShift.io — non-KYC exchange',c:0x22d3ee,s:0.4,p:[-11,-6,8],deg:4,
+   tags:['ETH→BTC conversion','No KYC','Chainalysis traced'],bal:'~282 BTC converted',chain:'BTC',notes:'The DAO hack ETH was converted to ~282 BTC through ShapeShift (non-KYC exchange at the time). Chainalysis traced the full conversion chain. ShapeShift later required KYC (Oct 2018) partly due to this case. Conversion happened before BTC entered Wasabi Wallet for CoinJoin mixing.'},
+
+  {id:'wasabi',l:'Wasabi Wallet (CoinJoin)',sub:'282 BTC mixed via CoinJoin',addr:'Wasabi Wallet — zk-SNARK mixing',c:0x22d3ee,s:0.35,p:[-12,-4,9],deg:4,
+   tags:['CoinJoin','Privacy mixing','Chainalysis de-mixed'],bal:'282 BTC throughput',chain:'BTC',notes:'DAO hack BTC passed through Wasabi Wallet CoinJoin mixing. Chainalysis claimed to de-mix and trace outputs to exchanges, then to Grin privacy coin. Full chain: Dark DAO → ShapeShift → Wasabi CoinJoin → exchanges → Grin (grin.toby.ai).'},
+
+  {id:'lntoby',l:'Lightning Node (TenX)',sub:'ln.toby.ai / lnd.ln.toby.ai',addr:'Amazon Singapore IP — same as grin.toby.ai',c:0x22d3ee,s:0.3,p:[-10,-7,9],deg:4,
+   tags:['Lightning Network','Same IP as Grin node','Amazon SG'],bal:'Unknown channel capacity',chain:'BTC',notes:'Lightning Network node hosted on same Amazon Singapore IP as grin.toby.ai. Node name included "TenX" branding. Provides additional evidence linking Hoenisch to the Grin node used in DAO hack laundering chain.'},
+
+  // --- FROM HOSP CHAIN (bittrex → ...) ---
+  {id:'hospbtcconv',l:'PAY → BTC/Stables Conversion',sub:'2.2M PAY sold on Bittrex',addr:'Bittrex internal conversion',c:0x22d3ee,s:0.35,p:[-11,4,-4],deg:4,
+   tags:['2.2M PAY sold','Dec 2018-Jan 2019','Pre-resignation'],bal:'Est. $200K+ at time',chain:'Multi',notes:'Julian Hosp dumped 2.2M PAY tokens on Bittrex between Dec 2018 - Jan 2019. PAY was trading ~$0.08-0.12 at the time. Estimated ~$200K+ in proceeds. Hosp resigned 7 days after last transfer. Claimed sales for "Singapore tax obligations". Funds likely converted to BTC or stablecoins and withdrawn.'},
+
+  {id:'cakedfi',l:'Cake DeFi / Bake',sub:'Hosp\'s current venture',addr:'cakedefi.com / bake.io',c:0x22d3ee,s:0.35,p:[-11,6,-2],deg:4,
+   tags:['Hosp venture','DeFi platform','Post-TenX'],bal:'Operating company',chain:'Multi',notes:'Julian Hosp co-founded Cake DeFi (now Bake) after leaving TenX. DeFi staking/lending platform. Possible destination for Hosp\'s converted PAY dump proceeds. Cake DeFi raised funding and operates primarily in Singapore.'},
+
+  {id:'lyoness',l:'Lyoness / Lyconet',sub:'Illegal pyramid scheme (multiple countries)',addr:'Company — Austria/EU registered',c:0x22d3ee,s:0.3,p:[-12,5,0],deg:4,
+   tags:['Pyramid scheme','Illegal in AT/NO/IT','Hosp connection'],bal:'N/A',chain:'Corporate',notes:'Multi-level marketing company declared illegal pyramid scheme in Austria, Norway, and Italy. Julian Hosp was publicly linked to Lyoness before founding TenX. Connection raises concerns about pattern of involvement in schemes with questionable fund management.'},
+
+  // --- FROM BTC PEEL CHAIN (final destinations) ---
+  {id:'peelkraken1',l:'Peel-off → Kraken #1',sub:'~170 BTC across 2 deposits',addr:'3CgnH1fAdnTNBhsK... + 3QWvkWjNnq... (Kraken hot wallets)',c:0x22d3ee,s:0.35,p:[4,-10,-6],deg:4,
+   tags:['170 BTC deposited','Peel chain endpoint','Exchange liquidity'],bal:'Deposited',chain:'BTC',notes:'Two Kraken deposits from the 6-hop peel chain totaling ~170 BTC. These represent the primary liquidity extraction points from the BTC Foundation funding chain. Kraken deposits suggest conversion to fiat or stablecoins.'},
+
+  {id:'btcsrc1_remain',l:'18MJ3zh Remaining (~2,485 BTC)',sub:'Untraced bulk from BTC source',addr:'18MJ3zh8Zudt5mmpUR1qGY8jqmzuskeFPg — remaining UTXOs',c:0x22d3ee,s:0.4,p:[-6,-10,-7],deg:4,
+   tags:['~2,485 BTC','Untraced','Pre-consolidation'],bal:'~2,485 BTC',chain:'BTC',notes:'Of the ~2,761 BTC received by 18MJ3zh in Jul 2019, only 276 BTC went to the Foundation consolidation (Aug 2021). The remaining ~2,485 BTC went to other destinations — potentially other treasury wallets, OTC desks, or additional cold storage. Tracing these could reveal the full scope of treasury management.'},
+
+  // --- FROM CONSOLIDATION TX OUTPUTS (Layer 4 — post-consolidation) ---
+  {id:'consol_34dn',l:'34DnQtSy... (100 BTC)',sub:'Possible exchange deposit',addr:'34DnQtSyBEvcE5kBXgHYWPNVxv95fvkTME',c:0x22d3ee,s:0.4,p:[6,-17,1],deg:4,
+   tags:['100 BTC','P2SH format','Possible exchange'],bal:'100 BTC',chain:'BTC',notes:'P2SH address (starts with 3) from consolidation TX output. P2SH format is commonly used by exchanges for deposit addresses. If confirmed as exchange, this represents a major liquidity extraction from the consolidation. Requires forward-tracing to determine if spent.'},
+
+  {id:'consol_large',l:'Consol. Large Outputs',sub:'bc1q04qqs (100) + bc1qy3p4t (50) + bc1qxzm25 (45)',addr:'bc1q04qqs...(100 BTC), bc1qy3p4t...(50 BTC), bc1qxzm25...(45 BTC)',c:0x22d3ee,s:0.4,p:[10,-17,2],deg:4,
+   tags:['195 BTC total','3 addresses','Layer 4 cold storage?'],bal:'195 BTC ($16M+)',chain:'BTC',notes:'Three large consolidation TX outputs totaling 195 BTC. If UNSPENT, these represent Layer 4 cold storage. Pattern of 100/50/45 BTC mirrors the structured distribution of the original sweep. Could indicate same custodial framework applied at each distribution layer.'},
+
+  {id:'consol_medium',l:'Consol. Medium Outputs',sub:'bc1q7tgg0c (40) + bc1qwy88x (30) + bc1q6s003 (20) + bc1q8t8e7 (20)',addr:'bc1q7tgg0c(40), bc1qwy88x(30), bc1q6s003(20), bc1q8t8e7(20)',c:0x22d3ee,s:0.35,p:[7,-18,-1],deg:4,
+   tags:['110 BTC total','4 addresses','Layer 4'],bal:'110 BTC ($9M+)',chain:'BTC',notes:'Four medium consolidation TX outputs totaling 110 BTC. Distributed across 20-40 BTC chunks. Same structured tier pattern as original sweep.'},
+
+  {id:'consol_small',l:'Consol. Small Outputs',sub:'bc1qx468d (12) + bc1q2m2ps (15) + bc1q2zda7 (0.01)',addr:'bc1qx468d(12), bc1q2m2ps(15), bc1q2zda7(0.01 change)',c:0x22d3ee,s:0.25,p:[11,-18,-2],deg:4,
+   tags:['~27 BTC total','3 addresses','Change included'],bal:'~27 BTC',chain:'BTC',notes:'Three small consolidation TX outputs including 0.01 BTC change address. The change address (bc1q2zda7) likely belongs to the sender and could be used for future address clustering. The 12+15 BTC outputs may be operational/gas funding.'},
+
+  // --- FROM SEPARATE SPEND CHAIN (bc1qmcgds → ...) ---
+  {id:'mcgds_next',l:'bc1qmcgds Next Hop',sub:'Where did 49.99 BTC go?',addr:'Unknown — requires forward trace',c:0x22d3ee,s:0.3,p:[17,-10,-2],deg:4,
+   tags:['49.99 BTC','Anomalous pattern','Different custodian?'],bal:'49.99 BTC',chain:'BTC',notes:'The separate spending of bc1qkunc2 (via bc1qmcgds) diverges from the consolidation pattern used by other sub-destinations. If this address further splits to exchange deposits or known entities, it may reveal a different custodian or operational wallet within the organization.'},
+
+  // --- FROM COINJOIN/MIXER CHAIN ---
+  {id:'postmixer',l:'Post-Mixer Destinations',sub:'CoinJoin outputs dispersed',addr:'Multiple — Chainalysis clustering required',c:0x22d3ee,s:0.3,p:[15,-10,1],deg:4,
+   tags:['Post-CoinJoin','Dispersed','Privacy endpoint'],bal:'Unknown',chain:'BTC',notes:'Funds that passed through CoinJoin mixing (from 120 BTC sweep sub-distribution) were dispersed to multiple outputs. Standard CoinJoin creates equal-value outputs to prevent amount-based tracing. Chainalysis/Crystal/Elliptic clustering could potentially de-anonymize some outputs.'},
+
+  // --- FROM TOKEN CONTRACTS ---
+  {id:'paywhales',l:'PAY Top Holders',sub:'Major token concentration',addr:'Multiple whale wallets',c:0x22d3ee,s:0.3,p:[-3,9,-2],deg:4,
+   tags:['Top holders','Concentration risk','57K total holders'],bal:'Token distribution',chain:'ETH',notes:'PAY token (205M supply, 57K holders) has significant holder concentration. Foundation ETH Safe holds 4.4M PAY. Tracing the top 20 holders could reveal additional insider wallets, exchange hot wallets, or related-party accumulation. Some large holders may be dormant since 2018 (abandoned positions).'},
+
+  {id:'parallel',l:'Parallel Protocol (PRL/sPRL)',sub:'New DeFi exposure in Mimo Multisig',addr:'PRL token + sPRL1 staking token',c:0x22d3ee,s:0.3,p:[12,4,4],deg:4,
+   tags:['100M sPRL1','43M PRL','New protocol'],bal:'~$250K combined',chain:'ETH',notes:'Mimo Capital Multisig now holds 100M sPRL1 ($175K) and 43M PRL ($75K) in Parallel Protocol — a newer DeFi protocol. This represents a significant new investment direction. Parallel is a DeFi lending protocol on Ethereum. Connection suggests Mimo Capital is actively deploying treasury into newer DeFi products.'},
+
+  {id:'kumabond',l:'Kuma Bond Holders',sub:'MCAG bond token holders / redemptions',addr:'KUMABondToken contract holders',c:0x22d3ee,s:0.3,p:[2,9,6],deg:4,
+   tags:['Bond-backed NFTs','FMA approved','Redemption tracking'],bal:'Protocol TVL',chain:'ETH',notes:'Kuma Protocol (Mimo Labs product) issues bond-backed NFTs. Claude personally holds/transferred MCAG tokens. Tracking the full set of MCAG bond holders reveals the investor base of this Mimo Capital AG product. FMA Liechtenstein regulated. Bond redemption patterns could reveal treasury stress.'},
+
+  // --- FROM CORPORATE CHAIN ---
+  {id:'murphylabs',l:'Murphy Labs',sub:'Jean Brasse — Co-founder',addr:'murphylabs.io',c:0x22d3ee,s:0.25,p:[13,-3,4],deg:4,
+   tags:['Jean Brasse','Co-founder','DeFi development'],bal:'Operating',chain:'Corporate',notes:'Murphy Labs, co-founded by Jean Brasse (Head of DeFi at Mimo Labs). Receives funds from Mimo Capital Wallet. Likely a development entity building DeFi products for Mimo ecosystem. Corporate structure adds layer of indirection between Mimo Capital and DeFi development work.'},
+
+  {id:'fmafl',l:'FMA Liechtenstein',sub:'Financial regulator — Mimo Capital AG',addr:'fma-li.li — FMA Registration',c:0x22d3ee,s:0.25,p:[-6,7,6],deg:4,
+   tags:['Regulator','FMA approved','Kuma Protocol'],bal:'N/A',chain:'Regulatory',notes:'Financial Market Authority of Liechtenstein. Regulates Mimo Capital AG. Approved Kuma Protocol bond issuance. Any regulatory actions or compliance requirements flow through FMA. Key question: does FMA know about the TenX → Mimo Capital lineage and DAO hack accusations against co-founder?'},
+
+  {id:'companieshouse',l:'Companies House (UK)',sub:'Mimo Capital Limited — dissolved records',addr:'Companies House: 13063703',c:0x22d3ee,s:0.2,p:[-7,8,7],deg:4,
+   tags:['Dissolved Jun 2023','Dormant accounts','Compulsory strike-off'],bal:'N/A',chain:'Regulatory',notes:'UK Companies House records for Mimo Capital Limited (dissolved). Filed dormant company accounts for FY2021. Failed to file subsequent accounts → compulsory strike-off. Sole director: Claude Eguienta. PSC: Decentral Pte Ltd. Any pre-dissolution asset transfers would be in filing records.'},
+
+  // --- FROM EXCHANGE AGGREGATION ---
+  {id:'krakenaggregate',l:'Kraken Total Inflows',sub:'371+ BTC from Foundation chain',addr:'Multiple Kraken deposit addresses',c:0x22d3ee,s:0.45,p:[14,-4,7],deg:4,
+   tags:['371+ BTC total','Peel-offs + sub-dest','Liquidity extraction'],bal:'371+ BTC deposited',chain:'BTC',notes:'Total confirmed BTC deposited to Kraken from Foundation chain: 170 BTC (peel-off) + 100 BTC (sweep #1 sub) + 50 BTC (sweep #3) + 50 BTC (sweep #3 sub) + 1 BTC (sweep #2 sub) = 371+ BTC ($30M+). This represents the primary FIAT/STABLECOIN extraction pathway. Kraken KYC records would identify the account holder(s).'},
 ];
 
 // ===== EDGES =====
@@ -576,11 +662,61 @@ const E=[
 
   // SEPARATE SPENDING (bc1qkunc2 → bc1qmcgds)
   {f:'s1_kunc2',t:'s1_mcgds',c:0xfa8800,w:2,lbl:'49.99 BTC',deg:2},
+
+  // === 4TH DEGREE EDGES ===
+
+  // DAO HACK DEEP CHAIN
+  {f:'darkdao',t:'shapeshift',c:0x22d3ee,w:2,lbl:'ETH → 282 BTC',deg:4},
+  {f:'shapeshift',t:'wasabi',c:0x22d3ee,w:2,lbl:'282 BTC → CoinJoin',deg:4},
+  {f:'wasabi',t:'grinnode',c:0x22d3ee,w:1,lbl:'De-mixed → exchanges → Grin',deg:4,dash:true},
+  {f:'grinnode',t:'lntoby',c:0x22d3ee,w:1,lbl:'Same IP (Amazon SG)',deg:4,dash:true},
+  {f:'toby',t:'lntoby',c:0xff55aa,w:1,lbl:'ln.toby.ai',deg:4,dash:true},
+
+  // HOSP DEEP CHAIN
+  {f:'bittrex',t:'hospbtcconv',c:0x22d3ee,w:2,lbl:'2.2M PAY sold (~$200K+)',deg:4},
+  {f:'hosp',t:'cakedfi',c:0x22d3ee,w:1,lbl:'Founded post-TenX',deg:4,dash:true},
+  {f:'hosp',t:'lyoness',c:0x22d3ee,w:1,lbl:'Pre-TenX involvement',deg:4,dash:true},
+  {f:'hospbtcconv',t:'cakedfi',c:0x22d3ee,w:1,lbl:'Possible fund destination',deg:4,dash:true},
+
+  // BTC PEEL CHAIN ENDPOINTS
+  {f:'btcpeel',t:'peelkraken1',c:0x22d3ee,w:2,lbl:'~170 BTC to Kraken',deg:4},
+  {f:'peelkraken1',t:'krakenaggregate',c:0x22d3ee,w:2,lbl:'Peel-off deposits',deg:4},
+  {f:'btcsrc1',t:'btcsrc1_remain',c:0x22d3ee,w:3,lbl:'~2,485 BTC (untraced)',deg:4},
+
+  // CONSOLIDATION TX → LAYER 4 OUTPUTS
+  {f:'consol_out',t:'consol_34dn',c:0x22d3ee,w:3,lbl:'100 BTC (possible exchange)',deg:4},
+  {f:'consol_out',t:'consol_large',c:0x22d3ee,w:3,lbl:'195 BTC (3 addr)',deg:4},
+  {f:'consol_out',t:'consol_medium',c:0x22d3ee,w:2,lbl:'110 BTC (4 addr)',deg:4},
+  {f:'consol_out',t:'consol_small',c:0x22d3ee,w:1,lbl:'~27 BTC (3 addr)',deg:4},
+  {f:'consol_34dn',t:'krakenaggregate',c:0x22d3ee,w:2,lbl:'If exchange confirmed',deg:4,dash:true},
+
+  // SEPARATE SPEND → NEXT HOP
+  {f:'s1_mcgds',t:'mcgds_next',c:0x22d3ee,w:2,lbl:'49.99 BTC forward',deg:4},
+
+  // COINJOIN POST-MIXER
+  {f:'coinjoin',t:'postmixer',c:0x22d3ee,w:1,lbl:'CoinJoin outputs',deg:4,dash:true},
+
+  // TOKEN → WHALE/PROTOCOL CONNECTIONS
+  {f:'paytoken',t:'paywhales',c:0x22d3ee,w:1,lbl:'Top holder analysis',deg:4,dash:true},
+  {f:'mimoms',t:'parallel',c:0x22d3ee,w:2,lbl:'100M sPRL1 + 43M PRL',deg:4},
+  {f:'kuma',t:'kumabond',c:0x22d3ee,w:1,lbl:'Bond holder tracking',deg:4,dash:true},
+
+  // CORPORATE DEEP CHAIN
+  {f:'jeanbrasse',t:'murphylabs',c:0x22d3ee,w:1,lbl:'Co-founder',deg:4,dash:true},
+  {f:'mimow',t:'murphylabs',c:0x22d3ee,w:1,lbl:'ETH funding',deg:4},
+  {f:'mimoag',t:'fmafl',c:0x22d3ee,w:1,lbl:'Regulated by',deg:4,dash:true},
+  {f:'kuma',t:'fmafl',c:0x22d3ee,w:1,lbl:'FMA approved',deg:4,dash:true},
+  {f:'mimouk',t:'companieshouse',c:0x22d3ee,w:1,lbl:'Dissolved records',deg:4,dash:true},
+
+  // KRAKEN AGGREGATION
+  {f:'s1_kraken',t:'krakenaggregate',c:0x22d3ee,w:3,lbl:'100 BTC',deg:4},
+  {f:'s2_kraken',t:'krakenaggregate',c:0x22d3ee,w:1,lbl:'1 BTC',deg:4},
+  {f:'krakenex',t:'krakenaggregate',c:0x22d3ee,w:3,lbl:'170 BTC peel + 50 BTC sweep #3',deg:4},
 ];
 
 // ===== BUILD SCENE =====
 const nMap={},meshes=[],labels=[],edgeLabelSprites=[];
-let degShow={1:true,2:true,3:true};
+let degShow={1:true,2:true,3:true,4:true};
 let focusNode=null; // currently focused node id
 
 function buildScene(){
@@ -623,8 +759,8 @@ function buildScene(){
     cx.shadowColor='rgba(0,0,0,0.95)';cx.shadowBlur=6;
     cx.fillText(n.l,256,24);
     cx.font='11px SF Mono, Courier New, monospace';
-    cx.fillStyle=n.deg===1?'#ff6666':n.deg===2?'#ffaa00':'#bb88ff';
-    cx.fillText((n.deg===1?'[1st]':n.deg===2?'[2nd]':'[3rd]')+' '+n.sub,256,44);
+    cx.fillStyle=n.deg===1?'#ff6666':n.deg===2?'#ffaa00':n.deg===3?'#bb88ff':'#22d3ee';
+    cx.fillText((n.deg===1?'[1st]':n.deg===2?'[2nd]':n.deg===3?'[3rd]':'[4th]')+' '+n.sub,256,44);
     // Balance line
     if(n.bal&&n.bal!=='N/A'&&n.bal!=='Unknown'&&n.bal!=='Transit'){
       cx.font='bold 10px SF Mono, Courier New, monospace';
@@ -647,7 +783,7 @@ function buildScene(){
     const curve=new THREE.QuadraticBezierCurve3(start,mid,end);
     const pts=curve.getPoints(40);
     const g=new THREE.BufferGeometry().setFromPoints(pts);
-    const degC=e.c||(e.deg===1?0xff3b3b:e.deg===2?0xffaa00:0xa855f7);
+    const degC=e.c||(e.deg===1?0xff3b3b:e.deg===2?0xffaa00:e.deg===3?0xa855f7:0x22d3ee);
     let mat;
     if(e.dash){
       mat=new THREE.LineDashedMaterial({color:degC,transparent:true,opacity:0.18,dashSize:0.2,gapSize:0.1,linewidth:1});
@@ -758,8 +894,8 @@ function toggleDeg(d){
   buildScene();
 }
 function showAll(){
-  degShow={1:true,2:true,3:true};
-  document.querySelectorAll('.dbtn.d1,.dbtn.d2,.dbtn.d3').forEach(b=>b.classList.add('active'));
+  degShow={1:true,2:true,3:true,4:true};
+  document.querySelectorAll('.dbtn.d1,.dbtn.d2,.dbtn.d3,.dbtn.d4').forEach(b=>b.classList.add('active'));
   Object.keys(nMap).forEach(k=>delete nMap[k]);focusNode=null;
   buildScene();
 }
@@ -835,8 +971,8 @@ cvs.addEventListener('mousemove',e=>{
 function showNodeInfo(d){
   document.getElementById('i-name').textContent=d.l;
   document.getElementById('i-addr').textContent=d.addr;
-  const dc=d.deg===1?'t-red':d.deg===2?'t-orange':'t-purple';
-  const dl=d.deg===1?'1st Degree':d.deg===2?'2nd Degree':'3rd Degree';
+  const dc=d.deg===1?'t-red':d.deg===2?'t-orange':d.deg===3?'t-purple':'t-cyan';
+  const dl=d.deg===1?'1st Degree':d.deg===2?'2nd Degree':d.deg===3?'3rd Degree':'4th Degree';
   document.getElementById('i-deg').innerHTML=`<span class="tag ${dc}" style="margin-bottom:6px">${dl}</span><span class="tag t-blue" style="margin-left:4px">${d.chain}</span>`;
   let tags='';d.tags.forEach(t=>{tags+=`<span class="tag t-blue">${t}</span>`});
   document.getElementById('i-tags').innerHTML=tags;
@@ -850,13 +986,13 @@ function showNodeInfo(d){
   if(outflows.length){rows+=`<div class="row" style="border:none;margin-top:4px"><span class="k" style="color:#ff6666;font-weight:700">OUTFLOWS</span></div>`}
   outflows.forEach(c=>{
     const oNode=W.find(w=>w.id===c.t);
-    const dc2=c.deg===1?'#f66':c.deg===2?'#fa0':'#b8f';
+    const dc2=c.deg===1?'#f66':c.deg===2?'#fa0':c.deg===3?'#b8f':'#22d3ee';
     rows+=`<div class="row"><span class="k">&rarr; ${oNode?oNode.l:c.t}</span><span class="v" style="font-size:0.85em;color:${dc2}">${c.lbl||''}</span></div>`;
   });
   if(inflows.length){rows+=`<div class="row" style="border:none;margin-top:4px"><span class="k" style="color:#44cc44;font-weight:700">INFLOWS</span></div>`}
   inflows.forEach(c=>{
     const oNode=W.find(w=>w.id===c.f);
-    const dc2=c.deg===1?'#f66':c.deg===2?'#fa0':'#b8f';
+    const dc2=c.deg===1?'#f66':c.deg===2?'#fa0':c.deg===3?'#b8f':'#22d3ee';
     rows+=`<div class="row"><span class="k">&larr; ${oNode?oNode.l:c.f}</span><span class="v" style="font-size:0.85em;color:${dc2}">${c.lbl||''}</span></div>`;
   });
   document.getElementById('i-rows').innerHTML=rows;

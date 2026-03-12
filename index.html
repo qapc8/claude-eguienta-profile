@@ -166,7 +166,7 @@
   <button class="tab-btn" onclick="switchTab('findings')">Key Findings</button>
   <button class="tab-btn" onclick="switchTab('wallets')">Wallet Forensics</button>
   <button class="tab-btn" onclick="switchTab('map')">3D Connection Map</button>
-  <a href="wallets.html" class="tab-btn" style="text-decoration:none;background:#1a0a2e;border-color:#6a2fd8;color:#b8f">&#x1f4b0; 3D Wallet Map</a>
+  <a href="wallets.html" class="tab-btn" style="text-decoration:none;background:#1a0a2e;border-color:#6a2fd8;color:#b8f">&#x1f4b0; 3D Wallet Map (4-Degree)</a>
 </div>
 
 <!-- ========== PROFILE ========== -->
@@ -901,6 +901,22 @@
     <div class="finding" style="border-left:3px solid #ff3b3b;padding-left:10px;margin-top:10px"><div class="dot" style="background:#ff3b3b"></div><p><strong>CONSOLIDATION TX PROVES COMMON CONTROL:</strong> Transaction <span style="color:#a8f;font-size:0.82em">64a02680ee02...</span> consumed sub-destinations from BOTH Sweep #1 AND Sweep #2. This cryptographically proves the same entity controls addresses across different sweep batches. 10 inputs (~432 BTC) → 11 output addresses including potentially 34DnQtSy... (100 BTC, possible exchange).</p></div>
     <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Boka connection:</strong> boka.eth received $398,000 USDC from Claude Eguienta's confirmed personal wallet (Nov 2025), then provided these exact sub-destination addresses on Mar 12, 2026. This establishes a direct financial link between Claude Eguienta and someone with detailed knowledge of BTC Foundation sweep destinations.</p></div>
     <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Separate spending anomaly:</strong> bc1qkunc2... (50 BTC from Sweep #1) was spent separately to bc1qmcgdsrw... (49.99 BTC), NOT through the consolidation TX. Different movement pattern may indicate different custodian or purpose.</p></div>
+
+    <h3 style="color:#22d3ee;margin-top:18px">4TH DEGREE: Deep Chain Analysis</h3>
+    <p style="font-size:0.84em;color:#aab;margin:6px 0">Tracing three hops beyond the Foundation wallets to identify final destinations, liquidity extraction, and entity connections.</p>
+
+    <table class="data-table">
+      <tr><th>Chain</th><th>Finding</th><th>Amount</th><th>Significance</th></tr>
+      <tr><td style="color:#22d3ee">Kraken Aggregate</td><td>Total BTC deposited to Kraken from all Foundation sources</td><td style="color:#ff3b3b;font-weight:700">371+ BTC ($30M+)</td><td>Primary liquidity extraction pathway. KYC records would identify account holder(s).</td></tr>
+      <tr><td style="color:#22d3ee">Consolidation L4</td><td>11 outputs from cross-sweep consolidation TX include 34DnQtSy... (P2SH, possible exchange)</td><td style="color:#fa0">~432 BTC</td><td>Layer 4 destinations. 100 BTC P2SH address format commonly used by exchanges.</td></tr>
+      <tr><td style="color:#22d3ee">BTC Source Remaining</td><td>18MJ3zh received 2,761 BTC but only 276 went to Foundation chain</td><td style="color:#ff3b3b;font-weight:700">~2,485 BTC untraced</td><td>Potentially other treasury wallets, OTC desks, or cold storage. Massive untraced funds.</td></tr>
+      <tr><td style="color:#22d3ee">DAO Hack Chain</td><td>Dark DAO &rarr; ShapeShift &rarr; 282 BTC &rarr; Wasabi CoinJoin &rarr; Grin (grin.toby.ai)</td><td>282 BTC</td><td>Full laundering chain. Same IP hosted Lightning "TenX" node. Chainalysis de-mixed.</td></tr>
+      <tr><td style="color:#22d3ee">Hosp PAY Dump</td><td>2.2M PAY sold on Bittrex Dec 2018-Jan 2019, ~$200K+ proceeds</td><td>~$200K+</td><td>Hosp resigned 7 days after last dump. Now runs Cake DeFi/Bake. Prior Lyoness connection.</td></tr>
+      <tr><td style="color:#22d3ee">Parallel Protocol</td><td>Mimo Multisig holds 100M sPRL1 + 43M PRL</td><td style="color:#fa0">~$250K</td><td>New DeFi protocol investment. Active treasury deployment into newer products.</td></tr>
+      <tr><td style="color:#22d3ee">Regulatory</td><td>FMA Liechtenstein regulates Mimo Capital AG &amp; Kuma Protocol</td><td>N/A</td><td>Key question: does FMA know about TenX lineage &amp; DAO hack accusations?</td></tr>
+    </table>
+
+    <div class="finding" style="border-left:3px solid #22d3ee;padding-left:10px;margin-top:10px"><div class="dot" style="background:#22d3ee"></div><p><strong>Total BTC at risk across all 4 degrees:</strong> ~1,730 BTC (L1 dormant sweeps) + ~417 BTC (L2 dormant sub-dest) + ~432 BTC (L3 consolidation outputs) + ~2,485 BTC (L4 untraced source) + 371 BTC (Kraken deposits) = <strong style="color:#ff3b3b">~5,435 BTC ($450M+)</strong> in the complete Foundation BTC flow chain.</p></div>
   </div>
 
   <!-- FOUNDATION ETH WALLET -->
