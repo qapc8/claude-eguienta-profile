@@ -855,7 +855,7 @@
     <p style="font-size:0.84em;color:#aab;margin:6px 0">Entire balance distributed in one transaction to round-number tiers:</p>
     <table class="data-table">
       <tr><th>Amount per address</th><th>Count</th><th>Subtotal</th><th>Notes</th></tr>
-      <tr><td>500 BTC</td><td style="color:#ff3b3b">3</td><td style="color:#ff3b3b">1,500 BTC</td><td>All 3 SPENT. #1 &amp; #2 moved ~2 days later, #3 moved ~40 days later. 151 BTC confirmed to Kraken. ~495 BTC sits dormant in sub-destinations.</td></tr>
+      <tr><td>500 BTC</td><td style="color:#ff3b3b">3</td><td style="color:#ff3b3b">1,500 BTC</td><td>All 3 SPENT. #1 &amp; #2 moved ~2 days later, #3 moved ~40 days later. 201 BTC to Kraken. ~417 BTC dormant in sub-destinations. ~432 BTC consolidated in cross-sweep TX (proves common control). See Boka intel below.</td></tr>
       <tr><td>200 BTC</td><td>3</td><td>600 BTC</td><td style="color:#4c4">ALL UNSPENT</td></tr>
       <tr><td>150 BTC</td><td>2</td><td>300 BTC</td><td style="color:#4c4">ALL UNSPENT</td></tr>
       <tr><td>100 BTC</td><td>4</td><td>400 BTC</td><td style="color:#4c4">ALL UNSPENT</td></tr>
@@ -870,9 +870,37 @@
     <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>TIMING: Funded days after DAO hack accusation.</strong> Laura Shin published her accusation of Toby Hoenisch as the DAO hacker on Feb 22, 2022. This wallet was funded on Feb 10, 2022. The upstream pass-through address was funded on Feb 8, 2022. This suggests a treasury restructuring around the time of the investigation going public.</p></div>
     <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Cold storage for ~4 years:</strong> Zero outgoing activity from Feb 2022 to sweep on Feb 15, 2026. Received only 4 dust attacks (surveillance probes). Classic treasury/cold-storage pattern.</p></div>
     <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Structured distribution:</strong> Round-number tiers (10/50/100/150/200/500 BTC) across 32 separate addresses in different wallet clusters. Suggests planned organizational distribution, not a hack or panic move.</p></div>
-    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Total dormant BTC: ~2,225 BTC ($185M+).</strong> The 26 direct sweep addresses hold ~1,730 BTC (all confirmed UNSPENT as of Mar 12, 2026). Additionally, ~495 BTC sits dormant in sub-destinations from the 3x500 BTC sweeps: 250 BTC (bc1q6t32...), 100 BTC (bc1q3y6l...), 85 BTC (bc1q9mav...), 60 BTC (bc1qfaja...). The 3x500 BTC sweeps also sent 151 BTC confirmed to Kraken exchange (100+50+1 BTC across 3 deposits).</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Total dormant BTC: ~2,147 BTC ($178M+).</strong> The 26 direct sweep addresses hold ~1,730 BTC (all confirmed UNSPENT as of Mar 12, 2026). Additionally, ~417 BTC sits dormant in sub-destinations: 250 BTC (bc1q6t32...), 85 BTC (bc1q9mav...), 60 BTC (bc1qfaja...), 22 BTC (bc1q9wlat...). The 3x500 BTC sweeps also sent 201 BTC to Kraken exchange (100+50+50+1 BTC).</p></div>
     <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Pass-through sourcing:</strong> Source address <span style="color:#a8f;font-size:0.85em">bc1qsdvkkn5svdeywyp544v6jxxzj3l3uprzd6a2rj</span> had only 2 transactions total &mdash; received 3,367 BTC, immediately split to this wallet + 120 BTC elsewhere. Classic pass-through pattern to obscure origin.</p></div>
     <div class="finding"><div class="dot" style="background:#a8f"></div><p><strong>Dust attacks received:</strong> 4 unsolicited micro-transactions (547-6,660 sat) between Jan 2024 and Oct 2024. Common blockchain surveillance technique for address linking or tracking.</p></div>
+
+    <h3 style="color:#ff3b3b;margin-top:18px">CRITICAL: Sub-Destination Analysis &amp; Consolidation (Boka Intel)</h3>
+    <p style="font-size:0.84em;color:#aab;margin:6px 0">On Mar 12, 2026, <strong style="color:#fa0">boka.eth (@0xboka)</strong> &mdash; who received $398K USDC from Claude Eguienta's confirmed wallet &mdash; provided 16 exact BTC sub-destination addresses from the Foundation sweep. This proves insider knowledge of fund flows.</p>
+
+    <table class="data-table">
+      <tr><th>Address</th><th>Amount</th><th>Source</th><th>Status</th></tr>
+      <tr style="background:#0a1a0a"><td style="color:#a8f;font-size:0.78em">bc1q6t3237...aq3f</td><td style="color:#4c4">250 BTC</td><td>Sweep #2</td><td style="color:#4c4;font-weight:700">DORMANT</td></tr>
+      <tr style="background:#0a1a0a"><td style="color:#a8f;font-size:0.78em">bc1q9mav42...u4kvf</td><td style="color:#4c4">85 BTC</td><td>Sweep #1</td><td style="color:#4c4;font-weight:700">DORMANT</td></tr>
+      <tr style="background:#0a1a0a"><td style="color:#a8f;font-size:0.78em">bc1qfajam...670s</td><td style="color:#4c4">60 BTC</td><td>Sweep #2</td><td style="color:#4c4;font-weight:700">DORMANT</td></tr>
+      <tr style="background:#0a1a0a"><td style="color:#a8f;font-size:0.78em">bc1q9wlat...3rzp</td><td style="color:#4c4">22 BTC</td><td>Sweep #2</td><td style="color:#4c4;font-weight:700">DORMANT</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1qz522r...hge4</td><td>103 BTC</td><td>Sweep #1</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1qhvslz...vrcg</td><td>75 BTC</td><td>Sweep #2</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1qkrjjd...08h5</td><td>75 BTC</td><td>Sweep #1</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1qtysq7n... (extra)</td><td>65 BTC</td><td>Sweep #1</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1qkunc2...p20k</td><td>50 BTC</td><td>Sweep #1</td><td style="color:#fa0">SPENT → bc1qmcgds (separate)</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1q95qvh...dpvc</td><td>30 BTC</td><td>Sweep #2</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1qkevpr...qz3v</td><td>20 BTC</td><td>Sweep #2</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1q7h5sc...jk5n</td><td>15 BTC</td><td>Sweep #2</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1qh0pfs...h9zx</td><td>12 BTC</td><td>Sweep #2</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1qk2ay5...ehh8</td><td>12 BTC</td><td>Sweep #1</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">bc1qfh68f...tenc</td><td>10 BTC</td><td>Sweep #1</td><td style="color:#ff3b3b">SPENT → Consolidation TX</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">3GSntMt2...diU</td><td>100 BTC</td><td>Sweep #1</td><td style="color:#44cc44">→ Kraken exchange</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">3AvGeYGX...uBAS</td><td>1 BTC</td><td>Sweep #2</td><td style="color:#44cc44">→ Kraken exchange</td></tr>
+    </table>
+
+    <div class="finding" style="border-left:3px solid #ff3b3b;padding-left:10px;margin-top:10px"><div class="dot" style="background:#ff3b3b"></div><p><strong>CONSOLIDATION TX PROVES COMMON CONTROL:</strong> Transaction <span style="color:#a8f;font-size:0.82em">64a02680ee02...</span> consumed sub-destinations from BOTH Sweep #1 AND Sweep #2. This cryptographically proves the same entity controls addresses across different sweep batches. 10 inputs (~432 BTC) → 11 output addresses including potentially 34DnQtSy... (100 BTC, possible exchange).</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Boka connection:</strong> boka.eth received $398,000 USDC from Claude Eguienta's confirmed personal wallet (Nov 2025), then provided these exact sub-destination addresses on Mar 12, 2026. This establishes a direct financial link between Claude Eguienta and someone with detailed knowledge of BTC Foundation sweep destinations.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Separate spending anomaly:</strong> bc1qkunc2... (50 BTC from Sweep #1) was spent separately to bc1qmcgdsrw... (49.99 BTC), NOT through the consolidation TX. Different movement pattern may indicate different custodian or purpose.</p></div>
   </div>
 
   <!-- FOUNDATION ETH WALLET -->
@@ -988,8 +1016,9 @@
 <span style="color:#ff3b3b;font-weight:700">Foundation BTC Wallet</span> <span style="color:#888">(bc1q806e...7kjx)</span><br>
 &nbsp;&nbsp;&nbsp;&#9474; Received: 3,247.53 BTC (Feb 2022)<br>
 &nbsp;&nbsp;&nbsp;&#9474; Swept: 3,247.53 BTC &rarr; 32 addresses (Feb 15, 2026)<br>
-&nbsp;&nbsp;&nbsp;&#9474; Now: 0 BTC. Dormant: ~1,730 BTC (L1) + ~495 BTC (L2) = ~2,225 BTC<br>
-&nbsp;&nbsp;&nbsp;&#9474; 151 BTC confirmed to Kraken. Rest dormant in cold storage<br>
+&nbsp;&nbsp;&nbsp;&#9474; Now: 0 BTC. Dormant: ~1,730 BTC (L1) + ~417 BTC (L2) = ~2,147 BTC<br>
+&nbsp;&nbsp;&nbsp;&#9474; 201 BTC to Kraken. ~432 BTC consolidated (cross-sweep TX proves common control)<br>
+&nbsp;&nbsp;&nbsp;&#9474; Boka (received $398K from Claude) provided 16 sub-destination addresses<br>
 &nbsp;&nbsp;&nbsp;&#9474; <span style="color:#ff3b3b">TIMING: Funded days before DAO hack accusation published</span>
     </div>
   </div>
@@ -1117,7 +1146,7 @@ function initMap(){
     {id:'onlab',l:'OnLab Incubator',c:0x44cc44,s:0.22,p:[0.5,-5,-1.5],d:'Japanese startup accelerator. Origin point: Eguienta (Kabotip) met Hoenisch here in 2014. The connection that started everything.'},
     // WALLET / COMIT NODES
     {id:'comit',l:'COMIT Foundation',c:0xff3b3b,s:0.45,p:[2,-1,-3],d:'45% of $80M ICO (~$36M) allocated. Never formally incorporated. Same people control it. COMIT GitHub archived. BTC wallet held 3,247 BTC, now swept to 32 addresses.'},
-    {id:'btcwallet',l:'Foundation BTC',c:0xff55aa,s:0.35,p:[3,-2.5,-4],d:'bc1q806e...7kjx. Held 3,247.53 BTC (~$130-300M). Funded Feb 2022 (days before DAO hack accusation). Swept Feb 15, 2026 to 32 addresses. Now EMPTY. ~1,730 BTC dormant in direct sweeps + ~495 BTC dormant in sub-destinations. 151 BTC confirmed to Kraken.'},
+    {id:'btcwallet',l:'Foundation BTC',c:0xff55aa,s:0.35,p:[3,-2.5,-4],d:'bc1q806e...7kjx. Held 3,247.53 BTC (~$130-300M). Funded Feb 2022 (days before DAO hack accusation). Swept Feb 15, 2026 to 32 addresses. Now EMPTY. ~1,730 BTC dormant in direct sweeps + ~417 BTC dormant in sub-destinations. 201 BTC to Kraken. ~432 BTC consolidated in cross-sweep TX proving common control. Boka (who received $398K from Claude) provided 16 sub-destination addresses.'},
     {id:'ethwallet',l:'Foundation ETH',c:0xff55aa,s:0.35,p:[1,0.5,-4],d:'0xaab0...b564. Gnosis Safe. Created by TenX-funded address. Holds 1,107 ETH + 35.3M MIMO + 4.4M PAY. Total ~$2.30M. 3,611 ETH outflows in 2025. Last active Jul 27, 2025.'},
     {id:'mimowallet',l:'Mimo Wallet',c:0x3399ff,s:0.3,p:[4,1,-2],d:'0x4e24...af7d. Gnosis Safe. 783 txs. $401K stablecoins. Funded by Mimo Capital Multisig. Signer "Fred" overlaps with governance.'},
     {id:'tenxmulti',l:'TenX Multisig',c:0xfa8800,s:0.35,p:[-1,-1,-4],d:'0x185f...fb83. Etherscan-labeled. Sent 32,000+ ETH to Foundation creator. Legacy ICO treasury. Now ~$103K remnants.'},

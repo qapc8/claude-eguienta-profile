@@ -126,6 +126,9 @@ a.back:hover{border-color:#69f;color:#fff}
   <div class="lg"><div class="ld" style="background:#00c8ff"></div> Smart Contract / Token</div>
   <div class="lg"><div class="ld" style="background:#888"></div> Corporate Entity</div>
   <div class="sep"></div>
+  <h3 style="color:#ff3b3b">BOKA INTEL</h3>
+  <div style="color:#fa0;font-size:0.85em;margin-bottom:4px">16 BTC sub-destination addresses provided by boka.eth (Mar 12, 2026). Boka received $398K USDC from Claude Eguienta.</div>
+  <div class="sep"></div>
   <h3>DEGREE</h3>
   <div class="lg"><div class="ld" style="background:#ff3b3b;box-shadow:0 0 6px #ff3b3b"></div> 1st — Direct transactions</div>
   <div class="lg"><div class="ld" style="background:#fa0;box-shadow:0 0 6px #fa0"></div> 2nd — One hop away</div>
@@ -163,9 +166,12 @@ a.back:hover{border-color:#69f;color:#fff}
   <div class="flow"><span class="amt">3,000 ETH</span><span class="arr">&rarr;</span><span class="lbl">Mimo Vaults Core &rarr; Foundation ETH</span><span class="deg t-orange">2nd</span></div>
   <div class="flow"><span class="amt">1,500 BTC</span><span class="arr">&rarr;</span><span class="lbl">3x500 BTC sweeps &rarr; sub-distributions</span><span class="deg t-red">1st</span></div>
   <div class="flow"><span class="amt">610 BTC</span><span class="arr">&rarr;</span><span class="lbl">Peel-offs &rarr; Kraken + unlabeled</span><span class="deg t-orange">2nd</span></div>
-  <div class="flow"><span class="amt">151+ BTC</span><span class="arr">&rarr;</span><span class="lbl">Sweep sub-dest &rarr; Kraken deposits</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">~432 BTC</span><span class="arr">&rarr;</span><span class="lbl">9 sub-dest &rarr; CONSOLIDATION TX &rarr; 11 outputs</span><span class="deg t-red">KEY</span></div>
+  <div class="flow"><span class="amt">201 BTC</span><span class="arr">&rarr;</span><span class="lbl">Sweep sub-dest &rarr; Kraken (100+50+1+50)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">417 BTC</span><span class="arr">&rarr;</span><span class="lbl">Sub-destinations still DORMANT (250+85+60+22)</span><span class="deg t-orange">2nd</span></div>
   <div class="flow"><span class="amt">2.2M PAY</span><span class="arr">&rarr;</span><span class="lbl">Hosp wallets &rarr; Bittrex (dump)</span><span class="deg t-purple">3rd</span></div>
   <div class="flow"><span class="amt">750 ETH</span><span class="arr">&rarr;</span><span class="lbl">Mimo Wallet &rarr; 0x957f (unknown)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">50 BTC</span><span class="arr">&rarr;</span><span class="lbl">bc1qkunc2 &rarr; bc1qmcgds (separate spend)</span><span class="deg t-orange">2nd</span></div>
   <div class="flow"><span class="amt">~282 BTC</span><span class="arr">&rarr;</span><span class="lbl">DAO hack ETH &rarr; ShapeShift &rarr; BTC</span><span class="deg t-purple">3rd</span></div>
   <div class="flow" style="border-top:1px solid #252550;margin-top:4px;padding-top:6px"><span class="amt" style="color:#f5a">CLAUDE WALLET</span><span class="arr"></span><span class="lbl" style="color:#f5a">0x33ce...d3c5 (CONFIRMED)</span><span class="deg t-red">1st</span></div>
   <div class="flow"><span class="amt">400K USDC</span><span class="arr">&larr;</span><span class="lbl">KuCoin 9 &rarr; Claude wallet (Nov 2022)</span><span class="deg t-orange">2nd</span></div>
@@ -190,16 +196,18 @@ a.back:hover{border-color:#69f;color:#fff}
   <h3>FORENSICS SUMMARY</h3>
   <div class="st"><span class="k">BTC tracked</span><span class="v">7,100+ BTC</span></div>
   <div class="st"><span class="k">ETH tracked</span><span class="v">250,000+ ETH</span></div>
-  <div class="st"><span class="k">Nodes mapped</span><span class="v" id="s-nodes">50</span></div>
-  <div class="st"><span class="k">Connections</span><span class="v" id="s-edges">72</span></div>
+  <div class="st"><span class="k">Nodes mapped</span><span class="v" id="s-nodes">72</span></div>
+  <div class="st"><span class="k">Connections</span><span class="v" id="s-edges">105</span></div>
   <div class="sep"></div>
+  <div class="st"><span class="k">Boka intel</span><span class="v" style="color:#fa0">16 BTC addrs</span></div>
+  <div class="st"><span class="k">Consolidation TX</span><span class="v" style="color:#ff3b3b">~432 BTC</span></div>
   <div class="st"><span class="k">Claude wallet</span><span class="v" style="color:#f5a">$282K (confirmed)</span></div>
   <div class="st"><span class="k">Foundation BTC</span><span class="v" style="color:#ff3b3b">EMPTY (swept)</span></div>
   <div class="st"><span class="k">Dormant BTC (L1)</span><span class="v" style="color:#fa0">~1,730 BTC</span></div>
-  <div class="st"><span class="k">Dormant BTC (L2)</span><span class="v" style="color:#fa0">~495 BTC</span></div>
-  <div class="st"><span class="k">Total dormant</span><span class="v" style="color:#ff3b3b">~2,225 BTC</span></div>
+  <div class="st"><span class="k">Dormant BTC (L2)</span><span class="v" style="color:#fa0">~417 BTC</span></div>
+  <div class="st"><span class="k">Total dormant</span><span class="v" style="color:#ff3b3b">~2,147 BTC</span></div>
   <div class="st"><span class="k">Foundation ETH</span><span class="v" style="color:#4c4">~$2.30M</span></div>
-  <div class="st"><span class="k">Exchange split</span><span class="v" style="color:#fa0">KuCoin / Kraken</span></div>
+  <div class="st"><span class="k">Exchange deposits</span><span class="v" style="color:#fa0">201+ BTC Kraken</span></div>
   <div class="st"><span class="k">Kuma Protocol</span><span class="v" style="color:#4c4">Mimo product link</span></div>
 </div>
 
@@ -374,11 +382,77 @@ const W=[
   {id:'kuma',l:'Kuma Protocol (MCAG)',sub:'MIMO LABS PRODUCT — Bond tokens',addr:'0x74e9e8d1365358f0ec416e24f723e36181b79a7b (KUMABondToken)',c:0x00c8ff,s:0.5,p:[0,7,5],deg:2,
    tags:['Mimo Labs product','Bond-backed NFTs','FMA approved'],bal:'Protocol',chain:'ETH',notes:'Kuma Protocol is BUILT BY MIMO LABS. Mimo Capital AG is the regulated entity that issues MCAG bond-backed NFTs. FMA Liechtenstein approved. Claude\'s personal wallet transferred MCAG tokens to Kuma Protocol (Jun+Nov 2024). CEO using own product with personal funds.'},
 
-  {id:'bokaeth',l:'boka.eth',sub:'Received $398K USDC from Claude',addr:'boka.eth (ENS) — @0xboka on Twitter',c:0xfa8800,s:0.4,p:[-1,3,8],deg:2,
-   tags:['$398K USDC received','ENS','@0xboka'],bal:'Unknown',chain:'ETH',notes:'Received 398,000 USDC from Claude\'s wallet (Nov 29, 2025). Twitter: @0xboka. Runs hedge fund with DeFi holdings. Relationship to Mimo unclear — could be investment, payment, or personal.'},
+  {id:'bokaeth',l:'boka.eth',sub:'Received $398K USDC from Claude — PROVIDED BTC ADDRESSES',addr:'boka.eth (ENS) — @0xboka on Twitter',c:0xfa8800,s:0.5,p:[-1,3,8],deg:2,
+   tags:['$398K USDC received','ENS','@0xboka','PROVIDED 16 BTC ADDRS'],bal:'Unknown',chain:'ETH',notes:'Received 398,000 USDC from Claude\'s wallet (Nov 29, 2025). Twitter: @0xboka. On Mar 12, 2026, Boka provided 16 exact BTC sub-destination addresses from the Foundation sweep — proving insider knowledge of fund flows. 9 addresses from Sweep #2 + 7 from Sweep #1.'},
 
   {id:'usdc40k',l:'USDC Mints (Protocol)',sub:'5x USDC mints (Feb 2026)',addr:'Minted from null address (Feb 15-24, 2026)',c:0xfa8800,s:0.35,p:[-3,4,8],deg:2,
    tags:['~$239.5K total','Protocol mints','Feb 2026'],bal:'~$239.5K',chain:'ETH',notes:'Claude received 5 USDC mints from null address (0x000...000) between Feb 15-24, 2026: 40K (Feb 15) + 40K (Feb 16) + 40K (Feb 18) + 40K (Feb 20) + 79.5K (Feb 24). Total ~$239.5K. Minted from null address suggests protocol-based distribution (possibly Kuma Protocol bond yields or similar DeFi mechanism) rather than peer-to-peer transfers.'},
+
+  // === BOKA-PROVIDED SWEEP #2 SUB-DESTINATIONS (from sweep500b) ===
+  {id:'s2_fajam',l:'Sub: 60 BTC (DORMANT)',sub:'bc1qfajam...670s — Boka provided',addr:'bc1qfajamlsva59dt3s2er27mr5n5x58fzust4670s',c:0xa855f7,s:0.35,p:[7,-10,2],deg:2,
+   tags:['60 BTC','UNSPENT','Boka intel'],bal:'60 BTC ($5M+)',chain:'BTC',notes:'Sub-destination from Sweep #2 (500 BTC). Address provided by Boka on Mar 12, 2026. CONFIRMED UNSPENT — dormant since receipt.'},
+
+  {id:'s2_h0pfs',l:'Sub: 12 BTC → Consol.',sub:'bc1qh0pfs...h9zx — SPENT',addr:'bc1qh0pfs4pkqemcul277jcch8tx756kr95yq4h9zx',c:0xa855f7,s:0.25,p:[8,-10,3],deg:2,
+   tags:['12 BTC','SPENT','→ Consolidation TX'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #2. SPENT in consolidation TX 64a02680... along with 8 other sub-destinations from BOTH sweep #1 and #2.'},
+
+  {id:'s2_9wlat',l:'Sub: 22 BTC (DORMANT)',sub:'bc1q9wlat...3rzp — Boka provided',addr:'bc1q9wlatxh4mk99ujtgg0s6z00ar8k0ev8pgu3rzp',c:0xa855f7,s:0.3,p:[6,-10,1],deg:2,
+   tags:['22 BTC','UNSPENT','Boka intel'],bal:'22 BTC ($1.8M+)',chain:'BTC',notes:'Sub-destination from Sweep #2. CONFIRMED UNSPENT — dormant since receipt.'},
+
+  {id:'s2_kevpr',l:'Sub: 20 BTC → Consol.',sub:'bc1qkevpr...qz3v — SPENT',addr:'bc1qkevprxeq2jkff9rvvhvdj9q4lmruke732xqz3v',c:0xa855f7,s:0.25,p:[9,-10,4],deg:2,
+   tags:['20 BTC','SPENT','→ Consolidation TX'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #2. SPENT in consolidation TX 64a02680...'},
+
+  {id:'s2_6t323',l:'Sub: 250 BTC (DORMANT)',sub:'bc1q6t323...aq3f — LARGEST DORMANT',addr:'bc1q6t32370hknwxyxzn3vedcql7xrhxky6t98aq3f',c:0xa855f7,s:0.5,p:[6,-9,-1],deg:2,
+   tags:['250 BTC','UNSPENT','Boka intel','LARGEST'],bal:'250 BTC ($20M+)',chain:'BTC',notes:'Sub-destination from Sweep #2. LARGEST dormant sub-destination. 250 BTC sitting untouched since sweep. Address provided by Boka.'},
+
+  {id:'s2_7h5sc',l:'Sub: 15 BTC → Consol.',sub:'bc1q7h5sc...jk5n — SPENT',addr:'bc1q7h5sc2r09at8xj5h2p7r9r8w2e9krgm6nnjk5n',c:0xa855f7,s:0.25,p:[10,-10,5],deg:2,
+   tags:['15 BTC','SPENT','→ Consolidation TX'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #2. SPENT in consolidation TX 64a02680...'},
+
+  {id:'s2_kraken',l:'Sub: 1 BTC → Kraken',sub:'3AvGeYGX...uBAS — Exchange deposit',addr:'3AvGeYGXFKZv6ndoDyA6fofQFgBC5MuBAS',c:0x44cc44,s:0.2,p:[11,-9,6],deg:2,
+   tags:['1 BTC','Kraken deposit','Boka intel'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #2. Sent to Kraken exchange. Small 1 BTC — possibly test deposit.'},
+
+  {id:'s2_hvslz',l:'Sub: 75 BTC → Consol.',sub:'bc1qhvslz...vrcg — SPENT',addr:'bc1qhvslz9uxvwdn25zjvxte4gz0m6my0w0phxvrcg',c:0xa855f7,s:0.3,p:[8,-11,2],deg:2,
+   tags:['75 BTC','SPENT','→ Consolidation TX'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #2. SPENT in consolidation TX 64a02680...'},
+
+  {id:'s2_95qvh',l:'Sub: 30 BTC → Consol.',sub:'bc1q95qvh...dpvc — SPENT',addr:'bc1q95qvhe6uyjcee6qkdz3jdl7tfkqzdpvc848cdk',c:0xa855f7,s:0.25,p:[7,-11,3],deg:2,
+   tags:['30 BTC','SPENT','→ Consolidation TX'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #2. SPENT in consolidation TX 64a02680...'},
+
+  // === BOKA-PROVIDED SWEEP #1 SUB-DESTINATIONS (from sweep500a) ===
+  {id:'s1_fh68f',l:'Sub: 10 BTC → Consol.',sub:'bc1qfh68f...tenc — SPENT',addr:'bc1qfh68fs8x73wq3hshtkmenkzt0lngpalkrutenc',c:0xa855f7,s:0.2,p:[12,-9,-3],deg:2,
+   tags:['10 BTC','SPENT','→ Consolidation TX'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #1. SPENT in consolidation TX 64a02680...'},
+
+  {id:'s1_kunc2',l:'Sub: 50 BTC → Separate',sub:'bc1qkunc2...p20k — SPENT separately',addr:'bc1qkunc2rjjpr6zts4ph5vjvgzhx4s5d8gkj0p20k',c:0xfa8800,s:0.3,p:[13,-8,-2],deg:2,
+   tags:['50 BTC','SPENT SEPARATELY','Unique movement'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #1. Unlike others, spent SEPARATELY (not in consolidation TX). Sent 49.99 BTC to bc1qmcgdsrw3v9hq8... — different movement pattern may indicate different custodian or purpose.'},
+
+  {id:'s1_z522r',l:'Sub: 103 BTC → Consol.',sub:'bc1qz522r...hge4 — SPENT',addr:'bc1qz522rtwt7z0ep3zl3t5cvf65wk5f0cd85uhge4',c:0xa855f7,s:0.35,p:[11,-10,-4],deg:2,
+   tags:['103 BTC','SPENT','→ Consolidation TX'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #1. SPENT in consolidation TX 64a02680... Odd non-round amount (103 BTC) — all other sub-destinations are round numbers.'},
+
+  {id:'s1_kraken',l:'Sub: 100 BTC → Kraken',sub:'3GSntMt2...diU — Exchange deposit',addr:'3GSntMt2wa6hL18PogEhwepwgQEvCysdiU',c:0x44cc44,s:0.35,p:[14,-7,-1],deg:2,
+   tags:['100 BTC','Kraken deposit','Boka intel'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #1. Sent 100 BTC directly to Kraken exchange. Largest single exchange deposit from sweep sub-distributions.'},
+
+  {id:'s1_krjjd',l:'Sub: 75 BTC → Consol.',sub:'bc1qkrjjd...08h5 — SPENT',addr:'bc1qkrjjdyvj2mka353a0p60v54ux2y397423q08h5',c:0xa855f7,s:0.3,p:[12,-10,-5],deg:2,
+   tags:['75 BTC','SPENT','→ Consolidation TX'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #1. SPENT in consolidation TX 64a02680...'},
+
+  {id:'s1_k2ay5',l:'Sub: 12 BTC → Consol.',sub:'bc1qk2ay5...ehh8 — SPENT',addr:'bc1qk2ay5rlnugdm8alx2cd5xghcf66j7qmzeqehh8',c:0xa855f7,s:0.2,p:[13,-9,-4],deg:2,
+   tags:['12 BTC','SPENT','→ Consolidation TX'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination from Sweep #1. SPENT in consolidation TX 64a02680...'},
+
+  {id:'s1_9mav4',l:'Sub: 85 BTC (DORMANT)',sub:'bc1q9mav4...u4kvf — Boka provided',addr:'bc1q9mav42vqtulz70f0r36njzskvecy9r8huu4kvf',c:0xa855f7,s:0.35,p:[14,-6,-3],deg:2,
+   tags:['85 BTC','UNSPENT','Boka intel'],bal:'85 BTC ($7M+)',chain:'BTC',notes:'Sub-destination from Sweep #1. CONFIRMED UNSPENT — dormant since receipt.'},
+
+  // === EXTRA: NON-BOKA ADDRESS IN SAME CONSOLIDATION TX ===
+  {id:'s1_tysq7',l:'Sub: 65 BTC → Consol.',sub:'bc1qtysq7...NOT in Boka list',addr:'bc1qtysq7nfat...',c:0xfa8800,s:0.3,p:[10,-11,-6],deg:2,
+   tags:['65 BTC','SPENT','NOT in Boka list'],bal:'0 BTC',chain:'BTC',notes:'Sub-destination NOT provided by Boka but consumed in the SAME consolidation TX 64a02680... Proves at least one more sub-destination address exists beyond Boka\'s list.'},
+
+  // === CONSOLIDATION TX ===
+  {id:'consolTx',l:'CONSOLIDATION TX',sub:'64a02680... — PROVES COMMON CONTROL',addr:'64a02680ee02e5cf9ce1c59a6f0346ad12a4dfaf2e418c98ac697e0e7b431627',c:0xff3b3b,s:0.6,p:[10,-13,0],deg:2,
+   tags:['CRITICAL','~432 BTC','9 inputs','11 outputs','Cross-sweep'],bal:'~432 BTC throughput',chain:'BTC',notes:'CRITICAL FINDING: Single transaction consuming sub-destinations from BOTH Sweep #1 AND Sweep #2. This PROVES common control/custody of addresses across different sweep batches. 9 inputs (5 from sweep #2 + 3 from sweep #1 + 1 unknown) → 11 output addresses. Total ~432 BTC redistributed.'},
+
+  // === CONSOLIDATION TX OUTPUTS ===
+  {id:'consol_out',l:'Consolidation Outputs',sub:'11 addresses — ~432 BTC redistributed',addr:'bc1q7tgg0c(40), 34DnQtSy(100), bc1qwy88x(30), bc1q04qqs(100), bc1qx468d(12), bc1q2m2ps(15), bc1q2zda7(0.01), bc1qy3p4t(50), bc1qxzm25(45), bc1q6s003(20), bc1q8t8e7(20)',c:0xfa8800,s:0.45,p:[8,-15,0],deg:2,
+   tags:['11 addresses','~432 BTC','Layer 3'],bal:'~432 BTC',chain:'BTC',notes:'11 output addresses from consolidation TX. Includes 34DnQtSyBEvcE5kBXgHYWPNVxv95fvkTME (100 BTC) — potentially exchange address. Amounts: 100+100+50+45+40+30+20+20+15+12+0.01 BTC. These represent the THIRD layer of fund movement from the original Foundation BTC.'},
+
+  // === SEPARATE SPENDING DESTINATION ===
+  {id:'s1_mcgds',l:'bc1qmcgds... (49.99 BTC)',sub:'From bc1qkunc2 separate spend',addr:'bc1qmcgdsrw3v9hq8...',c:0xfa8800,s:0.3,p:[15,-9,-1],deg:2,
+   tags:['49.99 BTC','Separate movement'],bal:'49.99 BTC',chain:'BTC',notes:'Received 49.99 BTC from bc1qkunc2... (Sweep #1 sub-destination). This address was spent SEPARATELY from the main consolidation TX — different movement pattern.'},
 ];
 
 // ===== EDGES =====
@@ -458,6 +532,50 @@ const E=[
   {f:'kuma',t:'mimoag',c:0x00c8ff,w:2,lbl:'Mimo Capital AG = issuer',deg:2},
   {f:'kuma',t:'mimodep',c:0x00c8ff,w:1,lbl:'Mimo Labs built',deg:2,dash:true},
   {f:'claude',t:'kuma',c:0xff55aa,w:1,lbl:'CEO of issuer (Mimo)',deg:2,dash:true},
+
+  // BOKA → BTC INTEL CONNECTION
+  {f:'bokaeth',t:'consolTx',c:0xfa8800,w:2,lbl:'PROVIDED 16 addresses (Mar 2026)',deg:2,dash:true},
+
+  // SWEEP #2 → SUB-DESTINATIONS (from sweep500b)
+  {f:'sweep500b',t:'s2_fajam',c:0xa855f7,w:2,lbl:'60 BTC',deg:2},
+  {f:'sweep500b',t:'s2_h0pfs',c:0xa855f7,w:1,lbl:'12 BTC',deg:2},
+  {f:'sweep500b',t:'s2_9wlat',c:0xa855f7,w:1,lbl:'22 BTC',deg:2},
+  {f:'sweep500b',t:'s2_kevpr',c:0xa855f7,w:1,lbl:'20 BTC',deg:2},
+  {f:'sweep500b',t:'s2_6t323',c:0xa855f7,w:3,lbl:'250 BTC',deg:2},
+  {f:'sweep500b',t:'s2_7h5sc',c:0xa855f7,w:1,lbl:'15 BTC',deg:2},
+  {f:'sweep500b',t:'s2_kraken',c:0x44cc44,w:1,lbl:'1 BTC → Kraken',deg:2},
+  {f:'sweep500b',t:'s2_hvslz',c:0xa855f7,w:2,lbl:'75 BTC',deg:2},
+  {f:'sweep500b',t:'s2_95qvh',c:0xa855f7,w:2,lbl:'30 BTC',deg:2},
+  {f:'s2_kraken',t:'krakenex',c:0x44cc44,w:1,lbl:'1 BTC deposit',deg:2},
+
+  // SWEEP #1 → SUB-DESTINATIONS (from sweep500a)
+  {f:'sweep500a',t:'s1_fh68f',c:0xa855f7,w:1,lbl:'10 BTC',deg:2},
+  {f:'sweep500a',t:'s1_kunc2',c:0xfa8800,w:2,lbl:'50 BTC',deg:2},
+  {f:'sweep500a',t:'s1_z522r',c:0xa855f7,w:3,lbl:'103 BTC',deg:2},
+  {f:'sweep500a',t:'s1_kraken',c:0x44cc44,w:3,lbl:'100 BTC → Kraken',deg:2},
+  {f:'sweep500a',t:'s1_krjjd',c:0xa855f7,w:2,lbl:'75 BTC',deg:2},
+  {f:'sweep500a',t:'s1_k2ay5',c:0xa855f7,w:1,lbl:'12 BTC',deg:2},
+  {f:'sweep500a',t:'s1_9mav4',c:0xa855f7,w:2,lbl:'85 BTC',deg:2},
+  {f:'sweep500a',t:'s1_tysq7',c:0xfa8800,w:2,lbl:'65 BTC',deg:2},
+  {f:'s1_kraken',t:'krakenex',c:0x44cc44,w:3,lbl:'100 BTC deposit',deg:2},
+
+  // SUB-DESTINATIONS → CONSOLIDATION TX (PROVES COMMON CONTROL)
+  {f:'s2_h0pfs',t:'consolTx',c:0xff3b3b,w:2,lbl:'12 BTC input',deg:2},
+  {f:'s2_kevpr',t:'consolTx',c:0xff3b3b,w:2,lbl:'20 BTC input',deg:2},
+  {f:'s2_7h5sc',t:'consolTx',c:0xff3b3b,w:1,lbl:'15 BTC input',deg:2},
+  {f:'s2_hvslz',t:'consolTx',c:0xff3b3b,w:2,lbl:'75 BTC input',deg:2},
+  {f:'s2_95qvh',t:'consolTx',c:0xff3b3b,w:2,lbl:'30 BTC input',deg:2},
+  {f:'s1_fh68f',t:'consolTx',c:0xff3b3b,w:1,lbl:'10 BTC input',deg:2},
+  {f:'s1_z522r',t:'consolTx',c:0xff3b3b,w:3,lbl:'103 BTC input',deg:2},
+  {f:'s1_krjjd',t:'consolTx',c:0xff3b3b,w:2,lbl:'75 BTC input',deg:2},
+  {f:'s1_k2ay5',t:'consolTx',c:0xff3b3b,w:1,lbl:'12 BTC input',deg:2},
+  {f:'s1_tysq7',t:'consolTx',c:0xff3b3b,w:2,lbl:'65 BTC input',deg:2},
+
+  // CONSOLIDATION TX → OUTPUTS
+  {f:'consolTx',t:'consol_out',c:0xfa8800,w:4,lbl:'~432 BTC → 11 addr',deg:2},
+
+  // SEPARATE SPENDING (bc1qkunc2 → bc1qmcgds)
+  {f:'s1_kunc2',t:'s1_mcgds',c:0xfa8800,w:2,lbl:'49.99 BTC',deg:2},
 ];
 
 // ===== BUILD SCENE =====
