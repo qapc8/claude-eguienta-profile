@@ -175,7 +175,9 @@ a.back:hover{border-color:#69f;color:#fff}
   <div class="sep"></div>
   <div class="st"><span class="k">Claude wallet</span><span class="v" style="color:#f5a">$282K (confirmed)</span></div>
   <div class="st"><span class="k">Foundation BTC</span><span class="v" style="color:#ff3b3b">EMPTY (swept)</span></div>
-  <div class="st"><span class="k">Dormant BTC</span><span class="v" style="color:#fa0">~1,730 BTC</span></div>
+  <div class="st"><span class="k">Dormant BTC (L1)</span><span class="v" style="color:#fa0">~1,730 BTC</span></div>
+  <div class="st"><span class="k">Dormant BTC (L2)</span><span class="v" style="color:#fa0">~495 BTC</span></div>
+  <div class="st"><span class="k">Total dormant</span><span class="v" style="color:#ff3b3b">~2,225 BTC</span></div>
   <div class="st"><span class="k">Foundation ETH</span><span class="v" style="color:#4c4">~$2.30M</span></div>
   <div class="st"><span class="k">Exchange split</span><span class="v" style="color:#fa0">KuCoin / Kraken</span></div>
   <div class="st"><span class="k">Kuma Protocol</span><span class="v" style="color:#4c4">Mimo product link</span></div>
@@ -222,13 +224,13 @@ const W=[
 
   // SWEEP DESTINATIONS (1st degree)
   {id:'sweep500a',l:'Sweep 500 BTC #1',sub:'Sub-distributed to 8 addr',addr:'bc1qx5n3zpp4nahrrsddakqfu4ymhaaqrs0expra7j',c:0xa855f7,s:0.5,p:[10,-6,-2],deg:1,
-   tags:['500 BTC','SPENT'],bal:'0 (distributed)',chain:'BTC',notes:'Distributed to 8 sub-addresses (10-103 BTC chunks). 100 BTC went to Kraken.'},
-  {id:'sweep500b',l:'Sweep 500 BTC #2',sub:'Moved 2 days later',addr:'bc1q4ew3a6xh3nl707j575cr24fy8gp9533zmey448',c:0xa855f7,s:0.5,p:[9,-7,0],deg:1,
-   tags:['500 BTC','SPENT','Rapid movement'],bal:'0 (moved)',chain:'BTC',notes:'Distributed to 10 sub-addresses. 1 BTC confirmed to Kraken (3AvGeYGXFKZv6ndoDyA6fofQFgBC5MuBAS).'},
+   tags:['500 BTC','SPENT'],bal:'0 (distributed)',chain:'BTC',notes:'Distributed to 8 sub-addresses (10-103 BTC chunks). 100 BTC to Kraken (3GSntMt). 85 BTC still DORMANT at bc1q9mav42. Rest spent/moved.'},
+  {id:'sweep500b',l:'Sweep 500 BTC #2',sub:'Moved ~2 days later',addr:'bc1q4ew3a6xh3nl707j575cr24fy8gp9533zmey448',c:0xa855f7,s:0.5,p:[9,-7,0],deg:1,
+   tags:['500 BTC','SPENT','Rapid movement'],bal:'0 (moved)',chain:'BTC',notes:'Distributed to 10 sub-addresses. 1 BTC to Kraken (3AvGeYGXFKZv6ndoDyA6fofQFgBC5MuBAS). 250 BTC DORMANT at bc1q6t3237, 60 BTC DORMANT at bc1qfajam. Rest spent/moved.'},
   {id:'sweep500c',l:'Sweep 500 BTC #3',sub:'Moved ~40 days later',addr:'bc1qezqxftdcr208vqgza4dzt0yqa9srlhp6tm82tt',c:0xa855f7,s:0.5,p:[11,-5,1],deg:1,
-   tags:['500 BTC','SPENT'],bal:'0 (moved)',chain:'BTC',notes:'Distributed to 6 sub-addresses. 50 BTC confirmed to Kraken (3GsiFBdkXwpCXoTZ22tbyBKx8pBPJy7yqR).'},
+   tags:['500 BTC','SPENT'],bal:'0 (moved)',chain:'BTC',notes:'Distributed to 6 sub-addresses. 50 BTC to Kraken (3GsiFBdkXwpCXoTZ22tbyBKx8pBPJy7yqR). 100 BTC DORMANT at bc1q3y6lt (received small additional dust). Rest spent/moved.'},
   {id:'sweepdormant',l:'Dormant Sweeps (26 addr)',sub:'All P2WSH multisig — UNSPENT',addr:'26 addresses (10/50/100/150/200 BTC tiers)',c:0xa855f7,s:0.55,p:[8,-3,2],deg:1,
-   tags:['~1,730 BTC','ALL UNSPENT','P2WSH Multisig'],bal:'~1,730 BTC ($170M+)',chain:'BTC',notes:'13x10 + 6x50 + 4x100 + 2x150 + 3x200 BTC. All P2WSH (script-hash wrapped) = likely 2-of-3 multisig cold storage. None have moved.'},
+   tags:['~1,730 BTC','ALL UNSPENT','P2WSH Multisig'],bal:'~1,730 BTC ($143M+)',chain:'BTC',notes:'13x10 + 6x50 + 4x100 + 2x150 + 3x200 BTC. All P2WSH (script-hash wrapped) = likely 2-of-3 multisig cold storage. All confirmed UNSPENT as of Mar 12, 2026. Additionally ~495 BTC sits dormant in sub-destination addresses from the 3x500 BTC sweeps (250+100+85+60 BTC). Total dormant across all layers: ~2,225 BTC ($185M+).'},
   {id:'sweepchange',l:'Sweep Change',sub:'17.53 BTC remainder',addr:'bc1qckuw33jylg83nxald7zrthwxa2z35hpyx7j4gu',c:0xa855f7,s:0.3,p:[7,-5,-1],deg:1,
    tags:['17.53 BTC','SPENT'],bal:'0',chain:'BTC',notes:'Change address. Immediately moved to P2WSH address within seconds — automated custody.'},
 
