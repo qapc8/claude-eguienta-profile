@@ -325,7 +325,7 @@ const W=[
    tags:['Kraken relay','Contract'],bal:'Transit',chain:'ETH',notes:'Relays 500-850 ETH from Kraken 4 to Foundation ETH Safe (2022-2023). Also received 0.01 ETH from OKX 3.'},
 
   {id:'mimovc',l:'Mimo: Vaults Core',sub:'DeFi protocol contract',addr:'0x4026bdcd023331d52533e3374983ded99ccbb6d4',c:0x00c8ff,s:0.45,p:[8,4,1],deg:2,
-   tags:['Smart Contract','3,000 ETH to Foundation'],bal:'Protocol',chain:'ETH',notes:'Mimo DeFi lending contract. Sent 3,000 ETH directly to Foundation ETH Safe (Aug 2024). Protocol revenue flowing to ICO-era entity.'},
+   tags:['Smart Contract','3,000 ETH to Foundation','180 ETH to personal wallet'],bal:'Protocol',chain:'ETH',notes:'Mimo DeFi lending contract. Sent 3,000 ETH to Foundation ETH Safe (Aug 2024) AND 180 ETH to Claude personal wallet 0x0b38 (Jan-Jul 2024). Protocol funds flowing to both foundation entity AND personal wallets.'},
 
   {id:'mimodep',l:'Mimo: Deployer',sub:'0xded9...d078 — All contracts',addr:'0xded9f901d40a96c3ee558e6885bcc7efc51ad078',c:0x00c8ff,s:0.4,p:[7,5,2],deg:2,
    tags:['Deployer','Dormant since Jan 2022'],bal:'Depleted',chain:'ETH',notes:'Deployed MIMO token, PAR stablecoin, VotingEscrow, DemandMiner (2021). Last active Jan 2022 — went dormant just before DAO hack article. First funded Dec 2020 from 0x7086ee (high-activity EOA, no direct TenX link).'},
@@ -792,7 +792,7 @@ const E=[
   {f:'w_92c5',t:'w_610d',c:0xfa8800,w:2,lbl:'10K USDC + 10K USK (Jun 2023)',deg:1},
 
   // Wallet → Protocol connections
-  {f:'w_0b38',t:'mimovc',c:0x00c8ff,w:2,lbl:'180 ETH IN from Vaults Core',deg:1},
+  {f:'mimovc',t:'w_0b38',c:0x00c8ff,w:2,lbl:'180 ETH → personal wallet',deg:1},
   {f:'w_610d',t:'kucoin',c:0x44cc44,w:1,lbl:'Funded by KuCoin 10',deg:2},
   {f:'w_92c5',t:'kucoin',c:0x44cc44,w:1,lbl:'Via 0x680e (KuCoin origin)',deg:2,dash:true},
   {f:'w_fab5',t:'kucoin',c:0x44cc44,w:1,lbl:'KuCoin 10 + 11',deg:2},

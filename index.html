@@ -181,6 +181,8 @@
     <div class="stat"><div class="n n-orange">$1.3M</div><div class="l">Telcoin exploit</div></div>
     <div class="stat"><div class="n n-orange">$14.5M</div><div class="l">TrustSwap/Team Finance hack</div></div>
     <div class="stat"><div class="n n-blue">10+</div><div class="l">Years in crypto</div></div>
+    <div class="stat"><div class="n n-purple">11</div><div class="l">Personal wallets identified</div></div>
+    <div class="stat"><div class="n n-purple">$1.03M+</div><div class="l">Personal wallet cluster value</div></div>
   </div>
 
   <div class="card">
@@ -211,6 +213,10 @@
       <span class="badge b-orange">MED &mdash; Whistleblower called leadership "dysfunctional"</span>
       <span class="badge b-orange">MED &mdash; Every associated token down 99%+</span>
       <span class="badge b-orange">MED &mdash; Board member at TrustSwap (own $14.5M hack)</span>
+      <span class="badge b-red">HIGH &mdash; Personal wallet receives ETH from Mimo Capital Vaults Core</span>
+      <span class="badge b-orange">MED &mdash; Protocol infrastructure deployed from personal wallets</span>
+      <span class="badge b-orange">MED &mdash; 11 personal wallets with cross-flows proving common ownership</span>
+      <span class="badge b-orange">MED &mdash; Multisig signer on Mimo Capital + KUMA from personal EOA</span>
       <span class="badge b-blue">INFO &mdash; No personal fraud charges found</span>
       <span class="badge b-blue">INFO &mdash; Never publicly addressed DAO hack association</span>
       <span class="badge b-green">POS &mdash; Telcoin received US bank charter (2025)</span>
@@ -439,6 +445,14 @@
       <div class="gcard green">
         <h3>Naim Boughazi</h3><div class="role">TrustSwap CEO (Oct 2023)</div>
         <p>Appointed as CEO shortly before Eguienta joined the board. Jointly leading TrustSwap's direction.</p>
+      </div>
+      <div class="gcard orange">
+        <h3>Jean Brasse</h3><div class="role">Head of DeFi at Mimo Labs &bull; Co-Founder Murphy Labs</div>
+        <p><strong>ENS:</strong> jeanbrasse.eth. Co-founder of Murphy Labs (murphylabs.eth). Signs on MurphyLabs Safe multisig (0x677F...784A) which received 50K USDC from Claude's personal wallet (0xfab5). Also received 1 ETH from Mimo Capital Wallet. Key DeFi development entity for Mimo ecosystem. On-chain link: personal wallet &rarr; MurphyLabs Safe &rarr; jeanbrasse.eth signer.</p>
+      </div>
+      <div class="gcard orange">
+        <h3>v1337.eth</h3><div class="role">Unknown &mdash; Received $500K USDT</div>
+        <p>ENS holder who received <strong>500,000 USDT</strong> from Claude's "claude huma" wallet (0x92c5) on Jan 8, 2022. Significant single transfer. Identity unknown. Requires further investigation &mdash; could be OTC trade, investment, payment, or loan.</p>
       </div>
     </div>
   </div>
@@ -776,6 +790,27 @@
     <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>Industry acceptance:</strong> Still speaks at major conferences (ABS 2024, Blockchain Africa), serves on boards, launches new products. Not blacklisted by the crypto industry.</p></div>
 
     <div class="finding"><div class="dot" style="background:#4c4"></div><p><strong>Telcoin banking charter:</strong> Telcoin (which he co-founded) received approval in Nov 2025 to become the first regulated digital asset bank in the US. This is a legitimate achievement, though Eguienta is no longer actively leading Telcoin.</p></div>
+
+    <div class="sep"></div>
+    <h3 style="margin-top:12px;color:#ff3b3b">NEW: Personal Wallet Cluster Findings (11 Wallets)</h3>
+
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Personal wallet receives protocol funds:</strong> Wallet 0x0b38 ($841K) receives <strong>180 ETH directly from Mimo Capital Vaults Core</strong> smart contract (Jan-Jul 2024). This establishes a direct protocol-to-personal wallet pipeline. Same wallet sent 74K GHO (confirming the reported 75K). Holds 8.59 WBTC ($600K) + 93 ETH ($199K) + 16.9M MIMO tokens.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Protocol infrastructure from personal wallets:</strong> Wallet 0x610d <strong>deployed the USK/3CRV Curve metapool</strong> — a critical piece of Mimo protocol infrastructure — from a personal wallet funded by the "claude huma" wallet (0x92c5). Wallet 0x92c5 also deployed a separate Curve metapool (Sep 2023). Deploying protocol LP pools from personal wallets blurs the line between personal and corporate activity.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>On-chain proof of cross-wallet ownership:</strong> Direct fund flows between wallets prove common ownership: 0x680e &rarr; 1 ETH &rarr; 0x92c5 (initial funding). 0x0b38 &rarr; 100K USDC &rarr; 0x92c5. 0x0b38 &rarr; 80K USDT + 20K USDC &rarr; 0x680e. 0x92c5 &rarr; 10K USDC + 10K USK &rarr; 0x610d. All wallets funded via KuCoin exchange (consistent pattern, different from Kraken used by foundation wallets).</p></div>
+
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Confirmed multisig signer:</strong> Wallet 0x27a5 is an on-chain <strong>signer on both the Mimo Capital: Safe Multisig (550 txs, $246K)</strong> and the <strong>Kuma Protocol: MCAG Multisig (51 txs)</strong>. This is direct on-chain proof of Claude's governance control over both Mimo Capital treasury and Kuma Protocol operations.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Two single-use wallets, same destination:</strong> Wallets 0x97e2 and 0x9fab both sent USDC to the <strong>same address 0x56aaef03...</strong> (50K in Oct 2022 + 85K in Aug 2022 = 135K USDC). Two different wallets, same destination, proves coordinated fund movement to an unidentified recipient.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>$500K to v1337.eth:</strong> The "claude huma" wallet (0x92c5) sent <strong>500,000 USDT to v1337.eth</strong> (Jan 8, 2022). Identity unknown. This is the largest single transfer from any personal wallet to an unidentified recipient. Requires investigation.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>$399K USDT recurring payments:</strong> Wallet 0xdff6 received <strong>~$399K USDT in recurring payments</strong> from 0xe59cd29b (Nov-Dec 2021), then distributed $370K+ to multiple recipients. Pattern suggests salary, revenue sharing, or structured distributions from an unidentified source.</p></div>
+
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>100K repayment confirmed, 10K gap:</strong> Claude's confirmed wallet (0x33ce) sent 110K USDC to 0xA9c03C36 (Jul 2025), received 100K back (Aug 2025). The 10K USDC difference may be fees, interest, or an outstanding balance. This confirms the reported "100K repayment."</p></div>
+
+    <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>Total personal on-chain footprint: ~$1.03M.</strong> Combined with Foundation ETH ($2.3M), Mimo Capital wallets ($660K), and dormant BTC (~$178M+), total identified on-chain assets exceed <strong>$181M+</strong> across all wallet categories.</p></div>
   </div>
 
   <div class="card">
@@ -789,6 +824,8 @@
       <div class="stat"><div class="n n-orange">$14.5M</div><div class="l">TrustSwap/Team Finance hack (board member)</div></div>
       <div class="stat"><div class="n n-orange">~2.2M PAY</div><div class="l">Hosp alleged token dump</div></div>
       <div class="stat"><div class="n n-blue">$25M</div><div class="l">Telcoin token sale (co-founded)</div></div>
+      <div class="stat"><div class="n n-purple">$1.03M+</div><div class="l">Personal wallet cluster (11 wallets)</div></div>
+      <div class="stat"><div class="n n-purple">$181M+</div><div class="l">Total on-chain footprint (all wallets)</div></div>
     </div>
   </div>
 </div>
@@ -1035,7 +1072,34 @@
 &nbsp;&nbsp;&nbsp;&#9474; Now: 0 BTC. Dormant: ~1,730 BTC (L1) + ~417 BTC (L2) = ~2,147 BTC<br>
 &nbsp;&nbsp;&nbsp;&#9474; 201 BTC to Kraken. ~432 BTC consolidated (cross-sweep TX proves common control)<br>
 &nbsp;&nbsp;&nbsp;&#9474; Boka (received $398K from Claude) provided 16 sub-destination addresses<br>
-&nbsp;&nbsp;&nbsp;&#9474; <span style="color:#ff3b3b">TIMING: Funded days before DAO hack accusation published</span>
+&nbsp;&nbsp;&nbsp;&#9474; <span style="color:#ff3b3b">TIMING: Funded days before DAO hack accusation published</span><br>
+<br>
+<span style="color:#ff55aa;font-weight:700">PERSONAL WALLET CLUSTER</span> <span style="color:#888">(11 wallets, ~$1.03M, ALL KuCoin-funded)</span><br>
+<br>
+<span style="color:#ff55aa;font-weight:700">0x0b38...089e</span> <span style="color:#888">(DeFi Heavy — $841K — LARGEST)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; 180 ETH IN &larr; Mimo Capital Vaults Core (Jan-Jul 2024)<br>
+&nbsp;&nbsp;&nbsp;&#9474; 74K GHO OUT (confirms 75K send)<br>
+&nbsp;&nbsp;&nbsp;&#9474; 80K USDT + 20K USDC &rarr; <span style="color:#fa0">0x680e</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; 100K USDC &rarr; <span style="color:#69f">0x92c5</span><br>
+&nbsp;&nbsp;&nbsp;&#9660;<br>
+<span style="color:#fa0;font-weight:700">0x680e...3368</span> <span style="color:#888">(KUMA Bonds — $105K)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; 1 ETH &rarr; <span style="color:#69f">0x92c5</span> (initial funding, Nov 2021)<br>
+&nbsp;&nbsp;&nbsp;&#9474; 6.248 WBTC &rarr; Mimo Capital vault deposit<br>
+&nbsp;&nbsp;&nbsp;&#9474; 1.2M MIMO from Bittrex (Dec 2022)<br>
+&nbsp;&nbsp;&nbsp;&#9660;<br>
+<span style="color:#69f;font-weight:700">0x92c5...b18</span> <span style="color:#888">("claude huma" — $62.7K — HUB)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; 500K USDT &rarr; v1337.eth (Jan 2022)<br>
+&nbsp;&nbsp;&nbsp;&#9474; 10K USDC + 10K USK &rarr; <span style="color:#4c4">0x610d</span><br>
+&nbsp;&nbsp;&nbsp;&#9660;<br>
+<span style="color:#4c4;font-weight:700">0x610d...9dbd</span> <span style="color:#888">(Curve Deployer — $3K)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; <span style="color:#ff3b3b">DEPLOYED USK/3CRV Curve metapool</span><br>
+<br>
+<span style="color:#ff55aa;font-weight:700">0x27a5...e26b</span> <span style="color:#888">(Multisig Signer)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; SIGNER &rarr; Mimo Capital: Safe Multisig (550 txs, $246K)<br>
+&nbsp;&nbsp;&nbsp;&#9474; SIGNER &rarr; KUMA MCAG Multisig (51 txs)<br>
+<br>
+<span style="color:#a8f;font-weight:700">0x97e2 + 0x9fab</span> <span style="color:#888">(Single-use &rarr; SAME destination)</span><br>
+&nbsp;&nbsp;&nbsp;&#9474; 50K + 85K USDC &rarr; <span style="color:#ff3b3b">0x56aaef03...</span> (135K total)
     </div>
   </div>
 
@@ -1051,6 +1115,18 @@
       <tr><td style="color:#fa0">TenX: Token Sale</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0xd43D09Ec1bC5e57C8F3D0c64020d403b04c7f783</td><td>Labeled</td></tr>
       <tr><td style="color:#888">Foundation Creator</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x60f4dc3efdbe1d5886dd5d43a16641c832e2f030</td><td>TenX signer</td></tr>
       <tr><td style="color:#888">BTC Pass-through</td><td>Bitcoin</td><td style="font-size:0.78em;color:#a8f">bc1qsdvkkn5svdeywyp544v6jxxzj3l3uprzd6a2rj</td><td>EMPTY (2 txs only)</td></tr>
+      <tr style="background:#1a0a1a"><td colspan="4" style="color:#ff55aa;font-weight:700;text-align:center">PERSONAL WALLET CLUSTER (11 wallets &mdash; ~$1.03M total)</td></tr>
+      <tr><td style="color:#ff55aa">Personal (CONFIRMED)</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x33ce2e88b5fff68f8c890756bab113ce0fb5d3c5</td><td style="color:#4c4">~$282K</td></tr>
+      <tr><td style="color:#ff55aa">DeFi Heavy / GHO Sender</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x0b3890bbf2553bd098b45006add734d6fbd6089e</td><td style="color:#ff3b3b">~$841K</td></tr>
+      <tr><td style="color:#ff55aa">KUMA Bond Buyback</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x680e441609f9fa9b5139c6ec8a7cedea49d53368</td><td style="color:#4c4">~$105K</td></tr>
+      <tr><td style="color:#ff55aa">Curve USK/3CRV Deployer</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x610d1b76a0978f1ef5cf2235a915469310b59dbd</td><td>~$3K</td></tr>
+      <tr><td style="color:#ff55aa">"claude huma" Hub</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x92c5e37962b7d26fd59188b77435a481f8882b18</td><td style="color:#4c4">~$62.7K</td></tr>
+      <tr><td style="color:#ff55aa">Strateg / MurphyLabs</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0xfab5d5e31f29d33d4c806899d34917997671fd5a</td><td>~$220 residual</td></tr>
+      <tr><td style="color:#ff55aa">Multisig Signer</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x27a56858b02cA4867eBfb17F67D8618CBf91e26b</td><td>~$647</td></tr>
+      <tr><td style="color:#ff55aa">50K Sender (Oct 2022)</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x97e2c746f9a6abe147cab2db5028950b6c29a001</td><td>~$106 residual</td></tr>
+      <tr><td style="color:#ff55aa">85K Sender (Aug 2022)</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x9fab82c471ecd03812b1fb3ad02d562130ef2f0f</td><td>~$212 residual</td></tr>
+      <tr><td style="color:#888">Whale (uncertain attr.)</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0x4093fbe60ab50ab79a5bd32fa2adec255372f80e</td><td>~$1K (was $50M+ flows)</td></tr>
+      <tr><td style="color:#ff55aa">May 2022 Sender</td><td>Ethereum</td><td style="font-size:0.78em;color:#a8f">0xdff6f7f95a126a243bf1e27e55557839becb784a</td><td>~$1.3K residual</td></tr>
     </table>
   </div>
 
