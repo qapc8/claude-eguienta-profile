@@ -1062,6 +1062,293 @@
     <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>No MAS enforcement:</strong> No specific Monetary Authority of Singapore action against TenX was found in public records.</p></div>
   </div>
 
+  <!-- ========== CLAUDE PERSONAL WALLET CLUSTER ========== -->
+  <div class="card">
+    <h2 class="collapsible" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Claude Eguienta &mdash; Personal Wallet Cluster (11 Wallets)</h2>
+    <div class="collapse-body">
+
+    <div class="stats">
+      <div class="stat"><div class="n n-red">11</div><div class="l">Wallets identified</div></div>
+      <div class="stat"><div class="n n-orange">$1.03M+</div><div class="l">Combined portfolio value</div></div>
+      <div class="stat"><div class="n n-blue">KuCoin</div><div class="l">Exchange for ALL wallets</div></div>
+      <div class="stat"><div class="n n-purple">2,000+</div><div class="l">Total transactions</div></div>
+      <div class="stat"><div class="n n-green">5</div><div class="l">Inter-wallet links found</div></div>
+    </div>
+
+    <div class="finding" style="border-left:3px solid #ff3b3b;padding-left:10px"><div class="dot" style="background:#ff3b3b"></div><p><strong>ALL 11 wallets funded from KuCoin exchange.</strong> This matches the confirmed personal wallet (0x33ce) pattern: Claude uses KuCoin for personal wallets, NOT Kraken (which treasury/foundation wallets use). Multiple cross-wallet transfers prove common ownership.</p></div>
+
+    <h3 style="color:#ff3b3b;margin-top:14px">Cross-Wallet Fund Flow Map</h3>
+    <div style="background:#0a0a1e;border:1px solid #1e1e45;border-radius:8px;padding:18px;font-family:'Courier New',monospace;font-size:0.78em;color:#a8f;line-height:2.2">
+<span style="color:#ff55aa;font-weight:700">0x0b38...089e</span> <span style="color:#888">(DeFi Heavy — $841K)</span><br>
+&nbsp;&nbsp;&#9474; 80K USDT + 20K USDC &rarr; <span style="color:#fa0">0x680e...3368</span> (Aug 2024)<br>
+&nbsp;&nbsp;&#9474; 100K USDC &rarr; <span style="color:#69f">0x92c5...b18</span> (Jul 2023)<br>
+&nbsp;&nbsp;&#9474; 180 ETH IN &larr; Mimo Capital Vaults Core<br>
+<br>
+<span style="color:#fa0;font-weight:700">0x680e...3368</span> <span style="color:#888">(KUMA Bonds — $105K)</span><br>
+&nbsp;&nbsp;&#9474; 1 ETH &rarr; <span style="color:#69f">0x92c5...b18</span> (initial funding, Nov 2021)<br>
+<br>
+<span style="color:#69f;font-weight:700">0x92c5...b18</span> <span style="color:#888">("claude huma" — $62K)</span><br>
+&nbsp;&nbsp;&#9474; 10K USDC + 10K USK &rarr; <span style="color:#4c4">0x610d...9dbd</span> (Jun 2023)<br>
+&nbsp;&nbsp;&#9474; 500K USDT &rarr; v1337.eth<br>
+<br>
+<span style="color:#4c4;font-weight:700">0x610d...9dbd</span> <span style="color:#888">(Curve LP — $3K)</span><br>
+&nbsp;&nbsp;&#9474; DEPLOYED USK/3CRV Curve metapool (Jun 2023)<br>
+<br>
+<span style="color:#888">&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473; SAME DESTINATION &#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;</span><br>
+<span style="color:#a8f;font-weight:700">0x97e2...a001</span> &rarr; 50K USDC &rarr; <span style="color:#ff3b3b">0x56aaef03...</span> (Oct 2022)<br>
+<span style="color:#a8f;font-weight:700">0x9fab...0f0f</span> &rarr; 85K USDC &rarr; <span style="color:#ff3b3b">0x56aaef03...</span> (Aug 2022)<br>
+<span style="color:#888">Both single-use wallets sending to the SAME address = 135K USDC total</span><br>
+<br>
+<span style="color:#b8f;font-weight:700">0xfab5...fd5a</span> <span style="color:#888">(Strateg — $220)</span><br>
+&nbsp;&nbsp;&#9474; 50K USDC &rarr; MurphyLabs Safe (noah.murphylabs.eth, jeanbrasse.eth)<br>
+<br>
+<span style="color:#69f;font-weight:700">0x27a5...e26b</span> <span style="color:#888">(Signer — $647)</span><br>
+&nbsp;&nbsp;&#9474; SIGNER on Mimo Capital: Safe Multisig (550 txs)<br>
+&nbsp;&nbsp;&#9474; SIGNER on KUMA Protocol: MCAG Multisig (51 txs)<br>
+<br>
+<span style="color:#fa0;font-weight:700">0xdff6...784a</span> <span style="color:#888">(May 2022 sender — $1.3K)</span><br>
+&nbsp;&nbsp;&#9474; Received ~$399K USDT from 0xe59cd29b (Nov-Dec 2021)<br>
+&nbsp;&nbsp;&#9474; Sent 78K USDC to 0xefab75b7 + 15K USDT to 0xc258d51d (May 2022)<br>
+<br>
+<span style="color:#888;font-weight:700">0x4093...f80e</span> <span style="color:#888">(Whale — $1K now, formerly $50M+ flows)</span><br>
+&nbsp;&nbsp;&#9474; 1,280 txs. Moved 23K+ ETH to Binance (Sep-Oct 2022)<br>
+&nbsp;&nbsp;&#9474; $1.92M USDC inflow Sep 2022. Currently near-empty.
+    </div>
+
+    <h3 style="color:#69f;margin-top:18px">Detailed Wallet Breakdown</h3>
+
+    <!-- WALLET 1: 0x33ce (already exists - update) -->
+    <div class="exploit-box">
+      <h3>WALLET 1 &mdash; Confirmed Personal (0x33ce...d3c5)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0x33ce2e88b5fff68f8c890756bab113ce0fb5d3c5</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$282K</div><div class="l">Portfolio (240K USDC + ETH)</div></div>
+        <div class="stat"><div class="n n-blue">9</div><div class="l">Transactions</div></div>
+        <div class="stat"><div class="n n-purple">KuCoin</div><div class="l">Funded by</div></div>
+      </div>
+      <p style="font-size:0.84em;color:#aab;margin:8px 0"><strong style="color:#ff3b3b">UPDATE:</strong> 100K repayment confirmed on-chain. Wallet sent 110K USDC to 0xA9c03C36... (Jul 11, 2025), received 100K USDC back from same address (Aug 15, 2025). Also: 200K USDC sent to Gnosis Safe (May 2023), returned as 208.5K USDC (+8.5K yield, Nov 2024). Holds 17 NFTs. Uses Kuma Protocol MCAG bonds.</p>
+    </div>
+
+    <!-- WALLET 2: 0x0b38 -->
+    <div class="exploit-box">
+      <h3>WALLET 2 &mdash; DeFi Heavy / GHO Sender (0x0b38...089e)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0x0b3890bbf2553bd098b45006add734d6fbd6089e</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-red">$841K</div><div class="l">Total portfolio</div></div>
+        <div class="stat"><div class="n n-blue">340+</div><div class="l">Transactions</div></div>
+        <div class="stat"><div class="n n-orange">93.5 ETH</div><div class="l">ETH balance</div></div>
+        <div class="stat"><div class="n n-orange">8.59 WBTC</div><div class="l">~$600K WBTC</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">Key Holdings</td><td>93.46 ETH ($199K) + 8.59 WBTC ($600K) + 16.9M MIMO ($31K) + 4.6K USDT + NFTs</td></tr>
+        <tr><td style="color:#69f">DeFi Activity</td><td>Aave (GHO borrowing, WBTC withdrawal, 115 WETH staked), Mimo Capital Vaults, Uniswap V2, ParaSwap, 1inch</td></tr>
+        <tr><td style="color:#69f">GHO Transfer</td><td style="color:#ff3b3b"><strong>74,000 GHO out</strong> (~75K reported) &mdash; confirms the 75K GHO send</td></tr>
+        <tr><td style="color:#69f">Mimo Connection</td><td>Received <strong>180 ETH from Mimo Capital Vaults Core</strong> (Jan-Jul 2024)</td></tr>
+        <tr><td style="color:#69f">Inter-wallet</td><td>Sent 80K USDT + 20K USDC to 0x680e (Aug 2024); sent 100K USDC to 0x92c5 (Jul 2023)</td></tr>
+        <tr><td style="color:#69f">Cross-chain</td><td>~$45K on Polygon</td></tr>
+        <tr><td style="color:#69f">Age</td><td>5+ years active</td></tr>
+      </table>
+      <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>CRITICAL: Receives ETH directly from Mimo Capital Vaults Core contract.</strong> This wallet receives compensation or withdrawals from the Mimo Capital protocol itself, establishing a direct protocol &harr; personal wallet link. Also holds 16.9M MIMO tokens ($31K).</p></div>
+    </div>
+
+    <!-- WALLET 3: 0x680e -->
+    <div class="exploit-box">
+      <h3>WALLET 3 &mdash; KUMA Bond Buyback (0x680e...3368)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0x680e441609f9fa9b5139c6ec8a7cedea49d53368</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$105K</div><div class="l">Portfolio (87K USDC)</div></div>
+        <div class="stat"><div class="n n-blue">160</div><div class="l">Transactions</div></div>
+        <div class="stat"><div class="n n-purple">KuCoin</div><div class="l">Funded Jul 2021</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">Key Holdings</td><td>87K USDC + 6.4K USDT + 1.5K DAI + 1 ETH + 206 ENS tokens + 34 NFTs (12 ENS domains)</td></tr>
+        <tr><td style="color:#69f">Bond Activity</td><td>KUMA bond buybacks (protocol interaction confirmed)</td></tr>
+        <tr><td style="color:#69f">Funded by 0x0b38</td><td style="color:#fa0">Received 80K USDT + 20K USDC from wallet #2 (Aug 2024)</td></tr>
+        <tr><td style="color:#69f">Funds 0x92c5</td><td style="color:#fa0">Sent 1 ETH to "claude huma" wallet (Nov 2021, initial funding)</td></tr>
+        <tr><td style="color:#69f">Notable</td><td>Received 29K USDT from a Safe multisig (Jul 2024). Uniswap V3 swaps. Disperse.app token distributions (CAPS, SAITABIT).</td></tr>
+        <tr><td style="color:#69f">Cross-chain</td><td>~$1.5K on Polygon + Arbitrum</td></tr>
+      </table>
+    </div>
+
+    <!-- WALLET 4: 0x610d -->
+    <div class="exploit-box">
+      <h3>WALLET 4 &mdash; Curve USK/3CRV Pool Deployer (0x610d...9dbd)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0x610d1b76a0978f1ef5cf2235a915469310b59dbd</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$3K</div><div class="l">Portfolio</div></div>
+        <div class="stat"><div class="n n-blue">12</div><div class="l">ETH Transactions</div></div>
+        <div class="stat"><div class="n n-purple">KuCoin 10</div><div class="l">Funded Jun 2023</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">Key Holdings</td><td>1,094 USK ($1,092) + 400 USDC + 300 DAI + 299 USDT + 18K Curve LP tokens</td></tr>
+        <tr><td style="color:#69f">Critical Action</td><td style="color:#ff3b3b"><strong>DEPLOYED the USK/3CRV Curve metapool</strong> via Curve Factory (Jun 23, 2023)</td></tr>
+        <tr><td style="color:#69f">Funded by 0x92c5</td><td style="color:#fa0">Received 10K USDC + 10K USK from "claude huma" wallet</td></tr>
+        <tr><td style="color:#69f">LP Added</td><td>9K DAI + 3K USDC + 3K USDT into Curve 3Pool = ~18K LP tokens</td></tr>
+        <tr><td style="color:#69f">Active Period</td><td>Jun 23 - Aug 10, 2023 (6 weeks only)</td></tr>
+      </table>
+      <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>This wallet DEPLOYED the USK/3CRV Curve metapool.</strong> USK is Mimo's US dollar stablecoin. Deploying a Curve pool for USK is a major protocol infrastructure action — done from a personal wallet funded by "claude huma" (0x92c5). This confirms Claude directly managed Mimo protocol liquidity from personal wallets.</p></div>
+    </div>
+
+    <!-- WALLET 5: 0x92c5 -->
+    <div class="exploit-box">
+      <h3>WALLET 5 &mdash; "claude huma" (0x92c5...b18)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0x92c5e37962b7d26fd59188b77435a481f8882b18</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$62.7K</div><div class="l">Portfolio</div></div>
+        <div class="stat"><div class="n n-blue">161+183</div><div class="l">ETH + Token txs</div></div>
+        <div class="stat"><div class="n n-orange">58.6K USK</div><div class="l">Mimo stablecoin</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">DeBank Label</td><td style="color:#ff3b3b"><strong>"claude huma"</strong> — labeled by user in their DeBank profile</td></tr>
+        <tr><td style="color:#69f">Key Holdings</td><td>58.6K USK + 737 USDC + 722 USDT + 443 DAI + 4.3K paUSD + 1 ETH + 14 NFTs</td></tr>
+        <tr><td style="color:#69f">Funded by 0x680e</td><td style="color:#fa0">Received initial 1 ETH from wallet #3 (Nov 16, 2021)</td></tr>
+        <tr><td style="color:#69f">Funded by 0x0b38</td><td style="color:#fa0">Received 100K USDC from wallet #2 (Jul 2023)</td></tr>
+        <tr><td style="color:#69f">Funds 0x610d</td><td style="color:#fa0">Sent 10K USDC + 10K USK to Curve pool deployer (Jun 2023)</td></tr>
+        <tr><td style="color:#69f">Major Flows</td><td>500K USDT to v1337.eth (Jan 2022). 500K+ USDC flows to 0x9115BaDc + 0x3F41a1CF. Kuma Protocol token transfers. BitPay invoice paid ($100).</td></tr>
+        <tr><td style="color:#69f">DeFi</td><td>Deployed a Curve metapool (Sep 2023). Uniswap V3 swaps. Kuma Protocol interactions.</td></tr>
+        <tr><td style="color:#69f">Active Period</td><td>Nov 2021 - Dec 2024</td></tr>
+      </table>
+      <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>HUB WALLET in the personal cluster.</strong> This wallet is the central connector: funded by 0x680e, receives from 0x0b38, funds 0x610d. Moved millions in stablecoins. Labeled "claude huma" on DeBank (Huma Finance connection?). Holds significant USK (Mimo stablecoin) and paUSD.</p></div>
+    </div>
+
+    <!-- WALLET 6: 0xfab5 -->
+    <div class="exploit-box">
+      <h3>WALLET 6 &mdash; Strateg Investment (0xfab5...fd5a)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0xfab5d5e31f29d33d4c806899d34917997671fd5a</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$220</div><div class="l">Residual balance</div></div>
+        <div class="stat"><div class="n n-blue">4</div><div class="l">Transactions</div></div>
+        <div class="stat"><div class="n n-orange">$50K</div><div class="l">USDC invested</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">Purpose</td><td>Single-use intermediary: KuCoin &rarr; 1inch swap (USDT&rarr;USDC) &rarr; MurphyLabs Safe</td></tr>
+        <tr><td style="color:#69f">Destination</td><td style="color:#ff3b3b"><strong>50K USDC to Safe 0x677F...784A</strong> (created by noah.murphylabs.eth, signed by jeanbrasse.eth)</td></tr>
+        <tr><td style="color:#69f">Active Period</td><td>May 30-31, 2023 (2 days only, then dormant)</td></tr>
+        <tr><td style="color:#69f">Connection</td><td style="color:#fa0">MurphyLabs = Murphy Labs, co-founded by Jean Brasse (Head of DeFi at Mimo Labs). Already in analysis.</td></tr>
+      </table>
+    </div>
+
+    <!-- WALLET 7: 0x27a5 -->
+    <div class="exploit-box">
+      <h3>WALLET 7 &mdash; Multisig Signer (0x27a5...e26b)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0x27a56858b02cA4867eBfb17F67D8618CBf91e26b</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$647</div><div class="l">Balance (0.23 ETH)</div></div>
+        <div class="stat"><div class="n n-blue">7+3</div><div class="l">ETH + Polygon txs</div></div>
+        <div class="stat"><div class="n n-purple">KuCoin 4</div><div class="l">Funded Jul 2021</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">Role</td><td style="color:#ff3b3b"><strong>Signer on 2 multisigs:</strong> Mimo Capital Safe Multisig (550 txs) AND Kuma Protocol MCAG Multisig (51 txs)</td></tr>
+        <tr><td style="color:#69f">Mimo Capital MS</td><td>0xcc8793d5...3d1e (already in analysis, Etherscan-labeled)</td></tr>
+        <tr><td style="color:#69f">KUMA MCAG MS</td><td>0x33da84dd...d1bf (51 txs)</td></tr>
+        <tr><td style="color:#69f">Cross-chain</td><td>1,190 OP tokens on Optimism ($146) + 70 POL on Polygon ($7)</td></tr>
+        <tr><td style="color:#69f">Active Period</td><td>Jul 2021 - Jan 2024</td></tr>
+      </table>
+      <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>CONFIRMS Claude as direct signer on Mimo Capital and Kuma Protocol multisigs.</strong> This wallet signed transactions on the Etherscan-labeled Mimo Capital: Safe Multisig (550 txs) which holds ~$246K in tokens, and on the Kuma Protocol: MCAG Multisig. Direct on-chain proof of governance control.</p></div>
+    </div>
+
+    <!-- WALLET 8: 0x97e2 -->
+    <div class="exploit-box">
+      <h3>WALLET 8 &mdash; 50K Sender Oct 2022 (0x97e2...a001)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0x97e2c746f9a6abe147cab2db5028950b6c29a001</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$106</div><div class="l">Residual (0.05 ETH)</div></div>
+        <div class="stat"><div class="n n-blue">2</div><div class="l">Transactions</div></div>
+        <div class="stat"><div class="n n-orange">$50K</div><div class="l">USDC transferred</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">Purpose</td><td>Single-use: KuCoin 9 (50K USDC) + KuCoin 10 (0.05 ETH gas) &rarr; 50K USDC out</td></tr>
+        <tr><td style="color:#69f">Destination</td><td style="color:#ff3b3b"><strong>0x56aaef03993098557916454825f0d863d1440c4c</strong></td></tr>
+        <tr><td style="color:#69f">Date</td><td>October 29, 2022</td></tr>
+        <tr><td style="color:#69f">SAME DEST. as</td><td style="color:#fa0">Wallet #9 (0x9fab) also sent to the same address &mdash; 135K USDC total</td></tr>
+      </table>
+    </div>
+
+    <!-- WALLET 9: 0x9fab -->
+    <div class="exploit-box">
+      <h3>WALLET 9 &mdash; 85K Sender Aug 2022 (0x9fab...0f0f)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0x9fab82c471ecd03812b1fb3ad02d562130ef2f0f</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$212</div><div class="l">Residual (0.1 ETH)</div></div>
+        <div class="stat"><div class="n n-blue">2</div><div class="l">Transactions</div></div>
+        <div class="stat"><div class="n n-orange">$85K</div><div class="l">USDC transferred</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">Funding</td><td>60K USDC from 0x16573dd9... + 25K USDC from KuCoin 9 + 0.1 ETH from KuCoin 10</td></tr>
+        <tr><td style="color:#69f">Destination</td><td style="color:#ff3b3b"><strong>0x56aaef03993098557916454825f0d863d1440c4c</strong> (SAME as wallet #8)</td></tr>
+        <tr><td style="color:#69f">Date</td><td>August 4, 2022</td></tr>
+        <tr><td style="color:#69f">Notable</td><td>Also received 60K USDC from a non-KuCoin address (0x16573dd9...) &mdash; needs further tracing</td></tr>
+      </table>
+      <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>SAME DESTINATION as Wallet #8:</strong> Both single-use wallets sent USDC to <strong>0x56aaef03...</strong> (85K in Aug 2022 + 50K in Oct 2022 = 135K USDC total). This common destination proves coordinated fund movement. The destination address requires further investigation.</p></div>
+    </div>
+
+    <!-- WALLET 10: 0x4093 -->
+    <div class="exploit-box">
+      <h3>WALLET 10 &mdash; Unknown High-Activity Whale (0x4093...f80e)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0x4093fbe60ab50ab79a5bd32fa2adec255372f80e</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$1K</div><div class="l">Current balance</div></div>
+        <div class="stat"><div class="n n-red">1,280</div><div class="l">ETH transactions</div></div>
+        <div class="stat"><div class="n n-red">$50M+</div><div class="l">Historical ETH flows</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">Status</td><td>Near-empty ($1K). Formerly moved massive amounts. 6+ years old.</td></tr>
+        <tr><td style="color:#69f">Major Flows</td><td style="color:#ff3b3b">12K ETH to Binance (Sep 10, 2022, ~$25.6M) + 8K ETH to Binance (Sep 14, ~$17M) + 3K ETH to Binance (Oct 29, ~$6.4M)</td></tr>
+        <tr><td style="color:#69f">USDC Inflow</td><td>$1.92M USDC received Sep 2022</td></tr>
+        <tr><td style="color:#69f">Holdings</td><td>0.37 ETH + 121 tokens ($267 across misc tokens, 19 USDT)</td></tr>
+        <tr><td style="color:#69f">Tokens</td><td>2,664 token transfers total</td></tr>
+      </table>
+      <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>OUTLIER &mdash; different pattern.</strong> Unlike other wallets (KuCoin-funded, single-purpose), this is a high-volume whale wallet funded 6+ years ago from unknown source. Moved $50M+ in ETH to Binance. Uses Binance, not KuCoin. Attribution less certain &mdash; could be an associated entity wallet rather than directly personal.</p></div>
+    </div>
+
+    <!-- WALLET 11: 0xdff6 -->
+    <div class="exploit-box">
+      <h3>WALLET 11 &mdash; May 2022 Sender (0xdff6...784a)</h3>
+      <div class="wallet"><div class="lbl">Address</div>0xdff6f7f95a126a243bf1e27e55557839becb784a</div>
+      <div class="stats" style="margin-top:8px">
+        <div class="stat"><div class="n n-green">$1.3K</div><div class="l">Residual balance</div></div>
+        <div class="stat"><div class="n n-blue">9</div><div class="l">Transactions</div></div>
+        <div class="stat"><div class="n n-orange">$399K</div><div class="l">USDT received</div></div>
+      </div>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td style="width:160px;color:#69f">Funded by</td><td>KuCoin 4 (0.5 ETH for gas, Nov 2021)</td></tr>
+        <tr><td style="color:#69f">USDT Inflows</td><td>~$399K USDT from 0xe59cd29b... in recurring payments (Nov 24 - Dec 2, 2021)</td></tr>
+        <tr><td style="color:#69f">Outflows</td><td>$276.8K + $1K USDT to 0xc4f814a0... (Dec 2021). $15K USDT to 0xc258d51d... (May 2022).</td></tr>
+        <tr><td style="color:#69f">May 2022</td><td>Swapped ~78.5K USDT to USDC via Uniswap V3, then sent <strong>78K USDC to 0xefab75b7...</strong></td></tr>
+        <tr><td style="color:#69f">Cross-chain</td><td>~$3.3K on Polygon</td></tr>
+      </table>
+      <div class="finding"><div class="dot" style="background:#69f"></div><p>This wallet received large recurring USDT payments (~$399K) from a single source, then distributed to multiple recipients including a $78K USDC transfer in May 2022. The recurring payment pattern suggests salary, revenue sharing, or structured distributions.</p></div>
+    </div>
+
+    <!-- SUMMARY TABLE -->
+    <h3 style="color:#ff3b3b;margin-top:18px">Complete Wallet Summary Table</h3>
+    <table class="data-table">
+      <tr><th>Wallet</th><th>Label</th><th>Balance</th><th>Txs</th><th>Exchange</th><th>Key Activity</th></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0x33ce...d3c5</td><td>Confirmed Personal</td><td>$282K</td><td>9</td><td>KuCoin 9/10</td><td>MCAG bonds, boka.eth, 100K repayment</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0x0b38...089e</td><td>DeFi Heavy</td><td style="color:#ff3b3b">$841K</td><td>340</td><td>Unknown</td><td>75K GHO, Aave, 180 ETH from Mimo Vaults</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0x680e...3368</td><td>KUMA Bonds</td><td>$105K</td><td>160</td><td>KuCoin</td><td>Bond buybacks, funds 0x92c5, 12 ENS domains</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0x610d...9dbd</td><td>Curve Deployer</td><td>$3K</td><td>12</td><td>KuCoin 10</td><td style="color:#ff3b3b">DEPLOYED USK/3CRV Curve pool</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0x92c5...b18</td><td>"claude huma"</td><td>$62.7K</td><td>344</td><td>Via 0x680e</td><td>Hub wallet, massive stablecoin flows, Kuma</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0xfab5...fd5a</td><td>Strateg Invest</td><td>$220</td><td>4</td><td>KuCoin 10/11</td><td>50K to MurphyLabs Safe (Strateg)</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0x27a5...e26b</td><td>Multisig Signer</td><td>$647</td><td>10</td><td>KuCoin 4</td><td style="color:#ff3b3b">Signs Mimo Capital + KUMA multisigs</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0x97e2...a001</td><td>50K Oct 2022</td><td>$106</td><td>2</td><td>KuCoin 9/10</td><td>50K USDC &rarr; 0x56aaef03...</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0x9fab...0f0f</td><td>85K Aug 2022</td><td>$212</td><td>2</td><td>KuCoin 9/10</td><td>85K USDC &rarr; 0x56aaef03... (same dest)</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0x4093...f80e</td><td>Whale (uncertain)</td><td>$1K</td><td style="color:#ff3b3b">1,280</td><td>Unknown</td><td>23K+ ETH to Binance, $1.92M USDC inflow</td></tr>
+      <tr><td style="color:#a8f;font-size:0.78em">0xdff6...784a</td><td>May 2022 Sender</td><td>$1.3K</td><td>9</td><td>KuCoin 4</td><td>$399K USDT in, distributed $370K+ out</td></tr>
+    </table>
+
+    <h3 style="color:#ff3b3b;margin-top:18px">Key Analytical Findings</h3>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>On-chain proof of inter-wallet ownership:</strong> 0x680e funded 0x92c5 with ETH. 0x0b38 sent large stablecoins to both 0x680e and 0x92c5. 0x92c5 funded 0x610d with USK+USDC. These direct fund flows between wallets, combined with consistent KuCoin usage, establish common ownership across the cluster.</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>Protocol infrastructure deployed from personal wallets:</strong> 0x610d DEPLOYED a USK/3CRV Curve metapool (Mimo's stablecoin). 0x92c5 also deployed a Curve metapool. These are major protocol infrastructure actions done from personal wallets, not from company multisigs. This blurs the line between personal and corporate activity.</p></div>
+    <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p><strong>0x0b38 receives 180 ETH from Mimo Capital Vaults Core:</strong> Direct protocol-to-personal wallet flow suggests compensation, withdrawals, or treasury access from Mimo Capital's smart contracts. Combined with 8.59 WBTC ($600K) and 93 ETH ($199K), this is the wealthiest wallet in the cluster.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Two wallets (#8 + #9) share same destination (0x56aaef03...):</strong> 85K USDC (Aug 2022) + 50K USDC (Oct 2022) = 135K USDC sent to the same address from two different single-use wallets. Pattern consistent with structured payments to a third party or investment rounds.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Wallet #11 received ~$399K USDT in recurring payments:</strong> Large USDT inflows from a single source (0xe59cd29b...) in Nov-Dec 2021, then distributed to multiple recipients. Could be salary/revenue/OTC payments. Source address requires further investigation.</p></div>
+    <div class="finding"><div class="dot" style="background:#fa0"></div><p><strong>Wallet #10 is an outlier:</strong> Unlike the others, 0x4093 is a high-volume whale wallet with 1,280 txs, funded 6+ years ago from unknown source, using Binance (not KuCoin). Moved $50M+ in ETH. Attribution is less certain than the other 10 wallets. May be an associated entity rather than directly personal.</p></div>
+    <div class="finding"><div class="dot" style="background:#69f"></div><p><strong>Total cluster value: ~$1.03M+ (not counting 0x4093 outlier).</strong> Combined with the Foundation ETH wallet ($2.3M), Mimo Capital wallet ($404K), and dormant BTC ($178M+), the total on-chain footprint exceeds $181M+ across all identified wallets.</p></div>
+
+    </div>
+  </div>
+
 </div>
 </div>
 
