@@ -200,6 +200,12 @@ a.back:hover{border-color:#69f;color:#fff}
   <div class="flow"><span class="amt">$399K USDT</span><span class="arr">&larr;</span><span class="lbl">KuCoin 7 (0xe59cd29b) &rarr; 0xdff6 (withdrawals, Nov-Dec 2021)</span><span class="deg t-orange">2nd</span></div>
   <div class="flow"><span class="amt">100K PAR</span><span class="arr">&rarr;</span><span class="lbl">Foundation ETH Safe &rarr; 0x16573dd9 &rarr; CoW &rarr; 60K USDC &rarr; 0x9fab</span><span class="deg t-red">NEW</span></div>
   <div class="flow"><span class="amt">100K USDC</span><span class="arr">&larr;</span><span class="lbl">0xA9c03C36 &rarr; 0x33ce (repayment, Aug 2025)</span><span class="deg t-red">1st</span></div>
+  <div class="flow" style="border-top:1px solid #252550;margin-top:4px;padding-top:6px"><span class="amt" style="color:#ff3b3b">FORENSIC</span><span class="arr"></span><span class="lbl" style="color:#ff3b3b">NEWLY IDENTIFIED ENTITIES</span><span class="deg t-red">NEW</span></div>
+  <div class="flow"><span class="amt">$578K</span><span class="arr">&rarr;</span><span class="lbl">0x92c5 + 0xdff6 &rarr; v1337.eth (silversurfer972.eth)</span><span class="deg t-red">1st</span></div>
+  <div class="flow"><span class="amt">$106K</span><span class="arr">&rarr;</span><span class="lbl">0x92c5 &rarr; 0x564a (Mimo Vault operator, 1.54M PRL)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">$399K USDT</span><span class="arr">&larr;</span><span class="lbl">KuCoin 7 &rarr; 0xdff6 (exchange withdrawal)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">$305K USDT</span><span class="arr">&rarr;</span><span class="lbl">0xdff6 &rarr; Binance deposit (Etherscan labeled)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">100K PAR</span><span class="arr">&rarr;</span><span class="lbl">Foundation ETH &rarr; 0x16573 &rarr; CoW &rarr; 60K USDC &rarr; 0x9fab</span><span class="deg t-red">1st</span></div>
 </div>
 
 <div class="panel" id="search">
@@ -565,7 +571,7 @@ const W=[
    tags:['$841K portfolio','93 ETH','8.59 WBTC','74K GHO sent','16.9M MIMO','Aave','Mimo Vaults'],bal:'$841K (ETH+WBTC+MIMO)',chain:'ETH',notes:'Largest wallet in personal cluster. 340+ txs, 5+ years active. Holds 93 ETH ($199K) + 8.59 WBTC ($600K) + 16.9M MIMO ($31K). Sent 74K GHO (confirms ~75K GHO). Receives 180 ETH from Mimo Capital Vaults Core. Active on Aave (borrowing, staking). Sends 80K USDT + 20K USDC to 0x680e and 100K USDC to 0x92c5. Cross-chain: $45K on Polygon.'},
 
   {id:'w_680e',l:'KUMA Bond Buyback',sub:'0x680e...3368 — $105K portfolio',addr:'0x680e441609f9fa9b5139c6ec8a7cedea49d53368',c:0xff55aa,s:0.5,p:[-4,9,9],deg:1,
-   tags:['$105K','87K USDC','KUMA bonds','160 txs','12 ENS domains','Funds 0x92c5'],bal:'$105K (87K USDC)',chain:'ETH',notes:'KUMA bond buybacks. 160 txs. KuCoin funded Jul 2021. Holds 87K USDC + 6.4K USDT + 34 NFTs (12 ENS domains). Funded 0x92c5 with 1 ETH (Nov 2021). Received 80K USDT + 20K USDC from 0x0b38 (Aug 2024). Cross-chain: $1.5K on Polygon+Arbitrum.'},
+   tags:['$105K','87K USDC','KUMA bonds','160 txs','16+ ENS domains','Funds 0x92c5','Identity confirmed'],bal:'$105K (87K USDC)',chain:'ETH',notes:'KUMA bond buybacks. 160 txs. KuCoin funded Jul 2021. Holds 87K USDC + 6.4K USDT + 34 NFTs. IDENTITY CONFIRMED via 16+ ENS domains: uniclaude.eth, klodio.eth (matches @klodio Twitter/GitHub), clavde.eth (stylized Claude), claudemoney.eth, claudemonnaie.eth (French: Claude currency), dubaidefi.eth, isoneofus.eth (ONE OF US community = Aya Wallet), cerberusteam.eth, karuizawa.eth (Japanese whisky), sauternes.eth (Bordeaux wine), tokaji.eth (Hungarian wine), plus more. Claimed 206.83 ENS airdrop. Funded 0x92c5 with 1 ETH (Nov 2021). Received 80K USDT + 20K USDC from 0x0b38 (Aug 2024). Cross-chain: $1.5K.'},
 
   {id:'w_610d',l:'Curve USK/3CRV Deployer',sub:'0x610d...9dbd — DEPLOYED POOL',addr:'0x610d1b76a0978f1ef5cf2235a915469310b59dbd',c:0xff55aa,s:0.4,p:[-2,10,8],deg:1,
    tags:['$3K','Curve metapool deployer','USK/3CRV','KuCoin 10','Funded by 0x92c5'],bal:'$3K (USK+stables)',chain:'ETH',notes:'DEPLOYED USK/3CRV Curve metapool (Jun 23, 2023). KuCoin 10 funded. Received 10K USDC + 10K USK from 0x92c5 ("claude huma"). Added 9K DAI + 3K USDC + 3K USDT as liquidity. Active Jun-Aug 2023 only. Holds 18K LP tokens + 1K USK + small stables.'},
@@ -599,6 +605,23 @@ const W=[
 
   {id:'w_murphysafe',l:'MurphyLabs Safe',sub:'Strateg investment destination',addr:'0x677FC4d8414c5af78f962e55A373B24f4431784A',c:0x3399ff,s:0.35,p:[-1,6,12],deg:2,
    tags:['Gnosis Safe','noah.murphylabs.eth','jeanbrasse.eth','50K USDC received'],bal:'~$12',chain:'ETH',notes:'Gnosis Safe created by noah.murphylabs.eth. Signers include jeanbrasse.eth (Jean Brasse = Head of DeFi at Mimo Labs) and manu.murphylabs.eth. Received 50K USDC from Claude\'s 0xfab5 wallet. Currently holds ~$12 + 7 NFTs.'},
+
+  // === FORENSIC INVESTIGATION: NEWLY IDENTIFIED ENTITIES ===
+
+  {id:'w_v1337',l:'v1337.eth (IDENTIFIED)',sub:'0xefab...BA47 — Received $578K from 2 Claude wallets',addr:'0xeFAb75b7b199bf8512e2d5b379374Cb94dfdBA47',c:0xff3b3b,s:0.55,p:[-5,12,11],deg:2,
+   tags:['$578K received','v1337.eth','silversurfer972.eth','0carbon.eth','hereweare.eth','Beacon Depositor','FTX funded','Avalanche bridge','Israel connection'],bal:'~$459 (near-empty)',chain:'Multi',notes:'RESOLVED: v1337.eth = 0xefab75b7. Received $578K from TWO Claude wallets: 500K USDT from 0x92c5 "claude huma" (Jan 8, 2022) + 78K USDC from 0xdff6 (May 2022). Owns ENS: v1337.eth, 0carbon.eth, hereweare.eth, silversurfer972.eth (972 = Israel country code). Beacon Depositor (32 ETH staked). Initially funded by FTX 2. Also uses KuCoin + Binance. 1,093 txs. Bridged 500K USDT to Avalanche within 2 hours of receipt. Identity unknown but sophisticated DeFi user with possible Israeli ties.'},
+
+  {id:'w_564a',l:'0x564a (Potential Wallet)',sub:'Mimo Vault operator — $106K from Claude',addr:'0x564abb3dacad1422edc127759d267b49571e54ab',c:0xfa8800,s:0.4,p:[-1,11,9],deg:2,
+   tags:['$106K from Claude','Mimo Vault operator','1.54M PRL','paUSD','Bidirectional with 0x680e','Binance funded'],bal:'~$2.6K (1.54M PRL)',chain:'ETH',notes:'POTENTIAL new Claude wallet or close associate. Received $106K from Claude wallets ($96K USDC + $7K paUSD from 0x92c5). Bidirectional flows with 0x680e ($4.5K sent, $5K received). Independently operates Mimo Capital Vaults (mints PAR, withdraws collateral). Received 2,533 MIMO governance tokens from Mimo Capital. Holds 1.54M PRL (Parallel governance tokens). First funded from Binance (not KuCoin). 4+ years active.'},
+
+  {id:'w_binance',l:'Claude Binance Deposit',sub:'0xc4f814...fc7 — Etherscan labeled',addr:'0xc4f814a06de29c147b6b28635f969872b3ea4fc7',c:0x44cc44,s:0.3,p:[7,10,7],deg:2,
+   tags:['Binance deposit','Etherscan labeled','$305K USDT deposited'],bal:'Exchange',chain:'ETH',notes:'Claude\'s personal Binance deposit address. Etherscan-labeled "Binance Dep". Received $305,777 USDT from wallet 0xdff6 (Dec 2021) in test-then-large pattern ($1K test + $27K, then $1K test + $276.8K). All outgoing swept to Binance 14 hot wallet. Confirms Claude uses Binance in addition to KuCoin.'},
+
+  {id:'w_kucoin7',l:'KuCoin 7 (Source)',sub:'Exchange hot wallet — $399K USDT source',addr:'0xe59cd29be3be4461d79c0881d238cbe87d64595a',c:0x44cc44,s:0.3,p:[7,11,8],deg:2,
+   tags:['KuCoin 7','Exchange wallet','424K txs','$399K USDT to 0xdff6'],bal:'Exchange',chain:'ETH',notes:'KuCoin 7 operational hot wallet (424,531 total txs). Sent ~$399K USDT in 7 recurring payments (~$57K each) to Claude\'s 0xdff6 wallet between Nov 24 - Dec 2, 2021. On-chain trail ends at exchange custodial boundary. Could be Claude\'s own withdrawals or third-party sends.'},
+
+  {id:'w_fredmd',l:'Fred (Managing Director)',sub:'0xAfb9...9883 — Most active multisig signer',addr:'0xAfb96AFae3f780565406E42aC4A20165ecf99883',c:0xff55aa,s:0.35,p:[2,5,10],deg:2,
+   tags:['Frederic Moniroth Ly','Managing Director Mimo Capital AG','Most active signer','COO Mimo'],bal:'~$0',chain:'ETH',notes:'IDENTIFIED: Frederic Moniroth Ly, Managing Director of Mimo Capital AG (appointed Jul 2024, NorthData registry). COO at Mimo. Address 0xAfb9...9883. Most active signer on Mimo Capital Safe Multisig — executes vast majority of transactions since mid-2024. Also signs on KUMA MCAG Multisig. Holds USK tokens. 1,009 txs. Active 2 days ago.'},
 ];
 
 // ===== EDGES =====
@@ -823,6 +846,31 @@ const E=[
   {f:'claudewallet',t:'w_0b38',c:0xff55aa,w:1,lbl:'Same owner (KuCoin pattern)',deg:1,dash:true},
   {f:'w_0b38',t:'w_680e',c:0xff55aa,w:1,lbl:'Cross-wallet flow proves common owner',deg:1,dash:true},
   {f:'w_680e',t:'claudewallet',c:0xff55aa,w:1,lbl:'Same owner (KuCoin pattern)',deg:1,dash:true},
+
+  // === FORENSIC: NEW ENTITY EDGES ===
+
+  // v1337.eth connections ($578K from 2 wallets)
+  {f:'w_92c5',t:'w_v1337',c:0xff3b3b,w:3,lbl:'500K USDT (Jan 8, 2022)',deg:1},
+  {f:'w_dff6',t:'w_v1337',c:0xff3b3b,w:2,lbl:'78K USDC (May 2022)',deg:1},
+
+  // 0x564abb3d connections ($106K + bidirectional)
+  {f:'w_92c5',t:'w_564a',c:0xfa8800,w:3,lbl:'$96K USDC + $7K paUSD',deg:1},
+  {f:'w_680e',t:'w_564a',c:0xfa8800,w:1,lbl:'$5K USDC (Apr 2025)',deg:2},
+  {f:'w_564a',t:'w_680e',c:0xfa8800,w:1,lbl:'$4.5K USDT+USDC (2024)',deg:2},
+  {f:'w_564a',t:'mimovc',c:0x00c8ff,w:1,lbl:'Vault withdrawals (3 txs)',deg:2},
+
+  // KuCoin 7 → 0xdff6 (USDT source identified)
+  {f:'w_kucoin7',t:'w_dff6',c:0x44cc44,w:2,lbl:'$399K USDT (7 payments)',deg:2},
+
+  // 0xdff6 → Binance deposit
+  {f:'w_dff6',t:'w_binance',c:0x44cc44,w:2,lbl:'$305K USDT (Dec 2021)',deg:2},
+
+  // Fred → Multisigs
+  {f:'w_fredmd',t:'mimoms',c:0xff55aa,w:3,lbl:'Most active signer',deg:2},
+  {f:'w_fredmd',t:'kuma',c:0xff55aa,w:2,lbl:'MCAG signer',deg:2},
+
+  // 0x56aaef03 → Morpho connection
+  {f:'w_56aa',t:'mimovc',c:0x00c8ff,w:1,lbl:'PAR/VaultsCore interactions',deg:2,dash:true},
 ];
 
 // ===== BUILD SCENE =====
