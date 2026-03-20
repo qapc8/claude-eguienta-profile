@@ -188,7 +188,7 @@ a.back:hover{border-color:#69f;color:#fff}
   <div class="flow"><span class="amt">398K USDC</span><span class="arr">&rarr;</span><span class="lbl">Claude wallet &rarr; boka.eth (Nov 2025)</span><span class="deg t-orange">2nd</span></div>
   <div class="flow"><span class="amt">MCAG bonds</span><span class="arr">&rarr;</span><span class="lbl">Claude wallet &rarr; Kuma Protocol (Mimo product)</span><span class="deg t-red">1st</span></div>
   <div class="flow"><span class="amt">~239.5K USDC</span><span class="arr">&larr;</span><span class="lbl">Null address mints &rarr; Claude wallet (5x, Feb 2026)</span><span class="deg t-orange">2nd</span></div>
-  <div class="flow" style="border-top:1px solid #252550;margin-top:4px;padding-top:6px"><span class="amt" style="color:#f5a">WALLET CLUSTER</span><span class="arr"></span><span class="lbl" style="color:#f5a">11 PERSONAL WALLETS (~$1.03M)</span><span class="deg t-red">NEW</span></div>
+  <div class="flow" style="border-top:1px solid #252550;margin-top:4px;padding-top:6px"><span class="amt" style="color:#f5a">WALLET CLUSTER</span><span class="arr"></span><span class="lbl" style="color:#f5a">11 CONFIRMED + 1 MISATTRIBUTED + 1 OPERATIONAL (~$1.03M)</span><span class="deg t-red">UPDATED</span></div>
   <div class="flow"><span class="amt">180 ETH</span><span class="arr">&larr;</span><span class="lbl">Mimo Vaults Core &rarr; 0x0b38 (Jan-Jul 2024)</span><span class="deg t-red">1st</span></div>
   <div class="flow"><span class="amt">74K GHO</span><span class="arr">&rarr;</span><span class="lbl">0x0b38 &rarr; GHO recipient (confirms 75K)</span><span class="deg t-red">1st</span></div>
   <div class="flow"><span class="amt">100K USDC</span><span class="arr">&rarr;</span><span class="lbl">0x0b38 &rarr; 0x92c5 "claude huma" (Jul 2023)</span><span class="deg t-red">1st</span></div>
@@ -197,7 +197,8 @@ a.back:hover{border-color:#69f;color:#fff}
   <div class="flow"><span class="amt">1 ETH</span><span class="arr">&rarr;</span><span class="lbl">0x680e &rarr; 0x92c5 (initial funding, Nov 2021)</span><span class="deg t-red">1st</span></div>
   <div class="flow"><span class="amt">135K USDC</span><span class="arr">&rarr;</span><span class="lbl">0x97e2 + 0x9fab &rarr; 0x56aaef (SAME dest, Aug-Oct 2022)</span><span class="deg t-orange">2nd</span></div>
   <div class="flow"><span class="amt">50K USDC</span><span class="arr">&rarr;</span><span class="lbl">0xfab5 &rarr; MurphyLabs Safe (Strateg, May 2023)</span><span class="deg t-orange">2nd</span></div>
-  <div class="flow"><span class="amt">$399K USDT</span><span class="arr">&larr;</span><span class="lbl">0xe59cd29b &rarr; 0xdff6 (recurring, Nov-Dec 2021)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">$399K USDT</span><span class="arr">&larr;</span><span class="lbl">KuCoin 7 (0xe59cd29b) &rarr; 0xdff6 (withdrawals, Nov-Dec 2021)</span><span class="deg t-orange">2nd</span></div>
+  <div class="flow"><span class="amt">100K PAR</span><span class="arr">&rarr;</span><span class="lbl">Foundation ETH Safe &rarr; 0x16573dd9 &rarr; CoW &rarr; 60K USDC &rarr; 0x9fab</span><span class="deg t-red">NEW</span></div>
   <div class="flow"><span class="amt">100K USDC</span><span class="arr">&larr;</span><span class="lbl">0xA9c03C36 &rarr; 0x33ce (repayment, Aug 2025)</span><span class="deg t-red">1st</span></div>
 </div>
 
@@ -270,8 +271,8 @@ const W=[
   {id:'fndbtc',l:'Foundation BTC',sub:'3,247.53 BTC — NOW EMPTY',addr:'bc1q806efdnrlv5636tld7vhfw4r0d94r622pl7kjx',c:0xff3b3b,s:0.9,p:[6,-4,0],deg:1,
    tags:['SWEPT','Cold Storage','P2WPKH'],bal:'0 BTC (was 3,247.53)',chain:'BTC',notes:'Funded Feb 10, 2022 — 12 days before DAO hack article. 6 total txs. Swept Feb 15, 2026 to 32 addresses in round-number tiers. 4 dust attacks received (SRC-20 spam). All dust spent in sweep tx.'},
 
-  {id:'mimoms',l:'Mimo Capital: Multisig',sub:'Etherscan labeled',addr:'0xcc8793d5eb95faa707ea4155e09b2d3f44f33d1e',c:0x3399ff,s:0.6,p:[9,3,3],deg:1,
-   tags:['Labeled','550 txs','PRL/sPRL + PAY'],bal:'~$255K',chain:'ETH',notes:'Official Mimo Capital Safe. Now holds 100M sPRL1 ($175K), 43M PRL ($75K), 2.4M PAY ($3.6K). New Parallel protocol exposure. Signer overlap with Mimo Wallet (Fred signer: 0xAfb96A). Last active Mar 11, 2026.'},
+  {id:'mimoms',l:'Mimo Capital: Multisig',sub:'Etherscan labeled — 2-of-N, 8 signers',addr:'0xcc8793d5eb95faa707ea4155e09b2d3f44f33d1e',c:0x3399ff,s:0.6,p:[9,3,3],deg:1,
+   tags:['Labeled','2-of-N threshold','8 unique signers','550 txs','PRL/sPRL + PAY'],bal:'~$255K',chain:'ETH',notes:'Official Mimo Capital Safe. 2-of-N threshold, 8 unique signers identified across 550 txs. Fred (Frederic Moniroth Ly, Managing Director Mimo Capital AG) is the most active signer. Jean Brasse (jeanbrasse.eth) also signs. Claude (0x27a5) only executed 2 transactions in mid-2022 — rare signer despite being CEO. Now holds 100M sPRL1 ($175K), 43M PRL ($75K), 2.4M PAY ($3.6K). Last active Mar 11, 2026.'},
 
   {id:'mimow',l:'Mimo Capital Wallet',sub:'Operational',addr:'0x4e24e4cce79bb6ddc4baec394880873215edaf7d',c:0x3399ff,s:0.6,p:[10,0,2],deg:1,
    tags:['Gnosis Safe 1.3.0','$401K stables','783 txs'],bal:'~$404K',chain:'ETH',notes:'$294K USDT + $106K USDC. Active DeFi: Aave, SushiSwap, LI.FI bridge. Created May 2022.'},
@@ -570,28 +571,31 @@ const W=[
    tags:['$3K','Curve metapool deployer','USK/3CRV','KuCoin 10','Funded by 0x92c5'],bal:'$3K (USK+stables)',chain:'ETH',notes:'DEPLOYED USK/3CRV Curve metapool (Jun 23, 2023). KuCoin 10 funded. Received 10K USDC + 10K USK from 0x92c5 ("claude huma"). Added 9K DAI + 3K USDC + 3K USDT as liquidity. Active Jun-Aug 2023 only. Holds 18K LP tokens + 1K USK + small stables.'},
 
   {id:'w_92c5',l:'"claude huma"',sub:'0x92c5...b18 — Hub Wallet',addr:'0x92c5e37962b7d26fd59188b77435a481f8882b18',c:0xff55aa,s:0.55,p:[-3,10,10],deg:1,
-   tags:['$62.7K','claude huma label','Hub wallet','58.6K USK','344 txs','Kuma Protocol'],bal:'$62.7K (USK+stables)',chain:'ETH',notes:'DeBank labeled "claude huma". Central hub: funded by 0x680e (1 ETH), receives 100K USDC from 0x0b38, funds 0x610d (10K USDC + 10K USK). 344 txs. Sent 500K USDT to v1337.eth. Deployed Curve metapool (Sep 2023). Kuma Protocol interactions. Holds 58.6K USK + 737 USDC + 722 USDT + 4.3K paUSD. Active Nov 2021 - Dec 2024.'},
+   tags:['$62.7K','claude huma label','Hub wallet','58.6K USK','344 txs','Kuma Protocol'],bal:'$62.7K (USK+stables)',chain:'ETH',notes:'DeBank labeled "claude huma". Central hub: funded by 0x680e (1 ETH), receives 100K USDC from 0x0b38, funds 0x610d (10K USDC + 10K USK). 344 txs. Sent 500K USDT to v1337.eth (0xefab75b7) — v1337.eth also received 78K USDC from 0xdff6, total $578K from two Claude wallets. v1337.eth owns silversurfer972.eth (972=Israel). Bridged 500K to Avalanche. Deployed Curve metapool (Sep 2023). Kuma Protocol interactions. Holds 58.6K USK + 737 USDC + 722 USDT + 4.3K paUSD. Active Nov 2021 - Dec 2024.'},
 
   {id:'w_fab5',l:'Strateg Investment',sub:'0xfab5...fd5a — 50K to MurphyLabs',addr:'0xfab5d5e31f29d33d4c806899d34917997671fd5a',c:0xff55aa,s:0.35,p:[0,8,11],deg:1,
    tags:['$220 residual','50K USDC invested','MurphyLabs Safe','Strateg','Single-use'],bal:'$220 residual',chain:'ETH',notes:'Single-use intermediary. KuCoin 10+11 funded May 2023. Swapped 50K USDT to USDC via 1inch. Sent 50K USDC to MurphyLabs Safe (0x677F...784A, created by noah.murphylabs.eth, signed by jeanbrasse.eth). 2 days active then dormant. Strateg protocol investment.'},
 
-  {id:'w_27a5',l:'Multisig Signer',sub:'0x27a5...e26b — Signs Mimo + KUMA',addr:'0x27a56858b02cA4867eBfb17F67D8618CBf91e26b',c:0xff55aa,s:0.45,p:[1,7,10],deg:1,
-   tags:['Signer','Mimo Capital Multisig','KUMA MCAG Multisig','KuCoin 4','$647'],bal:'$647',chain:'ETH',notes:'SIGNER on Mimo Capital: Safe Multisig (0xcc87...3d1e, 550 txs) AND Kuma Protocol: MCAG Multisig (0x33da...d1bf, 51 txs). KuCoin 4 funded Jul 2021. 7 ETH txs + 3 Polygon txs. Holds 1,190 OP on Optimism. Active Jul 2021 - Jan 2024.'},
+  {id:'w_27a5',l:'Multisig Signer',sub:'0x27a5...e26b — Signs Mimo + KUMA (rare signer)',addr:'0x27a56858b02cA4867eBfb17F67D8618CBf91e26b',c:0xff55aa,s:0.45,p:[1,7,10],deg:1,
+   tags:['Signer','Mimo Capital Multisig','KUMA MCAG Multisig','KuCoin 4','$647','Rare signer'],bal:'$647',chain:'ETH',notes:'SIGNER on Mimo Capital: Safe Multisig (2-of-N threshold, 8 unique signers, 550 txs — Claude only executed 2 txs mid-2022, Fred is most active signer, Jean Brasse also signs) AND Kuma Protocol: MCAG Multisig (3-of-6 threshold, 6 signers, 51 txs — Claude signed only 2 txs ever). Rare signer despite being CEO. KuCoin 4 funded Jul 2021. Active Jul 2021 - Jan 2024.'},
 
   {id:'w_97e2',l:'50K Sender (Oct 2022)',sub:'0x97e2...a001 — Single-use',addr:'0x97e2c746f9a6abe147cab2db5028950b6c29a001',c:0xff55aa,s:0.3,p:[3,9,11],deg:1,
    tags:['$106 residual','50K USDC','Single-use','Same dest as 0x9fab'],bal:'$106',chain:'ETH',notes:'Single-use: KuCoin 9 (50K USDC) + KuCoin 10 (0.05 ETH gas). Sent 50K USDC to 0x56aaef03... on Oct 29, 2022. SAME destination as wallet 0x9fab (135K USDC total from 2 wallets).'},
 
   {id:'w_9fab',l:'85K Sender (Aug 2022)',sub:'0x9fab...0f0f — Single-use',addr:'0x9fab82c471ecd03812b1fb3ad02d562130ef2f0f',c:0xff55aa,s:0.3,p:[4,8,10],deg:1,
-   tags:['$212 residual','85K USDC','Single-use','Same dest as 0x97e2','60K from unknown'],bal:'$212',chain:'ETH',notes:'Single-use: 60K USDC from 0x16573dd9... + 25K USDC from KuCoin 9 + 0.1 ETH from KuCoin 10. Sent all 85K USDC to 0x56aaef03... on Aug 4, 2022. SAME destination as wallet 0x97e2. 60K from non-KuCoin source needs tracing.'},
+   tags:['$212 residual','85K USDC','Single-use','Same dest as 0x97e2','60K from Mimo PAR Converter'],bal:'$212',chain:'ETH',notes:'Single-use: 60K USDC from 0x16573dd9 (Wallet #12, Mimo PAR Converter — originated as 100K PAR from Foundation ETH Safe, swapped via CoW Protocol) + 25K USDC from KuCoin 9 + 0.1 ETH from KuCoin 10. Sent all 85K USDC to 0x56aaef03 (identified: Crypto.com user, Morpho seed investor) on Aug 4, 2022. SAME destination as wallet 0x97e2.'},
 
-  {id:'w_4093',l:'Whale Wallet (Uncertain)',sub:'0x4093...f80e — 1,280 txs, $50M+ flows',addr:'0x4093fbe60ab50ab79a5bd32fa2adec255372f80e',c:0x888888,s:0.45,p:[6,7,9],deg:2,
-   tags:['$1K now','1,280 txs','$50M+ ETH to Binance','$1.92M USDC','Uncertain attribution'],bal:'$1K (near-empty)',chain:'ETH',notes:'OUTLIER. High-volume whale: 1,280 ETH txs + 2,664 token transfers. Moved 23K+ ETH to Binance Sep-Oct 2022 ($50M+). $1.92M USDC inflow Sep 2022. Currently near-empty. 6+ years old. Uses Binance (not KuCoin). Attribution less certain — may be associated entity rather than personal.'},
+  {id:'w_4093',l:'MISATTRIBUTED Whale',sub:'0x4093...f80e — REMOVED FROM CLUSTER',addr:'0x4093fbe60ab50ab79a5bd32fa2adec255372f80e',c:0xfa8800,s:0.3,p:[6,7,9],deg:3,
+   tags:['MISATTRIBUTED','1,280 txs','Zero overlap','Separate whale cluster','Tornado Cash user'],bal:'$1K (near-empty)',chain:'ETH',notes:'ATTRIBUTION DISPROVED: Deep forensic investigation found ZERO on-chain transactions with any known Claude wallet or Mimo/TenX address across 1,280 transactions. Uses Binance/OKX/Gate.io (NOT KuCoin). No Mimo/TenX/PAR tokens. Uses Tornado Cash (not seen in any Claude wallet). Shares Binance deposit address with 0x716034c2 and 0x930d7f51 — a separate whale cluster including 0xd49a1525 which holds 10,111 ETH ($21.5M). REMOVED from Claude cluster.'},
 
-  {id:'w_dff6',l:'May 2022 Sender',sub:'0xdff6...784a — $399K USDT received',addr:'0xdff6f7f95a126a243bf1e27e55557839becb784a',c:0xff55aa,s:0.35,p:[5,9,8],deg:1,
-   tags:['$1.3K residual','$399K USDT inflow','KuCoin 4','Recurring payments','78K USDC out May 2022'],bal:'$1.3K',chain:'ETH',notes:'KuCoin 4 funded Nov 2021. Received ~$399K USDT in recurring payments from 0xe59cd29b (Nov-Dec 2021). Sent $277K USDT to 0xc4f814a0 (Dec 2021). Swapped 78.5K USDT to USDC via Uniswap V3 (May 2022), sent 78K USDC to 0xefab75b7 + 15K USDT to 0xc258d51d. $3.3K on Polygon.'},
+  {id:'w_dff6',l:'May 2022 Sender',sub:'0xdff6...784a — $399K USDT from KuCoin 7',addr:'0xdff6f7f95a126a243bf1e27e55557839becb784a',c:0xff55aa,s:0.35,p:[5,9,8],deg:1,
+   tags:['$1.3K residual','$399K USDT from KuCoin 7','KuCoin 4','78K USDC to v1337.eth'],bal:'$1.3K',chain:'ETH',notes:'KuCoin 4 funded Nov 2021. Received ~$399K USDT from KuCoin 7 hot wallet (0xe59cd29be3be4461d79c0881d238cbe87d64595a) — KuCoin withdrawals, not third-party payments. Sent $276.8K USDT to 0xc4f814a0 (Claude Binance deposit address, Etherscan-labeled "Binance Dep"). Swapped 78.5K USDT to USDC via Uniswap V3 (May 2022), sent 78K USDC to v1337.eth (0xefab75b7) — same recipient as 500K USDT from 0x92c5 ($578K total from two Claude wallets). $3.3K on Polygon.'},
 
-  {id:'w_56aa',l:'Common Destination',sub:'0x56aaef03... — Received 135K USDC',addr:'0x56aaef03993098557916454825f0d863d1440c4c',c:0xfa8800,s:0.4,p:[4,11,11],deg:2,
-   tags:['135K USDC received','Destination for 2 wallets','Needs investigation'],bal:'Unknown',chain:'ETH',notes:'Received 85K USDC from 0x9fab (Aug 2022) + 50K USDC from 0x97e2 (Oct 2022) = 135K USDC total. Two different single-use wallets sending to the same destination proves coordinated movement. Requires further investigation to identify this address.'},
+  {id:'w_56aa',l:'0x56aaef03 (Identified)',sub:'Crypto.com user + Morpho seed investor',addr:'0x56aaef03993098557916454825f0d863d1440c4c',c:0xfa8800,s:0.4,p:[4,11,11],deg:2,
+   tags:['135K USDC received','Crypto.com user','Morpho seed investor','Mimo PAR interactions'],bal:'Unknown',chain:'ETH',notes:'IDENTIFIED: Independent Crypto.com user and Morpho Protocol seed investor. Received ~77K MORPHO tokens from Morpho: Seed Funding Safe. Also interacts with Mimo PAR/VaultsCore. Uses Crypto.com as primary exchange (7+ deposits totaling ~102K USDC). Received 85K USDC from 0x9fab (Aug 2022) + 50K USDC from 0x97e2 (Oct 2022) = 135K USDC total from two Claude single-use wallets.'},
+
+  {id:'w_16573',l:'Mimo PAR Converter',sub:'0x16573dd9...ea9 — Operational',addr:'0x16573dd990ff42547b22662e7bb1263c8f051ea9',c:0xff55aa,s:0.3,p:[3,10,9],deg:1,
+   tags:['Operational','100K PAR','CoW Protocol','Mimo Capital','Earliest PAR transfers'],bal:'$0',chain:'ETH',notes:'Mimo Capital operational wallet. Received 100K PAR from Foundation ETH Safe (0xaab0...b564), swapped to 101,577 USDC via CoW Protocol. Distributed: 60K USDC to 0x9fab (wallet #9) + 40K USDC to 0x84faf3c7 (another KuCoin-funded Claude wallet). First token transfer was 500 PAR from "Mimo Capital: Deployer" (Dec 2020) — among earliest PAR transfers ever made, confirming founder/core team status. KEY: The 60K USDC funding wallet #9 originated from Mimo treasury PAR→USDC conversion.'},
 
   {id:'w_murphysafe',l:'MurphyLabs Safe',sub:'Strateg investment destination',addr:'0x677FC4d8414c5af78f962e55A373B24f4431784A',c:0x3399ff,s:0.35,p:[-1,6,12],deg:2,
    tags:['Gnosis Safe','noah.murphylabs.eth','jeanbrasse.eth','50K USDC received'],bal:'~$12',chain:'ETH',notes:'Gnosis Safe created by noah.murphylabs.eth. Signers include jeanbrasse.eth (Jean Brasse = Head of DeFi at Mimo Labs) and manu.murphylabs.eth. Received 50K USDC from Claude\'s 0xfab5 wallet. Currently holds ~$12 + 7 NFTs.'},
@@ -783,7 +787,8 @@ const E=[
   {f:'claude',t:'w_97e2',c:0xff55aa,w:1,lbl:'OWNER — 50K sender',deg:1},
   {f:'claude',t:'w_9fab',c:0xff55aa,w:1,lbl:'OWNER — 85K sender',deg:1},
   {f:'claude',t:'w_dff6',c:0xff55aa,w:1,lbl:'OWNER — May 2022',deg:1},
-  {f:'claude',t:'w_4093',c:0x888888,w:1,lbl:'ATTRIBUTED (uncertain)',deg:2,dash:true},
+  {f:'claude',t:'w_16573',c:0xff55aa,w:1,lbl:'OWNER — Mimo PAR Converter',deg:1},
+  {f:'claude',t:'w_4093',c:0xfa8800,w:1,lbl:'MISATTRIBUTED — REMOVED',deg:3,dash:true},
 
   // Inter-wallet fund flows
   {f:'w_0b38',t:'w_680e',c:0xfa8800,w:3,lbl:'80K USDT + 20K USDC (Aug 2024)',deg:1},
@@ -802,13 +807,15 @@ const E=[
   {f:'w_dff6',t:'kucoin',c:0x44cc44,w:1,lbl:'KuCoin 4',deg:2},
 
   // Wallet → Multisig connections
-  {f:'w_27a5',t:'mimoms',c:0xff55aa,w:2,lbl:'SIGNER (550 txs)',deg:1},
-  {f:'w_27a5',t:'kuma',c:0xff55aa,w:2,lbl:'SIGNER on MCAG Multisig (51 txs)',deg:1},
+  {f:'w_27a5',t:'mimoms',c:0xff55aa,w:2,lbl:'SIGNER (2-of-N, 550 txs — Claude: 2 txs only)',deg:1},
+  {f:'w_27a5',t:'kuma',c:0xff55aa,w:2,lbl:'SIGNER on MCAG (3-of-6, 51 txs — Claude: 2 txs)',deg:1},
 
   // Wallet → Destinations
   {f:'w_fab5',t:'w_murphysafe',c:0xfa8800,w:2,lbl:'50K USDC (May 2023)',deg:1},
   {f:'w_murphysafe',t:'jeanbrasse',c:0x3399ff,w:1,lbl:'jeanbrasse.eth = signer',deg:2,dash:true},
   {f:'w_murphysafe',t:'murphylabs',c:0x3399ff,w:1,lbl:'noah.murphylabs.eth = creator',deg:2,dash:true},
+  {f:'fndeth',t:'w_16573',c:0xff3b3b,w:2,lbl:'100K PAR',deg:1},
+  {f:'w_16573',t:'w_9fab',c:0xff55aa,w:2,lbl:'60K USDC (from 100K PAR swap)',deg:1},
   {f:'w_97e2',t:'w_56aa',c:0xfa8800,w:2,lbl:'50K USDC (Oct 2022)',deg:1},
   {f:'w_9fab',t:'w_56aa',c:0xfa8800,w:2,lbl:'85K USDC (Aug 2022)',deg:1},
 
