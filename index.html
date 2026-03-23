@@ -156,7 +156,8 @@
 </div>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('profile')">Profile</button>
+  <button class="tab-btn active" onclick="switchTab('briefing')" style="background:#ff3b3b;color:#fff;border-color:#ff3b3b;font-weight:700">Executive Briefing</button>
+  <button class="tab-btn" onclick="switchTab('profile')">Profile</button>
   <button class="tab-btn" onclick="switchTab('social')">Social Media</button>
   <button class="tab-btn" onclick="switchTab('timeline')">Timeline</button>
   <button class="tab-btn" onclick="switchTab('entities')">People &amp; Entities</button>
@@ -169,8 +170,169 @@
   <a href="wallets.html" class="tab-btn" style="text-decoration:none;background:#1a0a2e;border-color:#6a2fd8;color:#b8f">&#x1f4b0; 3D Wallet Map (4-Degree)</a>
 </div>
 
+<!-- ========== EXECUTIVE BRIEFING ========== -->
+<div id="tab-briefing" class="tab-content active">
+<div class="section">
+
+  <!-- THE HEADLINE -->
+  <div style="background:linear-gradient(135deg,#1a0a0a 0%,#0d0d22 100%);border:2px solid #ff3b3b;border-radius:12px;padding:30px;margin-bottom:20px;text-align:center">
+    <h1 style="color:#ff3b3b;font-size:1.8em;margin-bottom:8px;text-shadow:0 0 40px rgba(255,59,59,0.3)">The $80 Million That Disappeared</h1>
+    <p style="color:#aab;font-size:1.05em;line-height:1.7;max-width:800px;margin:0 auto">In 2017, a Singapore-based startup called TenX raised <strong style="color:#fff">$80 million in 7 minutes</strong> from over 4,000 investors by promising a crypto debit card. The card was never delivered. The money was never accounted for. The company was quietly rebranded. And the man who now runs it all has never publicly answered a single question about where the money went.</p>
+    <p style="color:#69f;font-size:0.82em;margin-top:14px">This briefing is compiled exclusively from public sources: blockchain data, corporate registries, news archives, court records, social media, and on-chain forensic analysis.</p>
+  </div>
+
+  <!-- THE NUMBERS AT A GLANCE -->
+  <div class="card">
+    <h2 style="color:#ff3b3b;border-bottom-color:#ff3b3b">The Numbers</h2>
+    <div class="stats">
+      <div class="stat"><div class="n n-red" style="font-size:2em">$80M</div><div class="l">Raised from 4,000+ investors in a 7-minute ICO (June 2017). No product was ever delivered.</div></div>
+      <div class="stat"><div class="n n-red" style="font-size:2em">$0.07</div><div class="l">What a $1,000 investment is worth today. That's a 99.993% loss.</div></div>
+      <div class="stat"><div class="n n-red" style="font-size:2em">3,247 BTC</div><div class="l">Bitcoin ($270M+) found in a single "foundation" wallet, swept to 32 addresses in Feb 2026.</div></div>
+      <div class="stat"><div class="n n-purple" style="font-size:2em">$11B</div><div class="l">Value of the 2016 DAO hack. The current business partner is the accused hacker. Still employed.</div></div>
+    </div>
+  </div>
+
+  <!-- WHO IS THIS ABOUT -->
+  <div class="card">
+    <h2>Who</h2>
+    <p style="font-size:0.92em;color:#dde;line-height:1.8;margin-bottom:14px"><strong style="color:#ff3b3b;font-size:1.1em">Claude Eguienta</strong> &mdash; French national, based in Dubai/Singapore. Currently CEO of <strong>Mimo Capital AG</strong> (Liechtenstein) and <strong>Mimo Labs</strong> (Singapore). Previously CEO of <strong>TenX</strong>, co-founder of <strong>Telcoin</strong>, board member at <strong>TrustSwap</strong>, founder of <strong>Aya Wallet</strong>. On-chain identity confirmed through 16+ ENS domains including <em>uniclaude.eth</em>, <em>klodio.eth</em> (his known handle), and <em>claudemonnaie.eth</em> (French for "Claude currency").</p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="gcard red">
+        <h3>His business partner</h3>
+        <p><strong>Toby Hoenisch</strong> &mdash; publicly accused by journalist Laura Shin and blockchain analytics firm Chainalysis as the <strong>2016 DAO hacker</strong> who stole $60M (later worth $11B) in Ethereum. Denied the claims, deleted his Twitter, never provided a rebuttal. Still employed at Mimo as Chief Financial Product Officer. Eguienta has never publicly addressed this.</p>
+      </div>
+      <div class="gcard orange">
+        <h3>His predecessor</h3>
+        <p><strong>Julian Hosp</strong> &mdash; TenX co-founder. Linked to <strong>Lyoness</strong>, declared an illegal pyramid scheme in multiple countries (25,000-person downline). Dumped 2.2 million tokens before resigning. Now publicly states: <em>"Ask Toby Hoenisch what he did with the money and where he took off to."</em></p>
+      </div>
+      <div class="gcard orange">
+        <h3>His company</h3>
+        <p><strong>Mimo Capital / TenX Pte. Ltd</strong> &mdash; the <strong>same Singapore legal entity</strong> (reg. 201525701M) confirmed by trademark filings. An $80M failure was not dissolved but rebranded. Investors' tokens were swapped at a ratio that destroyed 99.993% of their value.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE STORY IN 5 ACTS -->
+  <div class="card">
+    <h2>The Story in 5 Acts</h2>
+
+    <div style="display:grid;gap:16px">
+
+    <div style="background:#111128;border-left:4px solid #ff3b3b;border-radius:0 8px 8px 0;padding:16px">
+      <h3 style="color:#ff3b3b;margin-bottom:6px">Act 1: The $80M Promise (2017)</h3>
+      <p style="font-size:0.88em;color:#bbc;line-height:1.7">TenX raises $80M in a record-breaking ICO, promising crypto debit cards that work "anywhere, anytime." Vitalik Buterin is falsely listed as a partner. 4,000+ investors buy in. Token holders are promised 0.5% of all transaction volume &mdash; a promise later quietly removed. The card issuers (WaveCrest, then Wirecard) both collapse. <strong>Not a single working card is ever delivered to the general public.</strong></p>
+    </div>
+
+    <div style="background:#111128;border-left:4px solid #fa0;border-radius:0 8px 8px 0;padding:16px">
+      <h3 style="color:#fa0;margin-bottom:6px">Act 2: The Money Vanishes (2018-2021)</h3>
+      <p style="font-size:0.88em;color:#bbc;line-height:1.7">By Q2 2018, the treasury has grown to <strong>$104.5 million</strong> (the original $80M plus crypto gains). Monthly burn: $740K &mdash; $530K on salaries for ~70 employees &mdash; with no product. Then transparency reports stop entirely. Co-founder Julian Hosp is forced out after dumping tokens. He later claims the money "was still in company accounts" when he left, and points the finger at the remaining leadership. <strong>No public accounting has been provided since 2018.</strong> Claude Eguienta takes over as CEO in mid-2020, fires 75% of staff, calls it a "healthy contraction." An insider whistleblower calls the management "dysfunctional" and says the original tokens "no longer play any role whatsoever."</p>
+    </div>
+
+    <div style="background:#111128;border-left:4px solid #a8f;border-radius:0 8px 8px 0;padding:16px">
+      <h3 style="color:#a8f;margin-bottom:6px">Act 3: The DAO Hack Connection (2022)</h3>
+      <p style="font-size:0.88em;color:#bbc;line-height:1.7">In February 2022, journalist Laura Shin and blockchain analytics firm Chainalysis publicly accuse <strong>Toby Hoenisch</strong> &mdash; Eguienta's co-founder and current business partner &mdash; as the person behind the <strong>2016 DAO hack</strong>, the most infamous theft in cryptocurrency history ($60M stolen, later worth $11B). The evidence chain: stolen Ethereum &rarr; Bitcoin &rarr; privacy mixer &rarr; de-mixed by Chainalysis &rarr; traced to a server named "grin.toby.ai" hosted on Amazon Singapore, the same IP running a node branded "TenX." Hoenisch deletes his Twitter and never provides his promised rebuttal. <strong>He remains employed at Mimo.</strong> Eguienta says nothing publicly. Days before this accusation was published, <strong>3,247 BTC ($270M+) was moved</strong> into a new foundation wallet &mdash; a timing coincidence that demands explanation.</p>
+    </div>
+
+    <div style="background:#111128;border-left:4px solid #69f;border-radius:0 8px 8px 0;padding:16px">
+      <h3 style="color:#69f;margin-bottom:6px">Act 4: The Rebrand &amp; New Tokens (2021-present)</h3>
+      <p style="font-size:0.88em;color:#bbc;line-height:1.7">TenX shuts down in April 2021 &mdash; but the company doesn't dissolve. It rebrands as <strong>Mimo Capital</strong>, using the same legal entity. Investors are offered a token swap: 0.24 MIMO per PAY token. The new MIMO token peaks at $0.43, then collapses to $0.0001 &mdash; <strong>another 99.97% loss</strong>. Meanwhile, Eguienta launches new products (PAR stablecoin, KUMA Protocol bonds, Aya Wallet) and joins the board of TrustSwap &mdash; whose subsidiary was hacked for $14.5M the year before. Every token associated with Eguienta's projects has lost 96-99.97% of its value.</p>
+    </div>
+
+    <div style="background:#111128;border-left:4px solid #ff3b3b;border-radius:0 8px 8px 0;padding:16px">
+      <h3 style="color:#ff3b3b;margin-bottom:6px">Act 5: The On-Chain Trail (2022-2026) &mdash; What This Investigation Found</h3>
+      <p style="font-size:0.88em;color:#bbc;line-height:1.7">Blockchain forensic analysis reveals a network of <strong>12+ personal wallets</strong> controlled by Eguienta (confirmed via cross-wallet fund flows and ENS domain registrations), plus foundation wallets holding millions. Key findings:</p>
+      <ul style="font-size:0.88em;color:#bbc;line-height:1.8;padding-left:18px;margin-top:8px">
+        <li><strong>3,247 BTC (~$270M)</strong> swept from a "COMIT Foundation" wallet to 32 addresses in February 2026. ~2,147 BTC ($178M+) remain dormant. 371+ BTC sent to Kraken exchange.</li>
+        <li><strong>$1.03M in personal wallets</strong> including one wallet ($841K) that receives ETH directly from Mimo Capital's smart contracts &mdash; protocol funds flowing to personal accounts.</li>
+        <li><strong>Protocol infrastructure deployed from personal wallets</strong> &mdash; critical Mimo liquidity pools deployed from wallets funded by the "claude huma" account, blurring corporate and personal use.</li>
+        <li><strong>$578K sent to a single unidentified recipient</strong> (v1337.eth / silversurfer972.eth) from two separate wallets, immediately bridged to another blockchain.</li>
+        <li><strong>Mimo treasury funds converted to personal stablecoins</strong> &mdash; PAR stablecoin from the Foundation ETH wallet was swapped to USDC and distributed to personal wallets.</li>
+        <li><strong>Claude signed only 4 transactions</strong> across both governance multisigs despite being CEO &mdash; the operational day-to-day is delegated while he maintains control.</li>
+        <li><strong>An insider (boka.eth)</strong> who received $398K from Eguienta's confirmed wallet later provided 16 exact Bitcoin sub-destination addresses from the foundation sweep &mdash; proving insider knowledge of fund flows.</li>
+      </ul>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- WHAT MAKES THIS A STORY -->
+  <div class="card">
+    <h2>Why This Matters</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="gcard red" style="border-left-color:#ff3b3b">
+        <h3>Scale</h3>
+        <p>$80M raised, $104.5M at peak, 3,247 BTC ($270M+) in a single wallet, $181M+ total on-chain footprint across all identified wallets. This is not a small DeFi rug-pull &mdash; this is one of the largest unresolved ICO fund accountability questions in crypto history.</p>
+      </div>
+      <div class="gcard red" style="border-left-color:#ff3b3b">
+        <h3>Pattern</h3>
+        <p>Every project Eguienta has led at the executive level has resulted in near-total token value destruction: PAY (-99.97%), MIMO (-99.97%), SWAP (-99.2%), TEL (-96%). Each pivot involves new token issuance. The entity is never dissolved, only rebranded.</p>
+      </div>
+      <div class="gcard red" style="border-left-color:#ff3b3b">
+        <h3>Impunity</h3>
+        <p>Despite all of the above, Eguienta faces no known legal action, speaks at major conferences, serves on boards, and launches new products. There are no public regulatory actions from Singapore's MAS or Liechtenstein's FMA. The crypto industry continues to accept him.</p>
+      </div>
+      <div class="gcard orange" style="border-left-color:#fa0">
+        <h3>The Silence</h3>
+        <p>Eguienta has never publicly addressed: where the $80M went, why his partner is accused as the DAO hacker, why transparency reports stopped, or why every token collapsed. His Twitter (@klodio) is near-silent. He describes himself as "more of a Telegram person." The digital footprint is carefully controlled &mdash; except on-chain, where 16+ ENS domains and 12+ wallets tell a different story.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE UNANSWERED QUESTIONS -->
+  <div class="card">
+    <h2 style="color:#ff3b3b">The Questions No One Has Asked</h2>
+    <div style="display:grid;gap:10px">
+      <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p style="font-size:0.95em"><strong>Where is the $80 million?</strong> TenX held $104.5M as of Q2 2018. Transparency reports stopped. Julian Hosp says it was in company accounts when he left in January 2019. No public accounting exists for the last 7 years. The same legal entity still operates today under a different name.</p></div>
+      <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p style="font-size:0.95em"><strong>Why does the accused DAO hacker still work at Mimo?</strong> Toby Hoenisch, identified by Chainalysis and Laura Shin as the person behind the largest theft in Ethereum history, remains Chief Financial Product Officer at Mimo. Eguienta has never publicly commented on the accusation or explained why Hoenisch remains employed.</p></div>
+      <div class="finding"><div class="dot" style="background:#ff3b3b"></div><p style="font-size:0.95em"><strong>Why were 3,247 BTC moved days before the DAO accusation went public?</strong> The foundation BTC wallet was funded on February 10, 2022 &mdash; twelve days before Laura Shin published her accusation on February 22. Was this a coincidence, or a treasury restructuring triggered by advance knowledge of the investigation?</p></div>
+      <div class="finding"><div class="dot" style="background:#fa0"></div><p style="font-size:0.95em"><strong>Why do Mimo protocol funds flow to personal wallets?</strong> On-chain records show 180 ETH from Mimo Capital's Vaults Core smart contract sent directly to a personal wallet holding $841K. Separately, PAR stablecoin from the Foundation ETH wallet was converted to USDC and routed to personal accounts. Is this compensation, treasury access, or something else?</p></div>
+      <div class="finding"><div class="dot" style="background:#fa0"></div><p style="font-size:0.95em"><strong>Who is v1337.eth?</strong> Two separate Eguienta wallets sent a combined $578,000 to a single unidentified recipient (silversurfer972.eth, possible Israeli connection). The 500K was immediately bridged to another blockchain. What was this payment for?</p></div>
+      <div class="finding"><div class="dot" style="background:#fa0"></div><p style="font-size:0.95em"><strong>Who is boka.eth, and how do they know the BTC destinations?</strong> After receiving $398K from Eguienta's personal wallet, boka.eth provided 16 exact sub-destination addresses from the 3,247 BTC foundation sweep. This demonstrates insider knowledge of a $270M+ fund movement.</p></div>
+      <div class="finding"><div class="dot" style="background:#69f"></div><p style="font-size:0.95em"><strong>Does the FMA Liechtenstein know?</strong> Mimo Capital AG is regulated by Liechtenstein's Financial Market Authority. Does the FMA know that the entity's predecessor raised $80M with no product delivered, that a co-founder is accused as the DAO hacker, and that foundation funds flow to personal wallets?</p></div>
+    </div>
+  </div>
+
+  <!-- HOW TO READ THIS DOSSIER -->
+  <div class="card">
+    <h2>How to Navigate This Dossier</h2>
+    <table class="data-table">
+      <tr><th style="width:200px">Section</th><th>What You'll Find</th></tr>
+      <tr><td style="color:#69f">Profile</td><td>Identity, background, venture portfolio, risk assessment</td></tr>
+      <tr><td style="color:#69f">Timeline</td><td>Complete chronological history from 2013 to present, with dates and sources</td></tr>
+      <tr><td style="color:#69f">People &amp; Entities</td><td>All key players: Hoenisch (DAO hack accused), Hosp (pyramid scheme), Kitti, Neuner, Brasse, and linked companies</td></tr>
+      <tr><td style="color:#69f">Exploits Deep Dive</td><td>Technical details of 4 exploits/incidents: DAO Hack, Telcoin exploit ($1.3M), Team Finance hack ($14.5M), Hosp token dump</td></tr>
+      <tr><td style="color:#69f">Financial Forensics</td><td>ICO fund breakdown, token destruction timeline, broken promises</td></tr>
+      <tr><td style="color:#69f">Whistleblower</td><td>Anonymous insider report, Glassdoor review, community sentiment, class action attempt</td></tr>
+      <tr><td style="color:#ff3b3b;font-weight:700">Key Findings</td><td><strong>START HERE after this briefing.</strong> All critical findings with on-chain evidence, including the new personal wallet cluster analysis</td></tr>
+      <tr><td style="color:#ff3b3b;font-weight:700">Wallet Forensics</td><td>Full on-chain investigation: BTC foundation (3,247 BTC), ETH foundation ($2.3M), Mimo wallets ($660K), 12 personal wallets ($1.03M), counterparty traces</td></tr>
+      <tr><td style="color:#a8f">3D Maps</td><td>Interactive visualizations: connection network (34 nodes) and multi-degree wallet correlation map (100+ nodes)</td></tr>
+    </table>
+  </div>
+
+  <!-- EVIDENCE STRENGTH -->
+  <div class="card">
+    <h2>Evidence Classification</h2>
+    <p style="color:#777;font-size:0.84em;margin-bottom:14px">This dossier distinguishes between levels of evidence. Nothing here constitutes legal findings or accusations.</p>
+    <table class="data-table">
+      <tr><th>Level</th><th>Meaning</th><th>Examples</th></tr>
+      <tr><td><span class="badge b-red">ON-CHAIN PROVEN</span></td><td>Verified on public blockchains. Immutable. Anyone can verify.</td><td>Wallet balances, transaction histories, fund flows, ENS registrations, multisig signer addresses, smart contract deployments</td></tr>
+      <tr><td><span class="badge b-orange">CORPORATE RECORD</span></td><td>From government registries, trademark offices, or regulated filings.</td><td>TenX Pte. Ltd = Mimo (USPTO), Mimo Capital AG board (FMA/NorthData), Companies House UK dissolution</td></tr>
+      <tr><td><span class="badge b-blue">PUBLIC STATEMENT</span></td><td>Published by named individuals, journalists, or organizations.</td><td>Laura Shin's DAO accusation, Hosp's public allegations, whistleblower report, CertiK audit scope disclaimer</td></tr>
+      <tr><td><span class="badge b-purple">ANALYSIS</span></td><td>Conclusions drawn from patterns in on-chain data.</td><td>Common wallet ownership (cross-flows), timing correlations, exchange pattern matching</td></tr>
+      <tr><td><span class="badge b-green">UNVERIFIED</span></td><td>Claims from anonymous or unverifiable sources.</td><td>Hosp's laundering theory, anonymous whistleblower quotes, forum posts</td></tr>
+    </table>
+  </div>
+
+  <!-- CONTACT / LEGAL -->
+  <div style="background:#0a0a1e;border:1px solid #252550;border-radius:8px;padding:18px;margin-top:14px;font-size:0.82em;color:#667">
+    <strong style="color:#888">Note for journalists:</strong> All claims in this dossier are attributed to their original sources. On-chain data can be independently verified using the wallet addresses provided. No direct personal fraud charges, lawsuits, or regulatory actions against Claude Eguienta have been found in public records as of March 2026. This dossier documents patterns and raises questions &mdash; it does not make legal accusations.
+  </div>
+
+</div>
+</div>
+
 <!-- ========== PROFILE ========== -->
-<div id="tab-profile" class="tab-content active">
+<div id="tab-profile" class="tab-content">
 <div class="section">
   <div class="stats">
     <div class="stat"><div class="n n-red">7</div><div class="l">Crypto ventures</div></div>
